@@ -24,7 +24,7 @@
 .PHONY: all clean
 
 # Define required raylib variables
-PROJECT_NAME       ?= bin/Projeto 
+PROJECT_NAME       ?= Sapo 
 RAYLIB_VERSION     ?= 5.0.0
 
 ## @TODO: Mude aqui para o caminho de onde está o raylib
