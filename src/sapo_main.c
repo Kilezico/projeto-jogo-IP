@@ -11,6 +11,10 @@ int main(){
 
     InitWindow(screenWidth, screenHeight, "Sapo Sopa Sobe Sobrio");
 
+    // Coloca em tela cheia
+    if (!IsWindowFullscreen())
+        ToggleFullscreen();
+
     // Inicia as variaveis do jogador
     Player player = {0};
     player.position = (Vector2){ 400, 350 }; // Vetor2 == Vetor 2D V(x,y)
@@ -28,8 +32,15 @@ int main(){
     
     //------Loop principal------
     while(!WindowShouldClose()){
+        // Atualizações  
         float deltaTime = GetFrameTime();
-        UpdatePlayer(&player, &envItems, envItemsLength, deltaTime);
+        UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
+
+        // Desenho na tela
+
+        BeginDrawing();
+        ClearBackground(RAYWHITE);
+        EndDrawing();
     }
 
     return 0;

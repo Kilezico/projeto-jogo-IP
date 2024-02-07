@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int main() {
+int mein() { // Mudei pra mein pra não ter duas mains e dar erro
     SetConfigFlags(FLAG_VSYNC_HINT);
     InitWindow(0, 0, "raylib [core] example - mouse input");
     if (!IsWindowFullscreen()) ToggleFullscreen();
