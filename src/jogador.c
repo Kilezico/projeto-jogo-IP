@@ -11,3 +11,8 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float 
     if(IsKeyDown(KEY_A)) player->position.x -= PLAYER_HOR_SPD*delta;
     if(IsKeyDown(KEY_D)) player->position.x += PLAYER_HOR_SPD*delta;
 }
+
+void DrawPlayer(Player player){
+    Rectangle playerRect = {player.position.x - 20, player.position.y -40, 40, 40};
+    DrawRectangleRec(playerRect, GREEN);
+}
