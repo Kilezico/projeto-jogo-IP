@@ -20,7 +20,7 @@ typedef struct{
 // Funcao dos movimentos do jogador
 void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float delta); 
 
-// TODO: Funcao pra desenhar o jogador
-void DrawPlayer(...);
+// Funcao pra desenhar o jogador
+void DrawPlayer(Player player);
 
 #endif
