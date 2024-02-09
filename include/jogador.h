@@ -9,7 +9,7 @@ typedef struct{
     bool canJump;
 } Player;
 
-//variaveis da entidade
+//variaveis da entidade do mapa
 typedef struct{
     Rectangle react;
     int blocking;

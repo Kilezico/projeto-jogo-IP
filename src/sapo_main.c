@@ -18,10 +18,11 @@ int main(){
 
     // Inicia as variaveis do jogador
     Player player = {0};
-    player.position = (Vector2){ 400, 350 }; // Vetor2 == Vetor 2D V(x,y)
+    player.position = (Vector2){ 400, 280 }; // Vetor2 == Vetor 2D V(x,y)
     player.canJump = false;
     player.speed = 0;
 
+    // Cria as entidades no mapa
     EnvItem envItems[] = {
         {{ 0, 0, 1000, 400 }, 0, LIGHTGRAY },
         {{ 0, 400, 1000, 200 }, 1, GRAY },
@@ -41,9 +42,9 @@ int main(){
 
     // Funcao que pega as informacoes das variaveis ao mesmo tempo para varias cameras
     void (*cameraUpdaters[])(Camera2D*, Player*, EnvItem*, int, float, int, int) = {
-        /*Por enqunto so tem uma*/
+        // Por enqunto so tem uma
         UpdateCameraCenter
-    };
+    }; 
 
     /* int cameraOption = 0;
     int cameraUpdatersLength = sizeof(cameraUpdaters)/sizeof(cameraUpdaters[0]); */
@@ -62,8 +63,15 @@ int main(){
         if(camera.zoom > 3.0f) camera.zoom = 3.0f;
         else if(camera.zoom < 0.3f) camera.zoom = 0.3f;
 
+        // Volta para a posicao inicial
+        if(IsKeyPressed(KEY_R)){
+            camera.zoom = 1.0f;
+            player.position = (Vector2){ 400, 280};
+        }
+
         // Atualiza as info para camera
         cameraUpdaters[0](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
+
 
         // Desenho na tela        
         BeginDrawing();
