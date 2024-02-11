@@ -1,4 +1,5 @@
 #include <raylib.h>
+
 #include "phisica.h"
 #include "jogador.h"
 #include "visao.h"
@@ -6,11 +7,11 @@
 int main(){
     //-----Inicializacao-------
 
+    InitWindow(0, 0, "Sapo Sopa Sobe Sobrio");
+
     // Tamanho da tela
     const int screenWidth = GetScreenWidth();
     const int screenHeight = GetScreenHeight();
-
-    InitWindow(screenWidth, screenHeight, "Sapo Sopa Sobe Sobrio");
 
     // Coloca em tela cheia
     if (!IsWindowFullscreen())
