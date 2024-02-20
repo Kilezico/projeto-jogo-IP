@@ -1,6 +1,7 @@
 #ifndef JOGADOR
 #define JOGADOR
 #include <raylib.h>
+#include "mapa.h"
 
 // Variaveis do jogador
 typedef struct{
@@ -8,13 +9,6 @@ typedef struct{
     float speed;
     bool canJump;
 } Player;
-
-//variaveis da entidade do mapa
-typedef struct{
-    Rectangle react;
-    int blocking;
-    Color color;
-} EnvItem;
 
 
 // Funcao dos movimentos do jogador
