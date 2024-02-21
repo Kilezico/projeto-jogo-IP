@@ -17,6 +17,14 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float 
         player->canJump = false;
     }
 
+    // Limites do mapa
+    if(player->position.x < 20){
+        player->position.x = 20;
+    }
+    if(player->position.x > 2000){
+        player->position.x = 2000;
+    }
+
 
     // Condicoes de pulo
     int hitObstacle = 0;

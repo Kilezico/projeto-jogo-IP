@@ -86,7 +86,7 @@ int main(){
             DrawPlayer(player);
 
         EndMode2D();
-
+        
         EndDrawing();
     }
 
