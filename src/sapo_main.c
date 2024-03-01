@@ -1,14 +1,19 @@
 #include <raylib.h>
+#include <math.h>
 
 #include "phisica.h"
 #include "jogador.h"
 #include "visao.h"
 #include "mapa.h"
 
+typedef enum {
+    INTRO, JOGO, PAUSA
+} GameplayScreen;
+
 int main(){
     //-----Inicializacao-------
 
-    InitWindow(0, 0, "Sapo Sopa Sobe Sobrio");
+    InitWindow(0, 0, "Sapo Sopa Sobe");
 
     // Tamanho da tela
     const int screenWidth = GetScreenWidth();
@@ -24,6 +29,8 @@ int main(){
     player.canJump = false;
     player.speed = 0;
 
+    GameplayScreen gameplayAtual = JOGO;
+
     // Cria as entidades no mapa
     EnvItem envItems[] = {
         {{ 0, 0, 2560, 1440 }, 0, LIGHTGRAY },
@@ -32,6 +39,15 @@ int main(){
         {{ 250, 300, 100, 10 }, 1, GRAY },
         {{ 650, 300, 100, 10 }, 1, GRAY }
     };
+
+    // Água que mata
+    Agua aguaLetal = {};
+    criaTexturasAgua(&aguaLetal);
+    aguaLetal.position = (Vector2){0, screenHeight-200};
+    aguaLetal.vel[0] = 3;
+    aguaLetal.vel[1] = 2;
+    aguaLetal.vel[2] = 1;
+    
 
     int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
 
@@ -74,6 +90,7 @@ int main(){
         // Atualiza as info para camera
         cameraUpdaters[0](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
 
+        updateAgua(&aguaLetal, 0);
 
         // Desenho na tela        
         BeginDrawing();
@@ -85,10 +102,16 @@ int main(){
             for(int i=0; i < envItemsLength; i++) DrawRectangleRec(envItems[i].react, envItems[i].color);
             DrawPlayer(player);
 
-        EndMode2D();
+        EndMode2D();    
         
+        drawAgua(aguaLetal);
+
         EndDrawing();
     }
+
+    // Unload das texturas
+    for (int i=0; i<3; i++)
+        UnloadTexture(aguaLetal.texturas[i]);
 
     CloseWindow();
 

@@ -1,6 +1,8 @@
 #include "phisica.h"
 #include "jogador.h"
 
+#include <raylib.h>
+
 void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float delta){
     if(IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
         player->position.x -= PLAYER_HOR_SPD*delta; // Tecla esquerda -> movimentacao para esquerda
