@@ -75,8 +75,5 @@ void updateAgua(Agua* agua, int alturaAlvo) {
     }
 
     
-
-    
     // Faz a água subir
-    // TODO
 }

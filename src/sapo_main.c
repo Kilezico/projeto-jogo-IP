@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "phisica.h"
 #include "jogador.h"
@@ -29,28 +30,28 @@ int main(){
     player.canJump = false;
     player.speed = 0;
 
-    GameplayScreen gameplayAtual = JOGO;
+    // GameplayScreen gameplayAtual = JOGO;
 
     // Cria as entidades no mapa
     EnvItem envItems[] = {
         {{ 0, 0, 2560, 1440 }, 0, LIGHTGRAY },
-        {{ 0, 1000, 2000, 300 }, 1, GRAY },
-        {{ 300, 200, 400, 10 }, 1, GRAY },
-        {{ 250, 300, 100, 10 }, 1, GRAY },
+        {{ 0, 1000, 2000, 400 }, 1, DARKGREEN },
+        {{ 500, 860, 300, 10 }, 1, GRAY },
+        {{ 750, 750, 100, 10 }, 1, GRAY },
         {{ 650, 300, 100, 10 }, 1, GRAY }
     };
+
+    int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
 
     // Água que mata
     Agua aguaLetal = {};
     criaTexturasAgua(&aguaLetal);
-    aguaLetal.position = (Vector2){0, screenHeight-200};
+    aguaLetal.position = (Vector2){0, 1400};
     aguaLetal.vel[0] = 3;
     aguaLetal.vel[1] = 2;
     aguaLetal.vel[2] = 1;
     
-
-    int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
-
+    
     // Inicia as variaveis de camera
     Camera2D camera = {0};
     camera.target = player.position;
@@ -90,7 +91,7 @@ int main(){
         // Atualiza as info para camera
         cameraUpdaters[0](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
 
-        updateAgua(&aguaLetal, 0);
+        updateAgua(&aguaLetal, 100);
 
         // Desenho na tela        
         BeginDrawing();
@@ -101,10 +102,16 @@ int main(){
         BeginMode2D(camera);
             for(int i=0; i < envItemsLength; i++) DrawRectangleRec(envItems[i].react, envItems[i].color);
             DrawPlayer(player);
+            drawAgua(aguaLetal);
 
         EndMode2D();    
         
-        drawAgua(aguaLetal);
+         
+
+        // Mostra a posicao do jogador
+        char positionStr[64];
+            sprintf(positionStr, "Posição do Jogador: [ X: %.02f, Y: %.02f ]", player.position.x, player.position.y);
+            DrawText(positionStr, 10, 40, 50, BLACK);
 
         EndDrawing();
     }
