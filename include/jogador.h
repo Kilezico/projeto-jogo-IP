@@ -9,6 +9,8 @@ typedef struct{
     float speed;
     bool canJump;
     bool vivo;
+
+    int contMorte; // Contador para morte
 } Player;
 
 

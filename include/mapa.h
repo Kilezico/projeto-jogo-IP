@@ -22,7 +22,7 @@ typedef struct {
 void criaTexturasAgua(Agua *agua);
 void drawAguaFundo(Agua agua);
 void drawAguaFrente(Agua agua);
-void updateAgua(Agua* agua);
+void updateAgua(Agua* agua, float alturaJogador, bool cabou);
 
 
 #endif

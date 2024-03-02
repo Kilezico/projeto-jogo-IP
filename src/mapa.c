@@ -1,20 +1,24 @@
 #include <raylib.h>
+#include <stdlib.h>
 
 #include "mapa.h"
 #include "jogador.h"
 
 void criaTexturasAgua(Agua *agua) {
     int largura = GetScreenWidth() + 40;
-    int altura = 700;
+    int altura = 1000;
     int raio = largura / 40;
-    Image agua1 = GenImageColor(largura, altura, WHITE);
-    Image grad1 = GenImageGradientLinear(largura, altura, 0, (Color){5, 167, 242, 255}, (Color){0, 0, 200, 255});
+    Image agua1 = GenImageColor(largura, 2*altura, WHITE);
+    Image grad1 = GenImageGradientLinear(largura, altura, 0, (Color){5, 167, 242, 255}, (Color){0, 0, 255, 255});
     for (int i=0; i<largura/raio*2; i++) {
         ImageDrawCircle(&agua1, raio + 2*raio*i, 0, raio + 5, (Color){0});
         ImageDrawCircle(&grad1, raio + 2*raio*i, 0, raio + 7, (Color){0});
     }
     ImageDraw(&agua1, grad1, (Rectangle){0, 0, largura, altura}, (Rectangle){0, 0, largura, altura}, WHITE);
+    ImageDrawRectangle(&grad1, 0, 0, largura, altura, (Color){0, 0, 255, 255});
+    ImageDraw(&agua1, grad1, (Rectangle){0, 0, largura, altura}, (Rectangle){0, altura, largura, altura}, WHITE);
     
+    // Faz essa textura da frente ser bem longa pra baixo pra cobrir a tela quando o jogador morrer.
     agua->texturas[0] = LoadTextureFromImage(agua1);
 
     Image agua2 = GenImageColor(largura, altura, WHITE);
@@ -70,7 +74,7 @@ void drawAguaFrente(Agua agua)
         (Vector2){0}, 0, WHITE);
 }
 
-void updateAgua(Agua* agua) {
+void updateAgua(Agua* agua, float alturaJogador, bool cabou) {
     // Atualiza os retângulos em relação à posição
     for (int i=0; i<3; i++) {
         agua->rect[i].x += agua->vel[i];
@@ -83,7 +87,18 @@ void updateAgua(Agua* agua) {
     }
     
     // Faz a água subir
-    agua->altura -= agua->velVertical;
+    if (!cabou) {
+        float distancia = abs(alturaJogador - agua->altura);
+        if (distancia > 480) { // "Tenho que ir rápido". Vai chegar de volta a tela bem rápido
+            agua->altura -= distancia * 0.006;
+        } else { // Quando chegar na tela, vai um pouco mais lento
+            agua->altura -= agua->velVertical;
+        }
+    } else {
+        agua->altura -= 5;        
+    }
+    // Aumenta a velocidade vertical (e horizontal) gradativamente
+    // TODO - aumentar as velocidades  
 
     // Sobe também a altrua letal
     agua->alturaLetal = agua->altura + 110;

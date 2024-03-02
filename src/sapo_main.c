@@ -8,11 +8,6 @@
 #include "mapa.h"
 #include "telas.h"
 
-// Para sinalizar o estado do jogo.
-typedef enum {
-    INTRO, JOGO, PAUSA, MORTE
-} GameplayScreen;
-
 // Trocador de tela. Pode ser substituido se já tiver um no código do menu
 typedef enum {
     GAMEPLAY
@@ -53,10 +48,11 @@ int main(){
     Agua aguaLetal = {};
     criaTexturasAgua(&aguaLetal);
     aguaLetal.altura = 1400;
+    aguaLetal.alturaLetal = 1400;
     aguaLetal.vel[0] = 2.0f;
     aguaLetal.vel[1] = 1.5f;
     aguaLetal.vel[2] = 1.0f;
-    aguaLetal.velVertical = 2.0f;
+    aguaLetal.velVertical = 1.0f;
     
     // Inicia as variaveis de camera
     Camera2D camera = {0};
@@ -72,10 +68,11 @@ int main(){
         UpdateCameraJump
     };
 
+
     /* int cameraOption = 0;
     int cameraUpdatersLength = sizeof(cameraUpdaters)/sizeof(cameraUpdaters[0]); */
 
-    GameplayScreen gameplayState = INTRO;
+    GameplayScreen gameplayState = JOGO;
     GameScreen gameState = GAMEPLAY;
 
     SetTargetFPS(60); // Limite de fps
@@ -88,7 +85,7 @@ int main(){
         // Atualizações  
         switch (gameState) {
             case GAMEPLAY:
-                jogoUpdate(&camera, &player, &aguaLetal, envItems, envItemsLength);
+                jogoUpdate(&gameplayState, &camera, &player, &aguaLetal, envItems, envItemsLength);
             break;
             default: break;
         }
@@ -102,7 +99,7 @@ int main(){
             switch (gameState) {
                 case GAMEPLAY:
                     // Desenha o jogo
-                    jogoDraw(camera, player, aguaLetal, envItems, envItemsLength, poufonte);
+                    jogoDraw(gameplayState, camera, player, aguaLetal, envItems, envItemsLength, poufonte);
                 break;
             }
         
