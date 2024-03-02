@@ -6,13 +6,20 @@
 #include "jogador.h"
 #include "visao.h"
 #include "mapa.h"
+#include "telas.h"
 
+// Para sinalizar o estado do jogo.
 typedef enum {
-    INTRO, JOGO, PAUSA
+    INTRO, JOGO, PAUSA, MORTE
 } GameplayScreen;
 
+// Trocador de tela. Pode ser substituido se já tiver um no código do menu
+typedef enum {
+    GAMEPLAY
+} GameScreen;
+
 int main(){
-    //-----Inicializacao-------
+    //-------Inicializacao-------
 
     InitWindow(0, 0, "Sapo Sopa Sobe");
 
@@ -26,11 +33,10 @@ int main(){
 
     // Inicia as variaveis do jogador
     Player player = {0};
-    player.position = (Vector2){ 1000, 720 }; // Vetor2 == Vetor 2D V(x,y)
+    player.position = (Vector2){ 1000, 1000 }; // Vetor2 == Vetor 2D V(x,y)
     player.canJump = false;
     player.speed = 0;
-
-    // GameplayScreen gameplayAtual = JOGO;
+    player.vivo = true;
 
     // Cria as entidades no mapa
     EnvItem envItems[] = {
@@ -46,11 +52,11 @@ int main(){
     // Água que mata
     Agua aguaLetal = {};
     criaTexturasAgua(&aguaLetal);
-    aguaLetal.position = (Vector2){0, 1400};
-    aguaLetal.vel[0] = 3;
-    aguaLetal.vel[1] = 2;
-    aguaLetal.vel[2] = 1;
-    
+    aguaLetal.altura = 1400;
+    aguaLetal.vel[0] = 2.0f;
+    aguaLetal.vel[1] = 1.5f;
+    aguaLetal.vel[2] = 1.0f;
+    aguaLetal.velVertical = 2.0f;
     
     // Inicia as variaveis de camera
     Camera2D camera = {0};
@@ -62,62 +68,48 @@ int main(){
     // Funcao que pega as informacoes das variaveis ao mesmo tempo para varias cameras
     void (*cameraUpdaters[])(Camera2D*, Player*, EnvItem*, int, float, int, int) = {
         // Por enqunto so tem uma
-        UpdateCameraCenter
-    }; 
+        UpdateCameraCenter,
+        UpdateCameraJump
+    };
 
     /* int cameraOption = 0;
     int cameraUpdatersLength = sizeof(cameraUpdaters)/sizeof(cameraUpdaters[0]); */
 
+    GameplayScreen gameplayState = INTRO;
+    GameScreen gameState = GAMEPLAY;
+
     SetTargetFPS(60); // Limite de fps
 
-    
+    // Só pra testar as fontes
+    Font poufonte = LoadFontEx("assets/Pou.ttf", 50, 0, 256);
+
     //------Loop principal------
     while(!WindowShouldClose()){
         // Atualizações  
-        float deltaTime = GetFrameTime();
-        UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
-
-
-        camera.zoom += ((float) GetMouseWheelMove()*0.05f);
-        if(camera.zoom > 3.0f) camera.zoom = 3.0f;
-        else if(camera.zoom < 0.3f) camera.zoom = 0.3f;
-
-        // Volta para a posicao inicial
-        if(IsKeyPressed(KEY_R)){
-            camera.zoom = 1.0f;
-            player.position = (Vector2){ 1000, 720};
-            aguaLetal.position = (Vector2){0, 1400};
+        switch (gameState) {
+            case GAMEPLAY:
+                jogoUpdate(&camera, &player, &aguaLetal, envItems, envItemsLength);
+            break;
+            default: break;
         }
-
         // Atualiza as info para camera
-        cameraUpdaters[0](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
+        float deltaTime = GetFrameTime();
+        cameraUpdaters[1](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
 
-        updateAgua(&aguaLetal, 1);
-
-        // Desenho na tela        
+        // Desenha na tela        
         BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-
-        // Desenha o jogador
-        BeginMode2D(camera);
-            for(int i=0; i < envItemsLength; i++) DrawRectangleRec(envItems[i].react, envItems[i].color);
-            DrawPlayer(player);
-            drawAgua(aguaLetal);
-
-        EndMode2D();    
+            ClearBackground(RAYWHITE);
+            switch (gameState) {
+                case GAMEPLAY:
+                    // Desenha o jogo
+                    jogoDraw(camera, player, aguaLetal, envItems, envItemsLength, poufonte);
+                break;
+            }
         
-         
-
-        // Mostra a posicao do jogador
-        char positionStr[64];
-            sprintf(positionStr, "Posição do Jogador: [ X: %.02f, Y: %.02f ]", player.position.x, player.position.y);
-            DrawText(positionStr, 10, 40, 50, BLACK);
-
         EndDrawing();
     }
 
-    // Unload das texturas
+    // Descarrega coisas da memória
     for (int i=0; i<3; i++)
         UnloadTexture(aguaLetal.texturas[i]);
 

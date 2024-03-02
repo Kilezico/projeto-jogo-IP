@@ -3,7 +3,7 @@
 
 #include <raylib.h>
 
-void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float delta){
+void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, Agua agua, float delta){
     if(IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_A))
         player->position.x -= PLAYER_HOR_SPD*delta; // Tecla esquerda -> movimentacao para esquerda
     if(IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_D))
@@ -49,6 +49,9 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, float 
         player->canJump = false;
     }
     else player->canJump = true;
+
+    // Checa se morreu pela água
+    if (player->position.y > agua.alturaLetal) player->vivo = false;
 }
 
 void DrawPlayer(Player player){

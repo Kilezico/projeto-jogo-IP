@@ -11,17 +11,18 @@ typedef struct{
 
 // Água do mar que sobe
 typedef struct {
-    Vector2 position;
-    Rectangle rect[3]; // Uma para cada camada do parallax
+    float altura;
+    Rectangle rect[3]; // Uma para cada camada da água
     Texture2D texturas[3];
     float vel[3];
+    float velVertical;
+    float alturaLetal; // Altura que não pode ficar abaixo pra não morrer
 } Agua;
 
 void criaTexturasAgua(Agua *agua);
-
-void drawAgua(Agua agua);
-
-void updateAgua(Agua* agua, int speedAgua);
+void drawAguaFundo(Agua agua);
+void drawAguaFrente(Agua agua);
+void updateAgua(Agua* agua);
 
 
 #endif
