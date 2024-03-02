@@ -62,7 +62,7 @@ void drawAgua(Agua agua) {
     }
 }
 
-void updateAgua(Agua* agua, int alturaAlvo) {
+void updateAgua(Agua* agua, int speedAgua) {
     // Atualiza os retângulos em relação à posição
     for (int i=0; i<3; i++) {
         agua->rect[i].x += agua->vel[i];
@@ -76,4 +76,7 @@ void updateAgua(Agua* agua, int alturaAlvo) {
 
     
     // Faz a água subir
+    for(int h=0; h < speedAgua; h++){
+        agua->position.y--;
+    }
 }

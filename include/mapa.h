@@ -21,7 +21,7 @@ void criaTexturasAgua(Agua *agua);
 
 void drawAgua(Agua agua);
 
-void updateAgua(Agua* agua, int alturaAlvo);
+void updateAgua(Agua* agua, int speedAgua);
 
 
 #endif

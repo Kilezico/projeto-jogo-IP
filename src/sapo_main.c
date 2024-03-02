@@ -36,9 +36,9 @@ int main(){
     EnvItem envItems[] = {
         {{ 0, 0, 2560, 1440 }, 0, LIGHTGRAY },
         {{ 0, 1000, 2000, 400 }, 1, DARKGREEN },
-        {{ 500, 860, 300, 10 }, 1, GRAY },
-        {{ 750, 750, 100, 10 }, 1, GRAY },
-        {{ 650, 300, 100, 10 }, 1, GRAY }
+        {{ 500, 860, 300, 10 }, 1, LIME },
+        {{ 750, 750, 100, 10 }, 1, MAGENTA },
+        {{ 820, 620, 100, 10 }, 1, GRAY }
     };
 
     int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
@@ -86,12 +86,13 @@ int main(){
         if(IsKeyPressed(KEY_R)){
             camera.zoom = 1.0f;
             player.position = (Vector2){ 1000, 720};
+            aguaLetal.position = (Vector2){0, 1400};
         }
 
         // Atualiza as info para camera
         cameraUpdaters[0](&camera, &player, envItems, envItemsLength, deltaTime, screenWidth, screenHeight);
 
-        updateAgua(&aguaLetal, 100);
+        updateAgua(&aguaLetal, 1);
 
         // Desenho na tela        
         BeginDrawing();
