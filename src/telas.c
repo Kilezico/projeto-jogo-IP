@@ -9,13 +9,15 @@
 // Telas do jogo
 void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, EnvItem *plataformas, int plataformasTam, Font fonte)
 {
+    DrawRectangleRec(plataformas[0].react, plataformas[0].color);
+
     BeginMode2D(camera);
-        DrawRectangleRec(plataformas[0].react, plataformas[0].color);
         drawAguaFundo(aguaLetal); // desenha fundo
         for(int i=1; i < plataformasTam; i++) DrawRectangleRec(plataformas[i].react, plataformas[i].color); // desenha plataformas
         DrawPlayer(player); // desenha jogador
         drawAguaFrente(aguaLetal); // desenha frente
     EndMode2D();
+    
 
     if (screen == MORTE) {
         // DrawTextEx(fonte, "Game Over :(", (Vector2){GetScreenWidth()/2-200, GetScreenHeight()/2-20}, 40, 10, RED);

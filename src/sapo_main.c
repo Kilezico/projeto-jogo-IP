@@ -39,7 +39,9 @@ int main(){
         {{ 0, 1000, 2000, 400 }, 1, DARKGREEN },
         {{ 500, 860, 300, 10 }, 1, LIME },
         {{ 750, 750, 100, 10 }, 1, MAGENTA },
-        {{ 820, 620, 100, 10 }, 1, GRAY }
+        {{ 820, 620, 100, 10 }, 1, GRAY },
+        {{ 930, 475, 150, 10 }, 1, BROWN },
+        {{ 1000, 400, 250, 10 }, 1, YELLOW }
     };
 
     int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
@@ -68,9 +70,9 @@ int main(){
         UpdateCameraJump
     };
 
-
     /* int cameraOption = 0;
     int cameraUpdatersLength = sizeof(cameraUpdaters)/sizeof(cameraUpdaters[0]); */
+
 
     GameplayScreen gameplayState = JOGO;
     GameScreen gameState = GAMEPLAY;
