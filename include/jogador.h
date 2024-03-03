@@ -11,6 +11,7 @@ typedef struct{
     bool vivo;
 
     int contMorte; // Contador para morte
+    Sound somMorte;
 } Player;
 
 
@@ -19,5 +20,8 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, Agua a
 
 // Funcao pra desenhar o jogador
 void DrawPlayer(Player player);
+
+// Função para desinicializar as texturas e sons do player
+void UnloadPlayer(Player *player);
 
 #endif

@@ -51,10 +51,18 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, Agua a
     else player->canJump = true;
 
     // Checa se morreu pela água
-    if (player->position.y > agua.alturaLetal) player->vivo = false;
+    if (player->position.y > agua.alturaLetal && player->vivo) {
+        player->vivo = false;
+        PlaySound(player->somMorte);
+    }
 }
 
 void DrawPlayer(Player player){
     Rectangle playerRect = {player.position.x - 20, player.position.y - 40, 40, 40};
     DrawRectangleRec(playerRect, GREEN);
 }
+
+void UnloadPlayer(Player *player)
+{
+    UnloadSound(player->somMorte);
+} 

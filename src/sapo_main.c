@@ -17,6 +17,7 @@ int main(){
     //-------Inicializacao-------
 
     InitWindow(0, 0, "Sapo Sopa Sobe");
+    InitAudioDevice();
 
     // Tamanho da tela
     const int screenWidth = GetScreenWidth();
@@ -32,6 +33,7 @@ int main(){
     player.canJump = false;
     player.speed = 0;
     player.vivo = true;
+    player.somMorte = LoadSound("assets/bolhas.mp3");
 
     // Cria as entidades no mapa
     EnvItem envItems[] = {
@@ -55,7 +57,7 @@ int main(){
     aguaLetal.vel[1] = 1.5f;
     aguaLetal.vel[2] = 1.0f;
     aguaLetal.velVertical = 1.0f;
-    
+
     // Inicia as variaveis de camera
     Camera2D camera = {0};
     camera.target = player.position;
@@ -111,7 +113,9 @@ int main(){
     // Descarrega coisas da memória
     for (int i=0; i<3; i++)
         UnloadTexture(aguaLetal.texturas[i]);
+    UnloadPlayer(&player);
 
+    CloseAudioDevice();
     CloseWindow();
 
     return 0;
