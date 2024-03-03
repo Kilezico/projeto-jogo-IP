@@ -34,6 +34,7 @@ int main(){
     player.speed = 0;
     player.vivo = true;
     player.somMorte = LoadSound("assets/bolhas.mp3");
+    player.somPulo = LoadSound("assets/pulo.mp3");
 
     // Cria as entidades no mapa
     EnvItem envItems[] = {
@@ -84,12 +85,14 @@ int main(){
     // Só pra testar as fontes
     Font poufonte = LoadFontEx("assets/Pou.ttf", 50, 0, 256);
 
+   
     //------Loop principal------
     while(!WindowShouldClose()){
         // Atualizações  
         switch (gameState) {
             case GAMEPLAY:
                 jogoUpdate(&gameplayState, &camera, &player, &aguaLetal, envItems, envItemsLength);
+                
             break;
             default: break;
         }
@@ -114,8 +117,9 @@ int main(){
     for (int i=0; i<3; i++)
         UnloadTexture(aguaLetal.texturas[i]);
     UnloadPlayer(&player);
+    
 
-    CloseAudioDevice();
+   
     CloseWindow();
 
     return 0;

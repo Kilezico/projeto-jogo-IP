@@ -17,6 +17,7 @@ void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, Agua a
     if(IsKeyDown(KEY_SPACE) && player->canJump){
         player->speed = -PLAYER_JUMP_SPD;
         player->canJump = false;
+        PlaySound(player->somPulo);
     }
 
     // Limites do mapa

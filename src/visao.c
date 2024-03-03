@@ -8,7 +8,7 @@ void UpdateCameraCenter(Camera2D *camera, Player *player, EnvItem *envItems, int
     camera->target = player->position;
 }
 
-// Camera que atualiza quando o jogador pijsa na plataforma
+// Camera que atualiza quando o jogador pisa na plataforma
 void UpdateCameraJump(Camera2D *camera, Player *player, EnvItem *envItems, int envItemsLength, float delta, int width, int height)
 {
  camera->target.y = player->position.y;

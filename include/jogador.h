@@ -12,6 +12,7 @@ typedef struct{
 
     int contMorte; // Contador para morte
     Sound somMorte;
+    Sound somPulo;
 } Player;
 
 
