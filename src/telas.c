@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "telas.h"
 #include "jogador.h"
@@ -7,14 +8,30 @@
 #include "utilidades.h"
 
 // Telas do jogo
-void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, EnvItem *plataformas, int plataformasTam, Font fonte)
+void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, EnvItem *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
 {
     DrawRectangleRec(plataformas[0].react, plataformas[0].color);
 
     BeginMode2D(camera);
         drawAguaFundo(aguaLetal); // desenha fundo
+        
         for(int i=1; i < plataformasTam; i++) DrawRectangleRec(plataformas[i].react, plataformas[i].color); // desenha plataformas
+        
         DrawPlayer(player); // desenha jogador
+        
+
+        for (int i=0; i<ceil(plataformas[1].react.width/80.0f); i++) {
+            for (int j=0; j<ceil(plataformas[1].react.height/80.0f); j++) {
+                Rectangle src = {0, 0, 16, 16};
+                Rectangle dest = {plataformas[1].react.x + i*80, plataformas[1].react.y + j*80 - 5, 80, 80};
+                if (j==0)
+                    DrawTexturePro(topo, src, dest, (Vector2){0, 0}, 0, WHITE);
+                else 
+                    DrawTexturePro(terra, src, dest, (Vector2){0, 0}, 0, WHITE);
+                    
+            }
+        }
+        
         drawAguaFrente(aguaLetal); // desenha frente
     EndMode2D();
     

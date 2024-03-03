@@ -47,6 +47,10 @@ int main(){
         {{ 1000, 400, 250, 10 }, 1, YELLOW }
     };
 
+    Texture2D terra = LoadTexture("assets/terra.png");
+    Texture2D terraTopo = LoadTexture("assets/terra_topo.png");
+    
+
     int envItemsLength = sizeof(envItems)/sizeof(envItems[0]);
 
     // Água que mata
@@ -106,7 +110,7 @@ int main(){
             switch (gameState) {
                 case GAMEPLAY:
                     // Desenha o jogo
-                    jogoDraw(gameplayState, camera, player, aguaLetal, envItems, envItemsLength, poufonte);
+                    jogoDraw(gameplayState, camera, player, aguaLetal, envItems, envItemsLength, poufonte, terra, terraTopo);
                 break;
             }
         
@@ -117,9 +121,8 @@ int main(){
     for (int i=0; i<3; i++)
         UnloadTexture(aguaLetal.texturas[i]);
     UnloadPlayer(&player);
-    
 
-   
+    CloseAudioDevice();
     CloseWindow();
 
     return 0;
