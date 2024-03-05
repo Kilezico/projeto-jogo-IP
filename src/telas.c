@@ -6,25 +6,26 @@
 #include "jogador.h"
 #include "mapa.h"
 #include "utilidades.h"
+#include "visao.h"
 
 // Telas do jogo
-void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, EnvItem *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
+void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
 {
-    DrawRectangleRec(plataformas[0].react, plataformas[0].color);
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), SKYBLUE);
 
     BeginMode2D(camera);
         drawAguaFundo(aguaLetal); // desenha fundo
         
-        for(int i=1; i < plataformasTam; i++) DrawRectangleRec(plataformas[i].react, plataformas[i].color); // desenha plataformas
+        for(int i=1; i < plataformasTam; i++) DrawRectangleRec(plataformas[i].hitbox.react, BROWN); // desenha plataformas
         
         DrawPlayer(player); // desenha jogador
         
-
-        for (int i=0; i<ceil(plataformas[1].react.width/80.0f); i++) {
-            for (int j=0; j<ceil(plataformas[1].react.height/80.0f); j++) {
+        // Desenha o chão com sprites de terra
+        for (int i=0; i<ceil(plataformas[0].hitbox.react.width/80.0f); i++) {
+            for (int j=0; j<ceil(plataformas[0].hitbox.react.height/80.0f); j++) {
                 Rectangle src = {0, 0, 16, 16};
-                Rectangle dest = {plataformas[1].react.x + i*80, plataformas[1].react.y + j*80 - 5, 80, 80};
-                if (j==0)
+                Rectangle dest = {plataformas[0].hitbox.react.x + i*80, plataformas[0].hitbox.react.y + j*80 - 5, 80, 80};
+                if (j==0) // linha 0, topo.
                     DrawTexturePro(topo, src, dest, (Vector2){0, 0}, 0, WHITE);
                 else 
                     DrawTexturePro(terra, src, dest, (Vector2){0, 0}, 0, WHITE);
@@ -47,12 +48,9 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
         DrawTextEx(fonte, positionStr, (Vector2){10, 40}, 40, 5, WHITE);
 }
 
-void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, EnvItem *plataformas, int plataformasTam)
+void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam)
 {
     float deltaTime = GetFrameTime();
-    camera->zoom += ((float) GetMouseWheelMove()*0.05f);
-    if(camera->zoom > 3.0f) camera->zoom = 3.0f;
-    else if(camera->zoom < 0.3f) camera->zoom = 0.3f;
 
     if (*screen == JOGO) {
         UpdatePlayer(player, plataformas, plataformasTam, *aguaLetal, deltaTime);
@@ -66,23 +64,25 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
     } else if (*screen == MORTE) {
         // Fica nela por alguns segundos
         player->contMorte++;
-        if (player->contMorte > GetFPS()*3) jogoReset(screen, camera, player, aguaLetal);
+        if (player->contMorte > GetFPS()*3) jogoReset(screen, camera, player, aguaLetal, plataformas, plataformasTam);
     }
-
-
-    // Atualiza as info para camera
-    //cameraUpdaters[0](camera, player, plataformas, plataformasTam, deltaTime, GetScreenWidth(), GetScreenHeight());
 
     // Checa morte do jogador
     if (!player->vivo && *screen == JOGO) *screen = ENCHENTE;
+
+    // Atualiza as info para camera
+    UpdateCameraJump(camera, player, GetScreenWidth(), GetScreenHeight());
 }
 
-void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal) // Reseta as variáveis do jogo para começar de novo.
+void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam) // Reseta as variáveis do jogo para começar de novo.
 {
+    // Pronto para começar de novo!
     *screen = JOGO;
     camera->zoom = 1.0f;
-    player->position = (Vector2){ 1000, 1000 };
+    camera->target.y = -400.0f;
+    player->position = (Vector2){ 500, -50 };
     player->vivo = true;
-    aguaLetal->altura = 1400;
-    aguaLetal->alturaLetal = 1400;
+    aguaLetal->altura = 500;
+    aguaLetal->alturaLetal = 500;
+    criaPlataformas(plataformas, plataformasTam);
 }

@@ -4,6 +4,26 @@
 #include "mapa.h"
 #include "jogador.h"
 
+void criaPlataformas(Plataforma *plataformas, int plataformasTam) // Cria as plataformas iniciais
+{
+    // Seria criar um número fixo de plataformas (plataformasTam) no começo do jogo
+    // a partir do chão, ou seja, criar o próprio chão, e depois mais plataformasTam-1 plataformas.
+}
+
+void updatePlataforma(Plataforma *plataformas, int plataformasTam) // Cria novas plataformas e também move elas (se necessário)
+{
+    // Para criar novas plataformas, uma boa ideia seria verificar as plataformas que estão
+    // fora da tela, e substituílas por novas, acima da tela, que vão entrar na tela na medida
+    // que o sapo pular.
+}
+
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D terraTopo)
+{
+    // se plataformas->textura == NULL, quer dizer que é o chão, pois não tem textura
+    // aí desenha os blocos de terra
+}
+
+
 void criaTexturasAgua(Agua *agua) {
     int largura = GetScreenWidth() + 40;
     int altura = 1000;

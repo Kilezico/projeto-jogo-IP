@@ -17,7 +17,7 @@ typedef struct{
 
 
 // Funcao dos movimentos do jogador
-void UpdatePlayer(Player *player, EnvItem *envIntems, int envItemsLength, Agua agua, float delta); 
+void UpdatePlayer(Player *player, Plataforma *plataformas, int plataformasLength, Agua agua, float delta); 
 
 // Funcao pra desenhar o jogador
 void DrawPlayer(Player player);

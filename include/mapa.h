@@ -6,8 +6,15 @@
 typedef struct{
     Rectangle react;
     int blocking;
-    Color color;
 } EnvItem;
+
+typedef struct {
+    EnvItem hitbox; // Para colisão com jogador
+    Rectangle rect;
+    Texture2D *textura; // Está como ponteiro para carregar a mesma textura apenas uma vez.
+    Texture2D *textureFlor;
+    float velocidade;
+} Plataforma;
 
 // Água do mar que sobe
 typedef struct {
@@ -18,6 +25,10 @@ typedef struct {
     float velVertical;
     float alturaLetal; // Altura que não pode ficar abaixo pra não morrer
 } Agua;
+
+void criaPlataformas(Plataforma *plataformas, int plataformasTam); // Cria as plataformas iniciais
+void updatePlataforma(Plataforma *plataformas, int plataformasTam); // Cria novas plataformas
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D terraTopo);
 
 void criaTexturasAgua(Agua *agua);
 void drawAguaFundo(Agua agua);
