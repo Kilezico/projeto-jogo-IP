@@ -3,8 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define BUTTON_WIDTH 200 //defines the standard size of the buttons (horizontal) 
-#define BUTTON_HEIGHT 50 //defines the standard size of the buttons (vertical) 
+#define BUTTON_WIDTH 200 //tamanho dos botões (horizontal) 
+#define BUTTON_HEIGHT 50 //tamanho dos botões (vertical) 
 
 typedef struct {
     Rectangle button;
