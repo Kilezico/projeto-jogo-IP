@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include "utlidades.h"
 
 #define BUTTON_WIDTH 840 //largura dos nomes
 #define BUTTON_HEIGHT 120 //altura dos nomes
