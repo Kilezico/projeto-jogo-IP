@@ -118,8 +118,9 @@ int backStory(void)
                 Vector2 origin = { Eight.whereSquare.width / 2, Eight.whereSquare.height / 2 };
                 DrawTexturePro(Eight.image, Eight.proportionSquare, Eight.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleEight);
-            }else{
-                //voltar para o menu
+                Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
+                DrawRectangleRec(backToMenu, waterBlue);
+                DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
             }
 
         EndDrawing();
