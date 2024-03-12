@@ -9,7 +9,7 @@
 
 // Trocador de tela. Pode ser substituido se já tiver um no código do menu
 typedef enum {
-    GAMEPLAY, MENU
+    GAMEPLAY, MENUS, HOWTO, STORY, CREDITS, EXIT
 } GameScreen;
 
 int main(){
@@ -65,7 +65,7 @@ int main(){
 
     // Estados para mudança de janela
     GameplayScreen gameplayState = JOGO;
-    GameScreen gameState = GAMEPLAY;
+    GameScreen gameState = MENUS;
 
     SetTargetFPS(60); // Limite de fps
 
@@ -90,6 +90,21 @@ int main(){
                 case GAMEPLAY:
                     // Desenha o jogo
                     jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu);
+                break;
+                case MENUS:
+                    menuDraw(gameState);
+                break;
+                //case HOWTO:
+                  
+                //break;
+                case STORY:
+                    backStoryDraw(gameState);
+                break;
+                //case EXIT:
+                  
+                //break;
+                case CREDITS:
+                    creditsDraw(gameState);
                 break;
                 default: break;
             }
