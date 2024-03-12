@@ -13,11 +13,6 @@ typedef struct{
 const char *tale;
 }writtenStory; //ponteiro que aponta para a string de texto que vai ficar em cada um dos quadrinhos
 
-void DrawSquares(Texture2D image, Rectangle proportionSquare, Rectangle whereSquare){
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(image, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
 void DrawSTory(writtenStory verse){
     DrawText(verse.tale, 650, 150, 65, WHITE);
 }
@@ -66,6 +61,8 @@ int backStory(void)
     Eight.proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
     Eight.whereSquare = { 960, 540, 1920, 1080 };
 
+    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
+
     writtenStory taleOne, taleTwo, taleThree, taleFour, taleFive, taleSix, taleSeven, taleEight;
     //struct que pega o texto chamada para cada um dos quadrinhos
 
@@ -92,28 +89,28 @@ int backStory(void)
             ClearBackground(forestGreen);
 
             if(squareCount==1){ //mostra o quadrinho 1
-                DrawSquares(One.squareOne, One.proportionSquare, One.whereSquare);
+                DrawTexturePro(One.squareOne, One.proportionSquare, One.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleOne);
             }else if(squareCount==2){ //mostra o quadrinho 2
-                DrawSquares(Two.squareOne, Two.proportionSquare, Two.whereSquare);
+                DrawTexturePro(Two.squareOne, Two.proportionSquare, Two.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleTwo);
             }else if(squareCount==3){ //mostra o quadrinho 3
-                DrawSquares(Three.squareOne, Three.proportionSquare, Three.whereSquare);
+                DrawTexturePro(Three.squareOne, Three.proportionSquare, Three.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleThree);
             }else if(squareCount==4){ //mostra o quadrinho 4
-                DrawSquares(Four.squareOne, Four.proportionSquare, Four.whereSquare);
+                DrawTexturePro(Four.squareOne, Four.proportionSquare, Four.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleFour);
             }else if(squareCount==5){ //mostra o quadrinho 5
-                DrawSquares(Five.squareOne, Five.proportionSquare, Five.whereSquare);
+                DrawTexturePro(Five.squareOne, Five.proportionSquare, Five.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleFive);
             }else if(squareCount==6){ //mostra o quadrinho 6
-                DrawSquares(Six.squareOne, Six.proportionSquare, Six.whereSquare);
+                DrawTexturePro(Six.squareOne, Six.proportionSquare, Six.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleSix);
             }else if(squareCount==7){ //mostra o quadrinho 7
-                DrawSquares(Seven.squareOne, Seven.proportionSquare, Seven.whereSquare);
+                DrawTexturePro(Seven.squareOne, Seven.proportionSquare, Seven.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleSeven);
             }else if(squareCount==8){ //mostra o quadrinho 8
-                DrawSquares(Eight.squareOne, Eight.proportionSquare, Eight.whereSquare);
+                DrawTexturePro(Eight.squareOne, Eight.proportionSquare, Eight.whereSquare, 0.0f, WHITE);
                 DrawSTory(taleEight);
             }else{
                 //voltar para o menu
