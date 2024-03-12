@@ -3,6 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "utilidades.h"
+
 #define BUTTON_WIDTH 450 //define a largura do botões
 #define BUTTON_HEIGHT 110 //define a altura dos botões 
 
@@ -41,7 +43,7 @@ int menu(void)
     Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra
  
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe menu screen");
-    Texture2D background = LoadTexture("assets/backGround.jpg");
+    Texture2D background = LoadTexture("assets/backGround.png");
     Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.png"); //desenho do sapo que fica no menu
 
     SetTargetFPS(60);
@@ -49,32 +51,32 @@ int menu(void)
     options play; options gamePlay; options backStory; options exit; options creditPage;
     //struct que pega as informações dos botões
 
-    play.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    play.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     //define o retangulo que representa o botão, todos tem o mesmo tamanho mas a coordenada do eixo y muda, um em cima do outro
     play.rectColor = polutedSky; //cor do retengulo, igual a do fundo e igual para todos
     play.optionColor = groungBrown; //cor do texto, igual para todos
     play.word = "Jogar"; //texto q fica no botão, indica a opção
     play.fontSize = 65; //tamanho das letras
 
-    gamePlay.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    gamePlay.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     gamePlay.rectColor = polutedSky;
     gamePlay.optionColor = groungBrown;
     gamePlay.word = "Como jogar?";
     gamePlay.fontSize = 65;
 
-    backStory.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    backStory.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     backStory.rectColor = polutedSky;
     backStory.optionColor = groungBrown;
     backStory.word = "Backstory";
     backStory.fontSize = 65;
 
-    exit.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 75 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    exit.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 75 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     exit.rectColor = polutedSky;
     exit.optionColor = groungBrown;
     exit.word = "Sair :(";
     exit.fontSize = 65;
 
-    creditPage.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    creditPage.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     creditPage.rectColor = polutedSky;
     creditPage.optionColor = groungBrown;
     creditPage.word = "Creditos";
@@ -89,12 +91,12 @@ int menu(void)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawText("sapo-sopa sobe", 275, 35, 170, grassGreen); //titulo do jogo
+            DrawTextLines(GetFontDefault(), "sapo-sopa sobe", (Vector2){960, 120}, 0, 170, 20, grassGreen, BLACK, 4); // titulo do jogo
             
             Rectangle proportionFrogMenu = { 0.0f, 0.0f, frogMenu.width, frogMenu.height };
             //retangulo que vai definir a proporção da imagem do sapo, nesse caso pega o sapo todo
             // Define the destination rectangle for drawing
-            Rectangle whereFrogMenu = { 635, 660, frogMenu.width * 0.5, frogMenu.height * 0.5 };
+            Rectangle whereFrogMenu = { 625, 750, frogMenu.width * 0.5, frogMenu.height * 0.5 };
             //define onde deve ser desenhado e o seu tamanho (escala de 0.6)
             Vector2 origin = { whereFrogMenu.width / 2, whereFrogMenu.height / 2 };
             //define o centro da imagem como sua origem
