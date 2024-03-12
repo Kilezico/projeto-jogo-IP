@@ -5,8 +5,8 @@
 
 typedef struct{
 Texture2D image;
-Rectangle proportionSquare
-Rectangle whereSquare
+Rectangle proportionSquare;
+Rectangle whereSquare;
 }squareImages;
 
 typedef struct{
@@ -29,35 +29,35 @@ int backStory(void)
 
     squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
 
-    One.squareOne = LoadTexture("assets/squareOne.png");
+    One.image = LoadTexture("assets/squareOne.png");
     One.proportionSquare = { 0.0f, 0.0f, squareOne.width, squareOne.height };
     One.whereSquare = { 635, 660, squareOne.width * 0.6, squareOne.height * 0.6 };
 
-    Two.squareTwo = LoadTexture("assets/squareTwo.png");
+    Two.image = LoadTexture("assets/squareTwo.png");
     Two.proportionSquare = { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
     Two.whereSquare = { 635, 635, squareTwo.width * 0.6, squareTwo.height * 0.6 };
 
-    Three.squareThree = LoadTexture("assets/squareThree.png");
+    Three.image = LoadTexture("assets/squareThree.png");
     Three.proportionSquare = { 0.0f, 0.0f, squareThree.width, squareThree.height };
     Three.whereSquare = { 635, 660, squareThree.width * 0.7, squareThree.height * 0.7 };
 
-    Four.squareFour = LoadTexture("assets/squareFour.png");
+    Four.image = LoadTexture("assets/squareFour.png");
     Four.proportionSquare = { 0.0f, 0.0f, squareFour.width, squareFour.height };
     Four.whereSquare = { 635, 660, squareFour.width * 0.85, squareFour.height * 0.85 };
 
-    Five.squareFive = LoadTexture("assets/squareFive.png");
+    Five.image = LoadTexture("assets/squareFive.png");
     Five.proportionSquare = { 0.0f, 0.0f, squareFive.width, squareFive.height };
     Five.whereSquare = { 960, 540, 1920, 1080 };
 
-    Six.squareSix = LoadTexture("assets/squareSix.png");
+    Six.image = LoadTexture("assets/squareSix.png");
     Six.proportionSquare = { 0.0f, 0.0f, squareSix.width, squareSix.height };
     Six.whereSquare = { 960, 540, 1920, 1080 };
 
-    Seven.squareSeven = LoadTexture("assets/squareSeven.png");
+    Seven.image = LoadTexture("assets/squareSeven.png");
     Seven.proportionSquare = { 0.0f, 0.0f, squareSeven.width, squareSeven.height };
     Seven.whereSquare = { 960, 540, 1920, 1080 };
 
-    Eight.squareEight = LoadTexture("assets/squareEight.png");
+    Eight.image = LoadTexture("assets/squareEight.png");
     Eight.proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
     Eight.whereSquare = { 960, 540, 1920, 1080 };
 
@@ -89,28 +89,36 @@ int backStory(void)
             ClearBackground(forestGreen);
 
             if(squareCount==1){ //mostra o quadrinho 1
-                DrawTexturePro(One.squareOne, One.proportionSquare, One.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { One.whereSquare.width / 2, One.whereSquare.height / 2 };
+                DrawTexturePro(One.image, One.proportionSquare, One.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleOne);
             }else if(squareCount==2){ //mostra o quadrinho 2
-                DrawTexturePro(Two.squareOne, Two.proportionSquare, Two.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Two.whereSquare.width / 2, Two.whereSquare.height / 2 };
+                DrawTexturePro(Two.image, Two.proportionSquare, Two.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleTwo);
             }else if(squareCount==3){ //mostra o quadrinho 3
-                DrawTexturePro(Three.squareOne, Three.proportionSquare, Three.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Three.whereSquare.width / 2, Three.whereSquare.height / 2 };
+                DrawTexturePro(Three.image, Three.proportionSquare, Three.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleThree);
             }else if(squareCount==4){ //mostra o quadrinho 4
-                DrawTexturePro(Four.squareOne, Four.proportionSquare, Four.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Four.whereSquare.width / 2, Four.whereSquare.height / 2 };
+                DrawTexturePro(Four.image, Four.proportionSquare, Four.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleFour);
             }else if(squareCount==5){ //mostra o quadrinho 5
-                DrawTexturePro(Five.squareOne, Five.proportionSquare, Five.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Five.whereSquare.width / 2, Five.whereSquare.height / 2 };
+                DrawTexturePro(Five.image, Five.proportionSquare, Five.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleFive);
             }else if(squareCount==6){ //mostra o quadrinho 6
-                DrawTexturePro(Six.squareOne, Six.proportionSquare, Six.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Six.whereSquare.width / 2, Six.whereSquare.height / 2 };
+                DrawTexturePro(Six.image, Six.proportionSquare, Six.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleSix);
             }else if(squareCount==7){ //mostra o quadrinho 7
-                DrawTexturePro(Seven.squareOne, Seven.proportionSquare, Seven.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Seven.whereSquare.width / 2, Seven.whereSquare.height / 2 };
+                DrawTexturePro(Seven.image, Seven.proportionSquare, Seven.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleSeven);
             }else if(squareCount==8){ //mostra o quadrinho 8
-                DrawTexturePro(Eight.squareOne, Eight.proportionSquare, Eight.whereSquare, 0.0f, WHITE);
+                Vector2 origin = { Eight.whereSquare.width / 2, Eight.whereSquare.height / 2 };
+                DrawTexturePro(Eight.image, Eight.proportionSquare, Eight.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleEight);
             }else{
                 //voltar para o menu
@@ -121,14 +129,14 @@ int backStory(void)
 
     CloseWindow(); 
 
-    UnloadTexture(squareOne);
-    UnloadTexture(squareTwo);
-    UnloadTexture(squareThree);
-    UnloadTexture(squareFour);
-    UnloadTexture(squareFive);
-    UnloadTexture(squareSix);
-    UnloadTexture(squareSeven);
-    UnloadTexture(squareEight);
+    UnloadTexture(One.image);
+    UnloadTexture(Two.image);
+    UnloadTexture(Three.image);
+    UnloadTexture(Four.image);
+    UnloadTexture(Five.image);
+    UnloadTexture(Six.image);
+    UnloadTexture(Seven.image);
+    UnloadTexture(Eight.image);
 
     return 0;
 }
