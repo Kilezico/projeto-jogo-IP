@@ -98,6 +98,10 @@ int credits(void)
             DrawTextLines(GetFontDefault(), "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 170, 20, WHITE, BLACK, 4); // titulo do jogo
             DrawText("sapos-sopa (grupo 7)", 175, 50, 170, WHITE); //titulo do jogo
 
+            Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
+            DrawRectangleRec(backToMenu, polutedSky);
+            DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+
             DrawCreditButton(Dyego);
             DrawCreditButton(Henrique);
             DrawCreditButton(Joao);
