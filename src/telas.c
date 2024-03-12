@@ -65,13 +65,13 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
 void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) // Reseta as variáveis do jogo para começar de novo.
 {
     // Pronto para começar de novo!
-    *screen = JOGO;
+    *screen = JOGO; // aqui vai mudar eu acho, né
     camera->zoom = 1.0f;
     camera->target.y = -400.0f;
     player->position = (Vector2){ 500, -50 };
     player->vivo = true;
-    aguaLetal->altura = 500;
-    aguaLetal->alturaLetal = 500;
+    aguaLetal->altura = 1400;
+    aguaLetal->alturaLetal = 1400;
     aguaLetal->velVertical = 1.0f;
     criaPlataformas(plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
 }

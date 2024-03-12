@@ -36,7 +36,7 @@ int main(){
     player.somPulo = LoadSound("assets/pulo.mp3");
 
     // Plataformas
-    int plataformasTam = 10;
+    int plataformasTam = 20;
     Plataforma plataformas[plataformasTam];
     Texture2D texturaPlataforma = LoadTexture("assets/plataforma.png");
     Texture2D texturaPlataformaFlor = LoadTexture("assets/plataforma_flor.png");

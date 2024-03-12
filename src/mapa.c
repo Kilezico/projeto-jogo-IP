@@ -8,8 +8,9 @@
 Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) 
 {
     // Função que cria e retorna uma nova plataforma na altura position.y e num x perto de position.x
-    int distanciaMin = 150;
-    int distanciaMax = 300;
+    int distanciaMin = 175;
+    int distanciaMax = 230;
+    // distanciaMin = distanciaMax = 0;
     Plataforma plat;
     plat.textura = GetRandomValue(1, 2) == 1 ? texturaPlat : texturaPlatFlor;
     plat.rect = (Rectangle){0, position.y, plat.textura->width / 3, plat.textura->height / 3};
@@ -30,11 +31,13 @@ void criaPlataformas(Plataforma *plataformas, int plataformasTam, Texture2D *tex
 {
     // Seria criar um número fixo de plataformas (plataformasTam) no começo do jogo
     // a partir do chão, ou seja, criar o próprio chão, e depois mais plataformasTam-1 plataformas.
+    // chão
     plataformas[0] = (Plataforma){(EnvItem){(Rectangle){0, 0, 2000, 300}, 1}, (Rectangle){0, 0, 0, 0}, NULL, 0};
-
-    plataformas[1] = novaPlataforma((Vector2) {GetRandomValue(0, 1920), -50 - 140}, texturaPlat, texturaPlatFlor);
+    // primeira plataforma em lugar aleátrio  
+    plataformas[1] = novaPlataforma((Vector2) {GetRandomValue(300, 1600), -250}, texturaPlat, texturaPlatFlor);
     for (int i=2; i<plataformasTam; i++) {
-        plataformas[i] = novaPlataforma((Vector2) {plataformas[i-1].hitbox.react.x + plataformas[i-1].hitbox.react.width/2, -50 - 140*i}, texturaPlat, texturaPlatFlor);
+        float altura = plataformas[i-1].rect.y - 120;
+        plataformas[i] = novaPlataforma((Vector2) {plataformas[i-1].rect.x, altura}, texturaPlat, texturaPlatFlor);
     }
 }
 
@@ -51,8 +54,8 @@ void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *te
     }
     // Sim, só cria uma plataforma nova por frame, mas isso não deve se tornar um problema
     Vector2 position;
-    position.x = plataformas[maiorPlataforma].hitbox.react.x + plataformas[maiorPlataforma].hitbox.react.width/2;
-    position.y = plataformas[maiorPlataforma].rect.y - 144;
+    position.x = plataformas[maiorPlataforma].hitbox.react.x;
+    position.y = plataformas[maiorPlataforma].rect.y - 120;
     plataformas[plataformaSaiu] = novaPlataforma(position, texturaPlat, texturaPlatFlor);
 }
 
@@ -156,12 +159,12 @@ void updateAgua(Agua* agua, float alturaJogador, bool cabou) {
     // Faz a água subir
     if (!cabou) {
         float distancia = abs(alturaJogador - agua->altura);
-        if (distancia > 480) { // "Tenho que ir rápido". Vai chegar de volta a tela bem rápido
-            agua->altura -= distancia * 0.006;
+        if (distancia > 570) { // "Tenho que ir rápido". Vai chegar de volta a tela bem rápido
+            agua->altura -= distancia * 0.008;
         } else { // Quando chegar na tela, vai um pouco mais lento
             agua->altura -= agua->velVertical;
-            agua->velVertical += 0.0004f;
-            if (agua->velVertical > 2.5f) agua->velVertical = 2.5f;
+            agua->velVertical += 0.0006f;
+            if (agua->velVertical > 3.0f) agua->velVertical = 3.0f;
         }
     } else {
         agua->altura -= 5;        
