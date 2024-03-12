@@ -22,7 +22,7 @@ typedef struct {
 
 void DrawCreditButton(nameCredit student) {
     DrawRectangleRec(student.credit, student.rectColor);
-    DrawText(student.name, (int)student.credit.x + 25, (int)student.credit.y + 25, 120, student.nameColor);
+    DrawTextLines(GetFontDefault(), student.name, (Vector2){(int)(student.credit.x)/2, (int)(student.credit.y)/2}, 0, 120, 20, student.nameColor, BLACK, 4);
 } //desenha os nomes na tela
 
 void DrawExpandedCreditButton(nameCreditExpanded studentF) {
@@ -35,7 +35,7 @@ int credits(void)
     const int screenHeight = 1080;
     Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
-    Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra    
+    Color groundBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra    
  
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe credits screen");
     Texture2D background = LoadTexture("assets/backGround.png");
@@ -45,48 +45,48 @@ int credits(void)
     nameCredit Dyego; nameCredit Henrique; nameCredit Joao; nameCredit Luanna; nameCredit Clara;
     //struct q pega as informações para desenhar os nomes
 
-    Dyego.credit = (Rectangle){ 70, 25 + screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    Dyego.credit = (Rectangle){ 70, screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     //define o retangulo que representa o lugar do nome, mesma coordenada x, mas y é diferente
     Dyego.name = "Dyego"; //nome de cada um dos integrantes
     Dyego.rectColor = polutedSky; //cor (igual ao fundo) do retangulo, não aparece
-    Dyego.nameColor = groungBrown; //cor do nome quando o cursor não está em cima
+    Dyego.nameColor = groundBrown; //cor do nome quando o cursor não está em cima
 
-    Henrique.credit = (Rectangle){ 70, 50 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    Henrique.credit = (Rectangle){ 70, 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     Henrique.name = "Henrique";
     Henrique.rectColor = polutedSky;
-    Henrique.nameColor = groungBrown;
+    Henrique.nameColor = groundBrown;
 
-    Joao.credit = (Rectangle){ 70, 75 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Joao.credit = (Rectangle){ 70, 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Joao.name = "João";
     Joao.rectColor = polutedSky;
-    Joao.nameColor = groungBrown;
+    Joao.nameColor = groundBrown;
 
-    Luanna.credit = (Rectangle){ 70, 100 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Luanna.credit = (Rectangle){ 70, 75 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Luanna.name = "Luanna";
     Luanna.rectColor = polutedSky;
-    Luanna.nameColor = groungBrown;
+    Luanna.nameColor = groundBrown;
     
-    Clara.credit = (Rectangle){ 70, 125 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Clara.credit = (Rectangle){ 70, 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Clara.name = "Clara";
     Clara.rectColor = polutedSky;
-    Clara.nameColor = groungBrown;
+    Clara.nameColor = groundBrown;
 
     nameCreditExpanded DyegoF; nameCreditExpanded HenriqueF; nameCreditExpanded JoaoF; nameCreditExpanded LuannaF; nameCreditExpanded ClaraF;
     //struct para as informações que aparecem quando o cursor está em cima de um nome
     
-    DyegoF.fullNameColor = groungBrown;
+    DyegoF.fullNameColor = groundBrown;
     DyegoF.fullName = "Dyego Ferreira da Silva";
 
-    HenriqueF.fullNameColor = groungBrown;
+    HenriqueF.fullNameColor = groundBrown;
     HenriqueF.fullName = "Henrique Alves Passos";
 
-    JoaoF.fullNameColor = groungBrown;
+    JoaoF.fullNameColor = groundBrown;
     JoaoF.fullName = "João Victor Grangeiro Costa";
 
-    LuannaF.fullNameColor = groungBrown;
+    LuannaF.fullNameColor = groundBrown;
     LuannaF.fullName = "Luanna Gomes Lucena";
 
-    ClaraF.fullNameColor = groungBrown;
+    ClaraF.fullNameColor = groundBrown;
     ClaraF.fullName = "Maria Clara Laranjeira Tenório";
 
     while (!WindowShouldClose())  
@@ -95,7 +95,8 @@ int credits(void)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawText("sapos-sopa (grupo 7)", 275, 50, 170, WHITE); //titulo do jogo
+            DrawTextLines(GetFontDefault(), "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 170, 20, WHITE, BLACK, 4); // titulo do jogo
+            DrawText("sapos-sopa (grupo 7)", 175, 50, 170, WHITE); //titulo do jogo
 
             DrawCreditButton(Dyego);
             DrawCreditButton(Henrique);
@@ -106,7 +107,7 @@ int credits(void)
 
             if (CheckCollisionPointRec(GetMousePosition(), Dyego.credit)){
                 Dyego.rectColor = polutedSky;
-                Dyego.nameColor = groungBrown;
+                Dyego.nameColor = groundBrown;
                 DrawExpandedCreditButton(DyegoF);
             } else{
                 Dyego.rectColor = polutedSky;
@@ -114,7 +115,7 @@ int credits(void)
             }
             if(CheckCollisionPointRec(GetMousePosition(), Henrique.credit)){
                 Henrique.rectColor = polutedSky;
-                Henrique.nameColor = groungBrown;
+                Henrique.nameColor = groundBrown;
                 DrawExpandedCreditButton(HenriqueF);
             } else {
                 Henrique.rectColor = polutedSky;
@@ -122,7 +123,7 @@ int credits(void)
             }
             if(CheckCollisionPointRec(GetMousePosition(), Joao.credit)){
                 Joao.rectColor = polutedSky;
-                Joao.nameColor = groungBrown;
+                Joao.nameColor = groundBrown;
                 DrawExpandedCreditButton(JoaoF);
             } else{
                 Joao.rectColor = polutedSky;
@@ -130,7 +131,7 @@ int credits(void)
             }
             if(CheckCollisionPointRec(GetMousePosition(), Luanna.credit)){
                 Luanna.rectColor = polutedSky;
-                Luanna.nameColor = groungBrown;
+                Luanna.nameColor = groundBrown;
                 DrawExpandedCreditButton(LuannaF);
             } else{
                 Luanna.rectColor = polutedSky;
@@ -138,7 +139,7 @@ int credits(void)
             }
             if(CheckCollisionPointRec(GetMousePosition(), Clara.credit)){
                 Clara.rectColor = polutedSky;
-                Clara.nameColor = groungBrown;
+                Clara.nameColor = groundBrown;
                 DrawExpandedCreditButton(ClaraF);
             } else{
                 Clara.rectColor = polutedSky;
