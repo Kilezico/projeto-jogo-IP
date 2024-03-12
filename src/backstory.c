@@ -30,39 +30,37 @@ int backStory(void)
     squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
 
     One.image = LoadTexture("assets/squareOne.png");
-    One.proportionSquare = { 0.0f, 0.0f, squareOne.width, squareOne.height };
-    One.whereSquare = { 635, 660, squareOne.width * 0.6, squareOne.height * 0.6 };
+    One.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareOne.width, squareOne.height };
+    One.whereSquare = (Rectangle) { 635, 660, One.image.width * 0.6, One.image.height * 0.6 };
 
     Two.image = LoadTexture("assets/squareTwo.png");
-    Two.proportionSquare = { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
-    Two.whereSquare = { 635, 635, squareTwo.width * 0.6, squareTwo.height * 0.6 };
+    Two.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
+    Two.whereSquare = (Rectangle) { 635, 635, Two.image.width * 0.6, Two.image.height * 0.6 };
 
     Three.image = LoadTexture("assets/squareThree.png");
-    Three.proportionSquare = { 0.0f, 0.0f, squareThree.width, squareThree.height };
-    Three.whereSquare = { 635, 660, squareThree.width * 0.7, squareThree.height * 0.7 };
+    Three.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareThree.width, squareThree.height };
+    Three.whereSquare = (Rectangle) { 635, 660, Three.image.width * 0.7, Three.image.height * 0.7 };
 
     Four.image = LoadTexture("assets/squareFour.png");
-    Four.proportionSquare = { 0.0f, 0.0f, squareFour.width, squareFour.height };
-    Four.whereSquare = { 635, 660, squareFour.width * 0.85, squareFour.height * 0.85 };
+    Four.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareFour.width, squareFour.height };
+    Four.whereSquare = (Rectangle) { 635, 660, Four.image.width * 0.85, Four.image.height * 0.85 };
 
     Five.image = LoadTexture("assets/squareFive.png");
-    Five.proportionSquare = { 0.0f, 0.0f, squareFive.width, squareFive.height };
-    Five.whereSquare = { 960, 540, 1920, 1080 };
+    Five.proportionSquare = { 0.0f, 0.0f, Five.image.width, Five.image.height };
+    Five.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
     Six.image = LoadTexture("assets/squareSix.png");
-    Six.proportionSquare = { 0.0f, 0.0f, squareSix.width, squareSix.height };
-    Six.whereSquare = { 960, 540, 1920, 1080 };
+    Six.proportionSquare = (Rectangle) { 0.0f, 0.0f, Six.image.width, Six.image.height };
+    Six.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
     Seven.image = LoadTexture("assets/squareSeven.png");
-    Seven.proportionSquare = { 0.0f, 0.0f, squareSeven.width, squareSeven.height };
-    Seven.whereSquare = { 960, 540, 1920, 1080 };
+    Seven.proportionSquare = (Rectangle) { 0.0f, 0.0f, Seven.image.width, Seven.image.height };
+    Seven.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
     Eight.image = LoadTexture("assets/squareEight.png");
-    Eight.proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
-    Eight.whereSquare = { 960, 540, 1920, 1080 };
-
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-
+    Eight.proportionSquare = (Rectangle) { 0.0f, 0.0f, Eight.image.width, Eight.image.height };
+    Eight.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
+    
     writtenStory taleOne, taleTwo, taleThree, taleFour, taleFive, taleSix, taleSeven, taleEight;
     //struct que pega o texto chamada para cada um dos quadrinhos
 
