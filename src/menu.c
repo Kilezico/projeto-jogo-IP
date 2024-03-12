@@ -36,9 +36,12 @@ int menu(void)
 {
     const int screenWidth = 1920; //tamanho da tela na horizontal
     const int screenHeight = 1080; //tamanho da tela na vertical 
-    Color forestGreen = (Color){34, 139, 34, 255}; //cor para os nomes das opções
+    Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
+    Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
+    Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra
  
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe menu screen");
+    Texture2D background = LoadTexture("assets/backGround.jpg");
     Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.png"); //desenho do sapo que fica no menu
 
     SetTargetFPS(60);
@@ -48,32 +51,32 @@ int menu(void)
 
     play.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     //define o retangulo que representa o botão, todos tem o mesmo tamanho mas a coordenada do eixo y muda, um em cima do outro
-    play.rectColor = SKYBLUE; //cor do retengulo, igual a do fundo e igual para todos
-    play.optionColor = forestGreen; //cor do texto, igual para todos
+    play.rectColor = polutedSky; //cor do retengulo, igual a do fundo e igual para todos
+    play.optionColor = groungBrown; //cor do texto, igual para todos
     play.word = "Jogar"; //texto q fica no botão, indica a opção
     play.fontSize = 65; //tamanho das letras
 
     gamePlay.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
-    gamePlay.rectColor = SKYBLUE;
-    gamePlay.optionColor = forestGreen;
+    gamePlay.rectColor = polutedSky;
+    gamePlay.optionColor = groungBrown;
     gamePlay.word = "Como jogar?";
     gamePlay.fontSize = 65;
 
     backStory.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
-    backStory.rectColor = SKYBLUE;
-    backStory.optionColor = forestGreen;
+    backStory.rectColor = polutedSky;
+    backStory.optionColor = groungBrown;
     backStory.word = "Backstory";
     backStory.fontSize = 65;
 
     exit.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 75 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
-    exit.rectColor = SKYBLUE;
-    exit.optionColor = forestGreen;
+    exit.rectColor = polutedSky;
+    exit.optionColor = groungBrown;
     exit.word = "Sair :(";
     exit.fontSize = 65;
 
     creditPage.button = (Rectangle){ screenWidth - (470 + BUTTON_WIDTH), 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
-    creditPage.rectColor = SKYBLUE;
-    creditPage.optionColor = forestGreen;
+    creditPage.rectColor = polutedSky;
+    creditPage.optionColor = groungBrown;
     creditPage.word = "Creditos";
     creditPage.fontSize = 65;
 
@@ -85,8 +88,8 @@ int menu(void)
 
         BeginDrawing();
 
-            ClearBackground(SKYBLUE);
-            DrawText("sapo-sopa sobe", 275, 35, 170, forestGreen); //titulo do jogo
+            DrawTexture(background, 0, 0, WHITE);
+            DrawText("sapo-sopa sobe", 275, 35, 170, grassGreen); //titulo do jogo
             
             Rectangle proportionFrogMenu = { 0.0f, 0.0f, frogMenu.width, frogMenu.height };
             //retangulo que vai definir a proporção da imagem do sapo, nesse caso pega o sapo todo
@@ -117,6 +120,7 @@ int menu(void)
         EndDrawing();
     }
 
+    UnloadTexture(background);
     UnloadTexture(frogMenu);
     CloseWindow(); 
 
