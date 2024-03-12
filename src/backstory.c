@@ -10,16 +10,15 @@ const char *tale;
 void DrawSquareOne(){
     Texture2D squareOne = LoadTexture("assets/squareOne.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareOne.width, squareOne.height };
-    Rectangle whereSquare = { 265, 275, squareOne.width * 0.25, squareOne.height * 0.25 };
+    Rectangle whereSquare = { 635, 660, squareOne.width * 0.6, squareOne.height * 0.6 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareOne, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
 
-//as imagens diferentes dos quadrinhos, funções diferentes pq elas tem tamanhos e proporcoes diferentes
 void DrawSquareTwo(){
     Texture2D squareTwo = LoadTexture("assets/squareTwo.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
-    Rectangle whereSquare = { 265, 275, squareTwo.width * 0.25, squareTwo.height * 0.25 };
+    Rectangle whereSquare = { 635, 635, squareTwo.width * 0.6, squareTwo.height * 0.6 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareTwo, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -27,7 +26,7 @@ void DrawSquareTwo(){
 void DrawSquareThree(){
     Texture2D squareThree = LoadTexture("assets/squareThree.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareThree.width, squareThree.height };
-    Rectangle whereSquare = { 265, 275, squareThree.width * 0.3, squareThree.height * 0.3 };
+    Rectangle whereSquare = { 635, 660, squareThree.width * 0.7, squareThree.height * 0.7 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareThree, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -35,7 +34,7 @@ void DrawSquareThree(){
 void DrawSquareFour(){
     Texture2D squareFour = LoadTexture("assets/squareFour.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareFour.width, squareFour.height };
-    Rectangle whereSquare = { 265, 275, squareFour.width * 0.35, squareFour.height * 0.35 };
+    Rectangle whereSquare = { 635, 660, squareFour.width * 0.85, squareFour.height * 0.85 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareFour, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -43,7 +42,7 @@ void DrawSquareFour(){
 void DrawSquareFive(){
     Texture2D squareFive = LoadTexture("assets/squareFive.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareFive.width, squareFive.height };
-    Rectangle whereSquare = { 400, 225, 800, 450 };
+    Rectangle whereSquare = { 960, 540, 1920, 1080 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareFive, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -51,7 +50,7 @@ void DrawSquareFive(){
 void DrawSquareSix(){
     Texture2D squareSix = LoadTexture("assets/squareSix.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareSix.width, squareSix.height };
-    Rectangle whereSquare = { 400, 225, 800, 450 };
+    Rectangle whereSquare = { 960, 540, 1920, 1080 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareSix, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -59,7 +58,7 @@ void DrawSquareSix(){
 void DrawSquareSeven(){
     Texture2D squareSeven = LoadTexture("assets/squareSeven.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareSeven.width, squareSeven.height };
-    Rectangle whereSquare = { 400, 225, 800, 450 };
+    Rectangle whereSquare = { 960, 540, 1920, 1080 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareSeven, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
@@ -67,19 +66,19 @@ void DrawSquareSeven(){
 void DrawSquareEight(){
     Texture2D squareEight = LoadTexture("assets/squareEight.png");
     Rectangle proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
-    Rectangle whereSquare = { 400, 225, 800, 450 };
+    Rectangle whereSquare = { 960, 540, 1920, 1080 };
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
     DrawTexturePro(squareEight, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
 
 void DrawSTory(writtenStory verse){
-    DrawText(verse.tale, 200, 80, 30, WHITE);
-} //escrever os textos
+    DrawText(verse.tale, 500, 150, 65, WHITE);
+}
 
-void backStory()
+int backStory(void)
 {
-    const int screenWidth = 800; //tamanho da tela na horizontal
-    const int screenHeight = 450; //tamanho da tela na vertical
+    const int screenWidth = 1920; //tamanho da tela na horizontal
+    const int screenHeight = 1080; //tamanho da tela na vertical
     Color forestGreen = (Color){34, 139, 34, 255}; //cor para o fundo, não gostei do verde do raylib ai peguei essas coordenadas rgb na internet
 
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe backstory");
@@ -121,7 +120,6 @@ void backStory()
 
             ClearBackground(forestGreen);
 
-            //abre um quadro diferente, na sequencia
             if(squareCount==1){ //mostra o quadrinho 1
                 DrawSquareOne();
                 DrawSTory(taleOne);
@@ -164,4 +162,5 @@ void backStory()
     UnloadTexture(squareSeven);
     UnloadTexture(squareEight);
 
+    return 0;
 }
