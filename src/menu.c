@@ -32,7 +32,7 @@ bool checkOptionSelected(bool buttonClicked, options choice) {
     return buttonClicked;
 } //checa se o botão fornecido no parametro foi clicado, caso sim torna buttonClicked verdade
 
-GameScreen menuDraw(GameScreen screen)
+GameScreen menuDraw(GameScreen *screen)
 {
     bool optionSelected = false;
     
