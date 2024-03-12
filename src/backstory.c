@@ -29,14 +29,6 @@ int backStory(void)
     Color forestGreen = (Color){34, 139, 34, 255}; //cor para o fundo, não gostei do verde do raylib ai peguei essas coordenadas rgb na internet
 
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe backstory");
-
-    Texture2D squareThree = LoadTexture("assets/squareThree.png");
-    Texture2D squareFour = LoadTexture("assets/squareFour.png");
-    Texture2D squareFive = LoadTexture("assets/squareFive.png");
-    Texture2D squareSix = LoadTexture("assets/squareSix.png");
-    Texture2D squareSeven = LoadTexture("assets/squareSeven.png");
-    Texture2D squareEight = LoadTexture("assets/squareEight.png");
-    //desenhos dos quadrinhos
      
     SetTargetFPS(60);
 
