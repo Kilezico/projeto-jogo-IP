@@ -30,23 +30,23 @@ int backStory(void)
     squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
 
     One.image = LoadTexture("assets/squareOne.png");
-    One.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareOne.width, squareOne.height };
+    One.proportionSquare = (Rectangle) { 0.0f, 0.0f, One.image.width, One.image.height };
     One.whereSquare = (Rectangle) { 635, 660, One.image.width * 0.6, One.image.height * 0.6 };
 
     Two.image = LoadTexture("assets/squareTwo.png");
-    Two.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
+    Two.proportionSquare = (Rectangle) { 0.0f, 0.0f, Two.image.width, Two.image.height };
     Two.whereSquare = (Rectangle) { 635, 635, Two.image.width * 0.6, Two.image.height * 0.6 };
 
     Three.image = LoadTexture("assets/squareThree.png");
-    Three.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareThree.width, squareThree.height };
+    Three.proportionSquare = (Rectangle) { 0.0f, 0.0f, Three.image.width, Three.image.height };
     Three.whereSquare = (Rectangle) { 635, 660, Three.image.width * 0.7, Three.image.height * 0.7 };
 
     Four.image = LoadTexture("assets/squareFour.png");
-    Four.proportionSquare = (Rectangle) { 0.0f, 0.0f, squareFour.width, squareFour.height };
+    Four.proportionSquare = (Rectangle) { 0.0f, 0.0f, Four.image.width, Four.image.height };
     Four.whereSquare = (Rectangle) { 635, 660, Four.image.width * 0.85, Four.image.height * 0.85 };
 
     Five.image = LoadTexture("assets/squareFive.png");
-    Five.proportionSquare = { 0.0f, 0.0f, Five.image.width, Five.image.height };
+    Five.proportionSquare = (Rectangle) { 0.0f, 0.0f, Five.image.width, Five.image.height };
     Five.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
     Six.image = LoadTexture("assets/squareSix.png");
