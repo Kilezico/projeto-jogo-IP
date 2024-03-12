@@ -4,75 +4,22 @@
 #include <stdlib.h>
 
 typedef struct{
+Texture2D image;
+Rectangle proportionSquare
+Rectangle whereSquare
+}squareImages;
+
+typedef struct{
 const char *tale;
 }writtenStory; //ponteiro que aponta para a string de texto que vai ficar em cada um dos quadrinhos
 
-void DrawSquareOne(){
-    Texture2D squareOne = LoadTexture("assets/squareOne.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareOne.width, squareOne.height };
-    Rectangle whereSquare = { 635, 660, squareOne.width * 0.6, squareOne.height * 0.6 };
+void DrawSquares(Texture2D image, Rectangle proportionSquare, Rectangle whereSquare){
     Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareOne, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareTwo(){
-    Texture2D squareTwo = LoadTexture("assets/squareTwo.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
-    Rectangle whereSquare = { 635, 635, squareTwo.width * 0.6, squareTwo.height * 0.6 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareTwo, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareThree(){
-    Texture2D squareThree = LoadTexture("assets/squareThree.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareThree.width, squareThree.height };
-    Rectangle whereSquare = { 635, 660, squareThree.width * 0.7, squareThree.height * 0.7 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareThree, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareFour(){
-    Texture2D squareFour = LoadTexture("assets/squareFour.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareFour.width, squareFour.height };
-    Rectangle whereSquare = { 635, 660, squareFour.width * 0.85, squareFour.height * 0.85 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareFour, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareFive(){
-    Texture2D squareFive = LoadTexture("assets/squareFive.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareFive.width, squareFive.height };
-    Rectangle whereSquare = { 960, 540, 1920, 1080 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareFive, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareSix(){
-    Texture2D squareSix = LoadTexture("assets/squareSix.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareSix.width, squareSix.height };
-    Rectangle whereSquare = { 960, 540, 1920, 1080 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareSix, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareSeven(){
-    Texture2D squareSeven = LoadTexture("assets/squareSeven.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareSeven.width, squareSeven.height };
-    Rectangle whereSquare = { 960, 540, 1920, 1080 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareSeven, proportionSquare, whereSquare, origin, 0.0f, WHITE);
-}
-
-void DrawSquareEight(){
-    Texture2D squareEight = LoadTexture("assets/squareEight.png");
-    Rectangle proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
-    Rectangle whereSquare = { 960, 540, 1920, 1080 };
-    Vector2 origin = { whereSquare.width / 2, whereSquare.height / 2 };
-    DrawTexturePro(squareEight, proportionSquare, whereSquare, origin, 0.0f, WHITE);
+    DrawTexturePro(image, proportionSquare, whereSquare, origin, 0.0f, WHITE);
 }
 
 void DrawSTory(writtenStory verse){
-    DrawText(verse.tale, 500, 150, 65, WHITE);
+    DrawText(verse.tale, 650, 150, 65, WHITE);
 }
 
 int backStory(void)
@@ -83,8 +30,6 @@ int backStory(void)
 
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe backstory");
 
-    Texture2D squareOne = LoadTexture("assets/squareOne.png");
-    Texture2D squareTwo = LoadTexture("assets/squareTwo.png");
     Texture2D squareThree = LoadTexture("assets/squareThree.png");
     Texture2D squareFour = LoadTexture("assets/squareFour.png");
     Texture2D squareFive = LoadTexture("assets/squareFive.png");
@@ -94,6 +39,40 @@ int backStory(void)
     //desenhos dos quadrinhos
      
     SetTargetFPS(60);
+
+    squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
+
+    One.squareOne = LoadTexture("assets/squareOne.png");
+    One.proportionSquare = { 0.0f, 0.0f, squareOne.width, squareOne.height };
+    One.whereSquare = { 635, 660, squareOne.width * 0.6, squareOne.height * 0.6 };
+
+    Two.squareTwo = LoadTexture("assets/squareTwo.png");
+    Two.proportionSquare = { 0.0f, 0.0f, squareTwo.width, squareTwo.height };
+    Two.whereSquare = { 635, 635, squareTwo.width * 0.6, squareTwo.height * 0.6 };
+
+    Three.squareThree = LoadTexture("assets/squareThree.png");
+    Three.proportionSquare = { 0.0f, 0.0f, squareThree.width, squareThree.height };
+    Three.whereSquare = { 635, 660, squareThree.width * 0.7, squareThree.height * 0.7 };
+
+    Four.squareFour = LoadTexture("assets/squareFour.png");
+    Four.proportionSquare = { 0.0f, 0.0f, squareFour.width, squareFour.height };
+    Four.whereSquare = { 635, 660, squareFour.width * 0.85, squareFour.height * 0.85 };
+
+    Five.squareFive = LoadTexture("assets/squareFive.png");
+    Five.proportionSquare = { 0.0f, 0.0f, squareFive.width, squareFive.height };
+    Five.whereSquare = { 960, 540, 1920, 1080 };
+
+    Six.squareSix = LoadTexture("assets/squareSix.png");
+    Six.proportionSquare = { 0.0f, 0.0f, squareSix.width, squareSix.height };
+    Six.whereSquare = { 960, 540, 1920, 1080 };
+
+    Seven.squareSeven = LoadTexture("assets/squareSeven.png");
+    Seven.proportionSquare = { 0.0f, 0.0f, squareSeven.width, squareSeven.height };
+    Seven.whereSquare = { 960, 540, 1920, 1080 };
+
+    Eight.squareEight = LoadTexture("assets/squareEight.png");
+    Eight.proportionSquare = { 0.0f, 0.0f, squareEight.width, squareEight.height };
+    Eight.whereSquare = { 960, 540, 1920, 1080 };
 
     writtenStory taleOne, taleTwo, taleThree, taleFour, taleFive, taleSix, taleSeven, taleEight;
     //struct que pega o texto chamada para cada um dos quadrinhos
@@ -121,28 +100,28 @@ int backStory(void)
             ClearBackground(forestGreen);
 
             if(squareCount==1){ //mostra o quadrinho 1
-                DrawSquareOne();
+                DrawSquares(One.squareOne, One.proportionSquare, One.whereSquare);
                 DrawSTory(taleOne);
             }else if(squareCount==2){ //mostra o quadrinho 2
-                DrawSquareTwo();
+                DrawSquares(Two.squareOne, Two.proportionSquare, Two.whereSquare);
                 DrawSTory(taleTwo);
             }else if(squareCount==3){ //mostra o quadrinho 3
-                DrawSquareThree();
+                DrawSquares(Three.squareOne, Three.proportionSquare, Three.whereSquare);
                 DrawSTory(taleThree);
             }else if(squareCount==4){ //mostra o quadrinho 4
-                DrawSquareFour();
+                DrawSquares(Four.squareOne, Four.proportionSquare, Four.whereSquare);
                 DrawSTory(taleFour);
             }else if(squareCount==5){ //mostra o quadrinho 5
-                DrawSquareFive();
+                DrawSquares(Five.squareOne, Five.proportionSquare, Five.whereSquare);
                 DrawSTory(taleFive);
             }else if(squareCount==6){ //mostra o quadrinho 6
-                DrawSquareSix();
+                DrawSquares(Six.squareOne, Six.proportionSquare, Six.whereSquare);
                 DrawSTory(taleSix);
             }else if(squareCount==7){ //mostra o quadrinho 7
-                DrawSquareSeven();
+                DrawSquares(Seven.squareOne, Seven.proportionSquare, Seven.whereSquare);
                 DrawSTory(taleSeven);
             }else if(squareCount==8){ //mostra o quadrinho 8
-                DrawSquareEight();
+                DrawSquares(Eight.squareOne, Eight.proportionSquare, Eight.whereSquare);
                 DrawSTory(taleEight);
             }else{
                 //voltar para o menu
