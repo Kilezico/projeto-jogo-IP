@@ -7,8 +7,15 @@
 typedef struct{
     Vector2 position;
     float speed;
+    float rotacao, rotacaoVel;
     bool canJump;
     bool vivo;
+    bool esquerda; // se está apontado para esquerda ou direita
+    bool andando;
+    
+    Rectangle hitbox;
+    Texture2D textura;
+    Texture2D texturaPulo;
 
     int contMorte; // Contador para morte
     Sound somMorte;

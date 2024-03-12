@@ -31,9 +31,13 @@ int main(){
     player.position = (Vector2){ 500, -50 }; // Vetor2 == Vetor 2D V(x,y)
     player.canJump = false;
     player.speed = 0;
+    player.rotacaoVel = 2;
     player.vivo = true;
     player.somMorte = LoadSound("assets/bolhas.mp3");
     player.somPulo = LoadSound("assets/pulo.mp3");
+    player.textura = LoadTexture("assets/frogSitting.PNG");
+    player.texturaPulo = LoadTexture("assets/frogJumping.PNG");
+    player.esquerda = false;
 
     // Plataformas
     int plataformasTam = 20;

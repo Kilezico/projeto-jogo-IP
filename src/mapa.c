@@ -66,7 +66,8 @@ void drawPlataforma(Plataforma *plataformas, int plataformasTam)
             //DrawTexture(*plataformas[i].textura, plataformas[i].rect.x, plataformas[i].rect.y, WHITE);
             Rectangle source = (Rectangle){0, 0, plataformas[i].textura->width, plataformas[i].textura->height};
             DrawTexturePro(*plataformas[i].textura, source, plataformas[i].rect, (Vector2){0, 0}, 0, WHITE);
-            //DrawRectangleLinesEx(plataformas[i].hitbox.react, 2, RED);
+            // desenha as hitboxes
+            // DrawRectangleLinesEx(plataformas[i].hitbox.react, 2, RED);
         } else { // é o chão
             DrawRectangleRec(plataformas[i].hitbox.react, BROWN);
         }
