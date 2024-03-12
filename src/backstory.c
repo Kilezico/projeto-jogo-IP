@@ -17,14 +17,21 @@ void DrawSTory(writtenStory verse){
     DrawText(verse.tale, 650, 150, 65, WHITE);
 }
 
-int backStory(void)
+bool BacktToMenuPressed(bool menuButton, Rectangle button) {
+    if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        menuButton = true;
+    } //checa se o cursor ta em cima do botão e se foi pressioanado
+    return menuButton;
+}
+
+GameScreen backStoryDraw(GameScreen *screen)
 {
+    bool goBacktoMenu = false;
+    
     const int screenWidth = 1920; //tamanho da tela na horizontal
     const int screenHeight = 1080; //tamanho da tela na vertical
     Color forestGreen = (Color){34, 139, 34, 255}; //cor para o fundo, não gostei do verde do raylib ai peguei essas coordenadas rgb na internet
     Color waterBlue = (Color){63, 145, 182, 255};
-
-    InitWindow(screenWidth, screenHeight, "sapo-sopa sobe backstory");
      
     SetTargetFPS(60);
 
@@ -77,7 +84,7 @@ int backStory(void)
 
     int squareCount = 1; //começa no quadrinho 1
 
-    while (!WindowShouldClose())  
+    while (goBacktoMenu!=true)  
     {
         if(IsKeyPressed(KEY_SPACE)){
             squareCount++;
@@ -122,12 +129,14 @@ int backStory(void)
                 Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
                 DrawRectangleRec(backToMenu, waterBlue);
                 DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+                BacktToMenuPressed(goBacktoMenu, backToMenu);
+                if(goBacktoMenu==true){//vai fazer o while parar
+                    gameState = MENUS;
+                }
             }
 
         EndDrawing();
     }
-
-    CloseWindow(); 
 
     UnloadTexture(One.image);
     UnloadTexture(Two.image);
@@ -138,5 +147,5 @@ int backStory(void)
     UnloadTexture(Seven.image);
     UnloadTexture(Eight.image);
 
-    return 0;
+    return screen;
 }

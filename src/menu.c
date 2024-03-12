@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-
 #include "utilidades.h"
 
 #define BUTTON_WIDTH 450 //define a largura do botões
@@ -17,7 +16,6 @@ typedef struct {
 } options; //struct pras informações de cada um dos cinco botões (jogar, backstory, como jogar, creditos e sair)
 
 void DrawMenuButton(options choice) {
-
     DrawRectangleRec(choice.button, choice.rectColor);
     DrawText(choice.word, (int)choice.button.x + 20, (int)choice.button.y + 20, choice.fontSize, choice.optionColor);
 } //desenha cada um dos botões com base nas informações da struct correspondente a opção (parametro)
@@ -34,21 +32,22 @@ bool checkOptionSelected(bool buttonClicked, options choice) {
     return buttonClicked;
 } //checa se o botão fornecido no parametro foi clicado, caso sim torna buttonClicked verdade
 
-int menu(void)
+GameScreen menuDraw(GameScreen *screen)
 {
+    bool optionSelected = false;
+    
     const int screenWidth = 1920; //tamanho da tela na horizontal
     const int screenHeight = 1080; //tamanho da tela na vertical 
     Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
     Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra
  
-    InitWindow(screenWidth, screenHeight, "sapo-sopa sobe menu screen");
-    Texture2D background = LoadTexture("assets/backGround.png");
+    Texture2D background = LoadTexture("assets/backGround.jpg");
     Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.png"); //desenho do sapo que fica no menu
 
     SetTargetFPS(60);
 
-    options play; options gamePlay; options backStory; options exit; options creditPage;
+    options play; options howtoPlay; options backStory; options exit; options creditPage;
     //struct que pega as informações dos botões
 
     play.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
@@ -58,11 +57,11 @@ int menu(void)
     play.word = "Jogar"; //texto q fica no botão, indica a opção
     play.fontSize = 65; //tamanho das letras
 
-    gamePlay.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
-    gamePlay.rectColor = polutedSky;
-    gamePlay.optionColor = groungBrown;
-    gamePlay.word = "Como jogar?";
-    gamePlay.fontSize = 65;
+    howtoPlay.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    howtoPlay.rectColor = polutedSky;
+    howtoPlay.optionColor = groungBrown;
+    howtoPlay.word = "Como jogar?";
+    howtoPlay.fontSize = 65;
 
     backStory.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     backStory.rectColor = polutedSky;
@@ -82,10 +81,10 @@ int menu(void)
     creditPage.word = "Creditos";
     creditPage.fontSize = 65;
 
-    bool buttonPlayClicked = false, buttonGamePlayClicked = false, buttonBackStoryClicked = false, buttonExitClicked = false, buttonCreditPageClicked = false;
+    bool buttonPlayClicked = false, buttonHowtoPlayClicked = false, buttonBackStoryClicked = false, buttonExitClicked = false, buttonCreditPageClicked = false;
     //variavel booleana pra verificar se alguma opção foi selecionada, so muda e fica verdadeira caso seja, quando se torna true a tela muda
 
-     while (!WindowShouldClose())  
+     while (optionSelected!=true)  
     {
 
         BeginDrawing();
@@ -104,27 +103,45 @@ int menu(void)
             //modo de densenho que realisa os ajustes necessários para que fique no quadrando inferior esquerdo da tela
 
             DrawMenuButton(play);
-            DrawMenuButton(gamePlay);
+            DrawMenuButton(howtoPlay);
             DrawMenuButton(backStory);
             DrawMenuButton(exit);
             DrawMenuButton(creditPage);
             //desenha os botões na tela usando a função
 
-            checkOptionSelected(buttonPlayClicked, play);
-            checkOptionSelected(buttonGamePlayClicked, gamePlay);
-            checkOptionSelected(buttonBackStoryClicked, backStory);
-            checkOptionSelected(buttonExitClicked, exit);
-            checkOptionSelected(buttonCreditPageClicked, creditPage);
+            buttonPlayClicked = checkOptionSelected(buttonPlayClicked, play);
+            buttonHowtoPlayClicked = checkOptionSelected(buttonHowtoPlayClicked, howToPlay);
+            buttonBackStoryClicked = checkOptionSelected(buttonBackStoryClicked, backStory);
+            buttonExitClicked = checkOptionSelected(buttonExitClicked, exit);
+            buttonCreditPageClicked = checkOptionSelected(buttonCreditPageClicked, creditPage);
             //checa em loop se algum foi clicado
 
-            //ADICIONAR A TROCA DE TELA
+            if(buttonPlayClicked==true){
+                optionSelected = true;
+                gameState = GAMEPLAY;
+            }
+            if(buttonHowtoPlayClicked==true){
+                optionSelected = true;
+                gameState = HOWTO;
+            }
+            if(buttonBackStoryClicked==true){
+                optionSelected = true;
+                gameState = STORY;
+            }
+            if(buttonExitClicked==true){
+                optionSelected = true;
+                gameState = EXIT;
+            }
+            if(buttonCreditPageClicked==true){
+                optionSelected = true;
+                gameState = CREDITS;
+            }//troca a tela
             
         EndDrawing();
     }
 
     UnloadTexture(background);
     UnloadTexture(frogMenu);
-    CloseWindow(); 
 
-    return 0;
+    return screen;
 }

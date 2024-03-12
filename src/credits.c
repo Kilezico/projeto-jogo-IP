@@ -30,15 +30,23 @@ void DrawExpandedCreditButton(nameCreditExpanded studentF) {
     DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
 } //colocar mais coisa, desenha o resto na tela quando o cursor esta no nome
 
-int credits(void)
+bool BacktToMenuPressed(bool menuButton, Rectangle button) {
+    if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        menuButton = true;
+    } //checa se o cursor ta em cima do botão e se foi pressioanado
+    return menuButton;
+}
+
+GameScreen creditsDraw(GameScreen *screen)
 {
+    bool goBacktoMenu = false;
+    
     const int screenWidth = 1920;
     const int screenHeight = 1080;
     Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
     Color groundBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra    
  
-    InitWindow(screenWidth, screenHeight, "sapo-sopa sobe credits screen");
     Texture2D background = LoadTexture("assets/backGround.png");
 
     SetTargetFPS(60);
@@ -90,7 +98,7 @@ int credits(void)
     ClaraF.fullNameColor = groundBrown;
     ClaraF.fullName = "Maria Clara Laranjeira Tenório";
 
-    while (!WindowShouldClose())  
+    while (goBacktoMenu!=true)  
     {
         
         BeginDrawing();
@@ -102,6 +110,10 @@ int credits(void)
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
             DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+            BacktToMenuPressed(goBacktoMenu, backToMenu);
+            if(goBacktoMenu==true){//vai fazer o while parar
+                gameState = MENUS;
+            }
 
             DrawCreditButton(Dyego);
             DrawCreditButton(Henrique);
@@ -155,8 +167,6 @@ int credits(void)
     }
 
     UnloadTexture(background);
-    CloseWindow(); 
 
-
-    return 0;
+    return screen;
 }
