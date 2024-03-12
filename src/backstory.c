@@ -22,6 +22,7 @@ int backStory(void)
     const int screenWidth = 1920; //tamanho da tela na horizontal
     const int screenHeight = 1080; //tamanho da tela na vertical
     Color forestGreen = (Color){34, 139, 34, 255}; //cor para o fundo, não gostei do verde do raylib ai peguei essas coordenadas rgb na internet
+    Color waterBlue = (Color){63, 145, 182, 255};
 
     InitWindow(screenWidth, screenHeight, "sapo-sopa sobe backstory");
      
