@@ -37,7 +37,7 @@ bool BacktToMenuPressed(bool menuButton, Rectangle button) {
     return menuButton;
 }
 
-GameScreen creditsDraw(GameScreen screen)
+GameScreen creditsDraw(GameScreen *screen)
 {
     bool goBacktoMenu = false;
     
