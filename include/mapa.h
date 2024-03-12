@@ -12,7 +12,6 @@ typedef struct {
     EnvItem hitbox; // Para colisão com jogador
     Rectangle rect;
     Texture2D *textura; // Está como ponteiro para carregar a mesma textura apenas uma vez.
-    Texture2D *textureFlor;
     float velocidade;
 } Plataforma;
 
@@ -26,9 +25,10 @@ typedef struct {
     float alturaLetal; // Altura que não pode ficar abaixo pra não morrer
 } Agua;
 
-void criaPlataformas(Plataforma *plataformas, int plataformasTam); // Cria as plataformas iniciais
-void updatePlataforma(Plataforma *plataformas, int plataformasTam); // Cria novas plataformas
-void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D terraTopo);
+Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
+void criaPlataformas(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor); // Cria as plataformas iniciais
+void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor, float alturaAgua); // Cria novas plataformas
+void drawPlataforma(Plataforma *plataformas, int plataformasTam);
 
 void criaTexturasAgua(Agua *agua);
 void drawAguaFundo(Agua agua);

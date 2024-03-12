@@ -6,6 +6,10 @@ void UpdateCameraCenter(Camera2D *camera, Player *player, EnvItem *envItems, int
 {
     camera->offset = (Vector2){ width/2.0f, height/2.0f };
     camera->target = player->position;
+
+    camera->zoom += ((float) GetMouseWheelMove()*0.05f);
+    if(camera->zoom > 3.0f) camera->zoom = 3.0f;
+    else if(camera->zoom < 0.3f) camera->zoom = 0.3f;
 }
 
 // Camera que atualiza quando o jogador pisa na plataforma

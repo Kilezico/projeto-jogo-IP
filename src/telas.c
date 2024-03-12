@@ -9,52 +9,40 @@
 #include "visao.h"
 
 // Telas do jogo
-void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
+void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte)
 {
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), SKYBLUE);
 
     BeginMode2D(camera);
         drawAguaFundo(aguaLetal); // desenha fundo
         
-        for(int i=1; i < plataformasTam; i++) DrawRectangleRec(plataformas[i].hitbox.react, BROWN); // desenha plataformas
-        
+        drawPlataforma(plataformas, plataformasTam); // desenha plataformas
+
         DrawPlayer(player); // desenha jogador
-        
-        // Desenha o chão com sprites de terra
-        for (int i=0; i<ceil(plataformas[0].hitbox.react.width/80.0f); i++) {
-            for (int j=0; j<ceil(plataformas[0].hitbox.react.height/80.0f); j++) {
-                Rectangle src = {0, 0, 16, 16};
-                Rectangle dest = {plataformas[0].hitbox.react.x + i*80, plataformas[0].hitbox.react.y + j*80 - 5, 80, 80};
-                if (j==0) // linha 0, topo.
-                    DrawTexturePro(topo, src, dest, (Vector2){0, 0}, 0, WHITE);
-                else 
-                    DrawTexturePro(terra, src, dest, (Vector2){0, 0}, 0, WHITE);
-                    
-            }
-        }
         
         drawAguaFrente(aguaLetal); // desenha frente
     EndMode2D();
     
 
     if (screen == MORTE) {
-        // DrawTextEx(fonte, "Game Over :(", (Vector2){GetScreenWidth()/2-200, GetScreenHeight()/2-20}, 40, 10, RED);
-        DrawTextCenter(fonte, "Game Over :(", (Vector2){GetScreenWidth()/2, GetScreenHeight()/2}, (Vector2){0, 0}, 0, 40, 10, (Color){255, 0, 0, 255});
+        DrawTextCenter(fonte, "Game Over :(", (Vector2){GetScreenWidth()/2, GetScreenHeight()/2}, (Vector2){0, 0}, 0, 100, 10, (Color){255, 0, 0, 255});
     }
 
         // Mostra a posicao do jogador
     char positionStr[64];
         sprintf(positionStr, "Posição do Jogador: [ X: %.02f, Y: %.02f ]", player.position.x, player.position.y);
         DrawTextEx(fonte, positionStr, (Vector2){10, 40}, 40, 5, WHITE);
+    DrawTextEx(fonte, TextFormat("Velocidade da agua: %f", aguaLetal.velVertical), (Vector2){10, 80}, 40, 10, WHITE);
 }
 
-void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam)
+void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor)
 {
     float deltaTime = GetFrameTime();
 
     if (*screen == JOGO) {
         UpdatePlayer(player, plataformas, plataformasTam, *aguaLetal, deltaTime);
         updateAgua(aguaLetal, player->position.y, false);
+        updatePlataforma(plataformas, plataformasTam, texturaPlat, texturaPlatFlor, aguaLetal->alturaLetal);
     } else if (*screen == ENCHENTE) {
         // Quando morre, espera um pouco para a água subir bastante
         updateAgua(aguaLetal, player->position.y, true);
@@ -64,7 +52,7 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
     } else if (*screen == MORTE) {
         // Fica nela por alguns segundos
         player->contMorte++;
-        if (player->contMorte > GetFPS()*3) jogoReset(screen, camera, player, aguaLetal, plataformas, plataformasTam);
+        if (player->contMorte > GetFPS()*3) jogoReset(screen, camera, player, aguaLetal, plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
     }
 
     // Checa morte do jogador
@@ -74,7 +62,7 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
     UpdateCameraJump(camera, player, GetScreenWidth(), GetScreenHeight());
 }
 
-void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam) // Reseta as variáveis do jogo para começar de novo.
+void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) // Reseta as variáveis do jogo para começar de novo.
 {
     // Pronto para começar de novo!
     *screen = JOGO;
@@ -84,5 +72,6 @@ void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *a
     player->vivo = true;
     aguaLetal->altura = 500;
     aguaLetal->alturaLetal = 500;
-    criaPlataformas(plataformas, plataformasTam);
+    aguaLetal->velVertical = 1.0f;
+    criaPlataformas(plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
 }

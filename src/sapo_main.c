@@ -9,7 +9,7 @@
 
 // Trocador de tela. Pode ser substituido se já tiver um no código do menu
 typedef enum {
-    GAMEPLAY
+    GAMEPLAY, MENU
 } GameScreen;
 
 int main(){
@@ -38,11 +38,9 @@ int main(){
     // Plataformas
     int plataformasTam = 10;
     Plataforma plataformas[plataformasTam];
-    plataformas[0] = (Plataforma){(EnvItem){(Rectangle){0, 0, 2000, 300}, 1}, (Rectangle){0, 0, 0, 0}, NULL, NULL};
-    criaPlataformas(plataformas, plataformasTam);
-
-    Texture2D texturaTerra = LoadTexture("assets/terra.png");
-    Texture2D texturaTerraTopo = LoadTexture("assets/terra_topo.png");
+    Texture2D texturaPlataforma = LoadTexture("assets/plataforma.png");
+    Texture2D texturaPlataformaFlor = LoadTexture("assets/plataforma_flor.png");
+    criaPlataformas(plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
 
     // Água que mata
     Agua aguaLetal = {};
@@ -61,13 +59,14 @@ int main(){
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 
+    // Estados para mudança de janela
     GameplayScreen gameplayState = JOGO;
     GameScreen gameState = GAMEPLAY;
 
     SetTargetFPS(60); // Limite de fps
 
-    // Só pra testar as fontes
-    Font poufonte = LoadFontEx("assets/Pou.ttf", 50, 0, 256);
+    // Fonte
+    Font fonteMenu = LoadFontEx("assets/fonteMenu.ttf", 100, 0, 256);
 
    
     //------Loop principal------
@@ -76,7 +75,7 @@ int main(){
         switch (gameState) {
             case GAMEPLAY:
                 // Atualiza o jogo
-                jogoUpdate(&gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam);
+                jogoUpdate(&gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
             break;
             default: break;
         }
@@ -86,7 +85,7 @@ int main(){
             switch (gameState) {
                 case GAMEPLAY:
                     // Desenha o jogo
-                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, poufonte, texturaTerra, texturaTerraTopo);
+                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu);
                 break;
                 default: break;
             }
@@ -96,12 +95,13 @@ int main(){
     // Descarrega coisas da memória
     for (int i=0; i<3; i++)
         UnloadTexture(aguaLetal.texturas[i]);
-    UnloadTexture(texturaTerra);
-    UnloadTexture(texturaTerraTopo);
+
+    UnloadTexture(texturaPlataforma);
+    UnloadTexture(texturaPlataformaFlor);
     
     UnloadPlayer(&player);
 
-    UnloadFont(poufonte);
+    UnloadFont(fonteMenu);
 
     CloseAudioDevice();
     CloseWindow();
