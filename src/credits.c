@@ -3,8 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define BUTTON_WIDTH 350 //defines the standard size of the buttons (horizontal) //MUDAR
-#define BUTTON_HEIGHT 50 //defines the standard size of the buttons (vertical) //MUDAR
+#define BUTTON_WIDTH 840 //largura dos retangulos pro nome
+#define BUTTON_HEIGHT 120 //altura dos retangulos pro nome
 
 typedef struct {
     Rectangle credit;
@@ -22,17 +22,17 @@ typedef struct {
 
 void DrawCreditButton(nameCredit student) {
     DrawRectangleRec(student.credit, student.rectColor);
-    DrawText(student.name, (int)student.credit.x + 10, (int)student.credit.y + 10, 50, student.nameColor);
+    DrawText(student.name, (int)student.credit.x + 25, (int)student.credit.y + 25, 120, student.nameColor);
 } //desenha os nomes na tela
 
 void DrawExpandedCreditButton(nameCreditExpanded studentF) {
-    DrawText(studentF.fullName, 300, 150, 30, studentF.fullNameColor);
+    DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
 } //colocar mais coisa, desenha o resto na tela quando o cursor esta no nome
 
-void credits()
+int credits(void)
 {
-    const int screenWidth = 800; //MUDAR
-    const int screenHeight = 450;
+    const int screenWidth = 1920; 
+    const int screenHeight = 1080;
     Color forestGreen = (Color){34, 139, 34, 255};
     
  
@@ -43,28 +43,28 @@ void credits()
     nameCredit Dyego; nameCredit Henrique; nameCredit Joao; nameCredit Luanna; nameCredit Clara;
     //struct q pega as informações para desenhar os nomes
 
-    Dyego.credit = (Rectangle){ 30, 10 + screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    Dyego.credit = (Rectangle){ 70, 25 + screenHeight / 2 - (5*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     //define o retangulo que representa o lugar do nome, mesma coordenada x, mas y é diferente
     Dyego.name = "Dyego"; //nome de cada um dos integrantes
     Dyego.rectColor = SKYBLUE; //cor (igual ao fundo) do retangulo, não aparece
     Dyego.nameColor = forestGreen; //cor do nome quando o cursor não está em cima
 
-    Henrique.credit = (Rectangle){ 30, 20 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
+    Henrique.credit = (Rectangle){ 70, 50 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     Henrique.name = "Henrique";
     Henrique.rectColor = SKYBLUE;
     Henrique.nameColor = forestGreen;
 
-    Joao.credit = (Rectangle){ 30, 30 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Joao.credit = (Rectangle){ 70, 75 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Joao.name = "João";
     Joao.rectColor = SKYBLUE;
     Joao.nameColor = forestGreen;
 
-    Luanna.credit = (Rectangle){ 30, 40 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Luanna.credit = (Rectangle){ 70, 100 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Luanna.name = "Luanna";
     Luanna.rectColor = SKYBLUE;
     Luanna.nameColor = forestGreen;
     
-    Clara.credit = (Rectangle){ 30, 50 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
+    Clara.credit = (Rectangle){ 70, 125 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     Clara.name = "Clara";
     Clara.rectColor = SKYBLUE;
     Clara.nameColor = forestGreen;
@@ -94,7 +94,7 @@ void credits()
 
 
             ClearBackground(SKYBLUE);
-            DrawText("sapo-sopa sobe", 115, 20, 70, WHITE); //titulo do jogo
+            DrawText("sapos-sopa (grupo 7)", 275, 50, 170, WHITE); //titulo do jogo
 
             DrawCreditButton(Dyego);
             DrawCreditButton(Henrique);
@@ -148,4 +148,7 @@ void credits()
     }
 
     CloseWindow(); 
+
+
+    return 0;
 }
