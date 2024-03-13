@@ -18,8 +18,7 @@ typedef struct {
 typedef struct {
     Color fullNameColor;
     const char *fullName;
-    //const char *role;
-    Texture2D frogPersonal;
+    const char *role;
 } nameCreditExpanded; //struct para oq aparece quado coloca o cursor em cima do nome
 
 void DrawCreditButton(nameCredit student) {
@@ -29,7 +28,8 @@ void DrawCreditButton(nameCredit student) {
 
 void DrawExpandedCreditButton(nameCreditExpanded studentF) {
     DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
-} //colocar mais coisa, desenha o resto na tela quando o cursor esta no nome
+    DrawText(studentF.role, 770, 440, 50, studentF.fullNameColor);
+} //coloca mais informações, desenha o resto na tela quando o cursor esta no nome
 
 bool BackToMenuPressedC(bool menuButton, Rectangle button) {
     if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -42,8 +42,8 @@ GameScreen creditsDraw(GameScreen *screen)
 {
     bool goBacktoMenu = false;
     
-    //const int screenWidth = GetScreenWidth();
-    const int screenHeight = GetScreenHeight();
+    const int screenWidth = 1920;
+    const int screenHeight = 1080;
     Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
     Color groundBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra    
@@ -84,18 +84,23 @@ GameScreen creditsDraw(GameScreen *screen)
     
     DyegoF.fullNameColor = groundBrown;
     DyegoF.fullName = "Dyego Ferreira da Silva";
+    DyegoF.role = "função do dyego";
 
     HenriqueF.fullNameColor = groundBrown;
     HenriqueF.fullName = "Henrique Alves Passos";
+    HenriqueF.role = "função do henrique";
 
     JoaoF.fullNameColor = groundBrown;
     JoaoF.fullName = "João Victor Grangeiro Costa";
+    JoaoF.role = "função do joão";
 
     LuannaF.fullNameColor = groundBrown;
     LuannaF.fullName = "Luanna Gomes Lucena";
+    LuannaF.role = "função da luanna";
 
     ClaraF.fullNameColor = groundBrown;
     ClaraF.fullName = "Maria Clara Laranjeira Tenório";
+    ClaraF.role = "função da clara";
 
     while (goBacktoMenu!=true)  
     {
