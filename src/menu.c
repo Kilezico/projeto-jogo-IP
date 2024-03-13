@@ -16,9 +16,10 @@ typedef struct {
     int fontSize;
 } options; //struct pras informações de cada um dos cinco botões (jogar, backstory, como jogar, creditos e sair)
 
-void DrawMenuButton(options choice) {
+void DrawMenuButton(options choice, Font fonte) {
     DrawRectangleRec(choice.button, choice.rectColor);
-    DrawText(choice.word, (int)choice.button.x + 20, (int)choice.button.y + 20, choice.fontSize, choice.optionColor);
+    // DrawText(choice.word, (int)choice.button.x + 20, (int)choice.button.y + 20, choice.fontSize, choice.optionColor);
+    DrawTextEx(fonte, choice.word, (Vector2){choice.button.x+20, choice.button.y+20}, choice.fontSize, 0, choice.optionColor);
 } //desenha cada um dos botões com base nas informações da struct correspondente a opção (parametro)
 
 bool checkOptionSelected(bool buttonClicked, options choice) {
@@ -33,7 +34,7 @@ bool checkOptionSelected(bool buttonClicked, options choice) {
     return buttonClicked;
 } //checa se o botão fornecido no parametro foi clicado, caso sim torna buttonClicked verdade
 
-GameScreen menuDraw(GameScreen *screen)
+GameScreen menuDraw(GameScreen *screen, Font fonte)
 {
     bool optionSelected = false;
     
@@ -77,7 +78,7 @@ GameScreen menuDraw(GameScreen *screen)
     creditPage.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     creditPage.rectColor = polutedSky;
     creditPage.optionColor = groungBrown;
-    creditPage.word = "Creditos";
+    creditPage.word = "Créditos";
     creditPage.fontSize = 65;
 
     bool buttonPlayClicked = false, buttonHowtoPlayClicked = false, buttonBackStoryClicked = false, buttonExitClicked = false, buttonCreditPageClicked = false;
@@ -89,7 +90,7 @@ GameScreen menuDraw(GameScreen *screen)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawTextLines(GetFontDefault(), "sapo-sopa sobe", (Vector2){960, 120}, 0, 170, 20, grassGreen, BLACK, 4); // titulo do jogo
+            DrawTextLines(fonte, "sapo-sopa sobe", (Vector2){960, 120}, 0, 170, 20, grassGreen, BLACK, 4); // titulo do jogo
             
             Rectangle proportionFrogMenu = { 0.0f, 0.0f, frogMenu.width, frogMenu.height };
             //retangulo que vai definir a proporção da imagem do sapo, nesse caso pega o sapo todo
@@ -100,11 +101,11 @@ GameScreen menuDraw(GameScreen *screen)
             DrawTexturePro(frogMenu, proportionFrogMenu, whereFrogMenu, origin, 0.0f, WHITE);
             //modo de densenho que realisa os ajustes necessários para que fique no quadrando inferior esquerdo da tela
 
-            DrawMenuButton(play);
-            DrawMenuButton(howtoPlay);
-            DrawMenuButton(backStory);
-            DrawMenuButton(exit);
-            DrawMenuButton(creditPage);
+            DrawMenuButton(play, fonte);
+            DrawMenuButton(howtoPlay, fonte);
+            DrawMenuButton(backStory, fonte);
+            DrawMenuButton(exit, fonte);
+            DrawMenuButton(creditPage, fonte);
             //desenha os botões na tela usando a função
 
             buttonPlayClicked = checkOptionSelected(buttonPlayClicked, play);

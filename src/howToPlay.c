@@ -12,7 +12,7 @@ bool BackToMenuPressedHT(bool menuButton, Rectangle button) {
     return menuButton;
 }
 
-GameScreen howToDraw(GameScreen *screen)
+GameScreen howToDraw(GameScreen *screen, Font fonte)
 {
     SetTargetFPS(60);
     bool goBacktoMenu = false;
@@ -34,7 +34,8 @@ GameScreen howToDraw(GameScreen *screen)
     
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
-            DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+            // DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+            DrawTextEx(fonte, "sapo-sopa sobe", (Vector2){25, 35}, 50, 0, BLACK);
             goBacktoMenu = BackToMenuPressedHT(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
@@ -56,11 +57,11 @@ GameScreen howToDraw(GameScreen *screen)
             Rectangle spaceKeyWhere = { 300, 1200, spaceKey.width*0.25, spaceKey.height*0.25 };
             DrawTexturePro(spaceKey, spaceKeyProportions, spaceKeyWhere, (Vector2){ 0, 0 }, 0, WHITE); //imagem da tecla espaço
     
-            DrawText("Teclas necessárias:", 100, 70, 100, BLACK);
-            DrawText("Como andar para os lados?", 120, 200, 50, BLACK);
-            DrawText("Use as letras A e D, ou as setas do teclado", 120, 250, 25, BLACK);
-            DrawText("Como pular?", 960, 480, 50, BLACK);
-            DrawText("Aperte no botão de espaço", 960, 600, 25, BLACK); //textos que ficam na tela
+            DrawTextEx(fonte, "Teclas necessárias:", (Vector2){100, 70}, 100, 0, BLACK);
+            DrawTextEx(fonte, "Como andar para os lados?", (Vector2){120, 200}, 50, 0, BLACK);
+            DrawTextEx(fonte, "Use as letras A e D, ou as setas do teclado", (Vector2){120, 250}, 25, 0, BLACK);
+            DrawTextEx(fonte, "Como pular?", (Vector2){960, 480}, 50, 0, BLACK);
+            DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){960, 600}, 25, 0, BLACK); //textos que ficam na tela
 
         EndDrawing();
     }

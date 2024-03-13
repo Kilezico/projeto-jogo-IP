@@ -15,8 +15,9 @@ typedef struct{
 const char *tale;
 }writtenStory; //ponteiro que aponta para a string de texto que vai ficar em cada um dos quadrinhos
 
-void DrawSTory(writtenStory verse){
-    DrawText(verse.tale, 650, 150, 65, WHITE);
+void DrawSTory(writtenStory verse, Font fonte){
+    // DrawText(verse.tale, 650, 150, 65, WHITE);
+    DrawTextEx(fonte, verse.tale, (Vector2){650, 150}, 65, 0, WHITE);
 }
 
 bool BackToMenuPressedBS(bool menuButton, Rectangle button) {
@@ -26,7 +27,7 @@ bool BackToMenuPressedBS(bool menuButton, Rectangle button) {
     return menuButton;
 }
 
-GameScreen backStoryDraw(GameScreen *screen)
+GameScreen backStoryDraw(GameScreen *screen, Font fonte)
 {
     bool goBacktoMenu = false;
     
@@ -98,38 +99,39 @@ GameScreen backStoryDraw(GameScreen *screen)
             if(squareCount==1){ //mostra o quadrinho 1
                 Vector2 origin = { One.whereSquare.width / 2, One.whereSquare.height / 2 };
                 DrawTexturePro(One.image, One.proportionSquare, One.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleOne);
+                DrawSTory(taleOne, fonte);
             }else if(squareCount==2){ //mostra o quadrinho 2
                 Vector2 origin = { Two.whereSquare.width / 2, Two.whereSquare.height / 2 };
                 DrawTexturePro(Two.image, Two.proportionSquare, Two.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleTwo);
+                DrawSTory(taleTwo, fonte);
             }else if(squareCount==3){ //mostra o quadrinho 3
                 Vector2 origin = { Three.whereSquare.width / 2, Three.whereSquare.height / 2 };
                 DrawTexturePro(Three.image, Three.proportionSquare, Three.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleThree);
+                DrawSTory(taleThree, fonte);
             }else if(squareCount==4){ //mostra o quadrinho 4
                 Vector2 origin = { Four.whereSquare.width / 2, Four.whereSquare.height / 2 };
                 DrawTexturePro(Four.image, Four.proportionSquare, Four.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleFour);
+                DrawSTory(taleFour, fonte);
             }else if(squareCount==5){ //mostra o quadrinho 5
                 Vector2 origin = { Five.whereSquare.width / 2, Five.whereSquare.height / 2 };
                 DrawTexturePro(Five.image, Five.proportionSquare, Five.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleFive);
+                DrawSTory(taleFive, fonte);
             }else if(squareCount==6){ //mostra o quadrinho 6
                 Vector2 origin = { Six.whereSquare.width / 2, Six.whereSquare.height / 2 };
                 DrawTexturePro(Six.image, Six.proportionSquare, Six.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleSix);
+                DrawSTory(taleSix, fonte);
             }else if(squareCount==7){ //mostra o quadrinho 7
                 Vector2 origin = { Seven.whereSquare.width / 2, Seven.whereSquare.height / 2 };
                 DrawTexturePro(Seven.image, Seven.proportionSquare, Seven.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleSeven);
+                DrawSTory(taleSeven, fonte);
             }else if(squareCount>=8){ //mostra o quadrinho 8
                 Vector2 origin = { Eight.whereSquare.width / 2, Eight.whereSquare.height / 2 };
                 DrawTexturePro(Eight.image, Eight.proportionSquare, Eight.whereSquare, origin, 0.0f, WHITE);
-                DrawSTory(taleEight);
+                DrawSTory(taleEight, fonte);
                 Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
                 DrawRectangleRec(backToMenu, waterBlue);
-                DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+                // DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+                DrawTextEx(fonte, "sapo-sopa sobe", (Vector2){25, 35}, 50, 0, BLACK);
                 goBacktoMenu = BackToMenuPressedBS(goBacktoMenu, backToMenu);
                 if(goBacktoMenu==true){//vai fazer o while parar
                     *screen = MENUS;

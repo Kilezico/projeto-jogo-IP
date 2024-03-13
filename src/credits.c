@@ -21,14 +21,16 @@ typedef struct {
     const char *role;
 } nameCreditExpanded; //struct para oq aparece quado coloca o cursor em cima do nome
 
-void DrawCreditButton(nameCredit student) {
+void DrawCreditButton(nameCredit student, Font fonte) {
     DrawRectangleRec(student.credit, student.rectColor);
-    DrawTextLinesCorner(GetFontDefault(), student.name, (Vector2){student.credit.x, student.credit.y}, 0, 120, 20, student.nameColor, BLACK, 4);
+    DrawTextLinesCorner(fonte, student.name, (Vector2){student.credit.x, student.credit.y}, 0, 120, 20, student.nameColor, BLACK, 4);
 } //desenha os nomes na tela
 
-void DrawExpandedCreditButton(nameCreditExpanded studentF) {
-    DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
-    DrawText(studentF.role, 770, 440, 50, studentF.fullNameColor);
+void DrawExpandedCreditButton(nameCreditExpanded studentF, Font fonte) {
+    // DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
+    DrawTextEx(fonte, studentF.fullName, (Vector2){720, 360}, 70, 0, studentF.fullNameColor);
+    // DrawText(studentF.role, 770, 440, 50, studentF.fullNameColor);
+    DrawTextEx(fonte, studentF.role, (Vector2){770, 440}, 50, 0, studentF.fullNameColor);
 } //coloca mais informações, desenha o resto na tela quando o cursor esta no nome
 
 bool BackToMenuPressedC(bool menuButton, Rectangle button) {
@@ -38,7 +40,7 @@ bool BackToMenuPressedC(bool menuButton, Rectangle button) {
     return menuButton;
 }
 
-GameScreen creditsDraw(GameScreen *screen)
+GameScreen creditsDraw(GameScreen *screen, Font fonte)
 {
     bool goBacktoMenu = false;
     
@@ -108,28 +110,28 @@ GameScreen creditsDraw(GameScreen *screen)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawTextLines(GetFontDefault(), "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 150, 20, WHITE, BLACK, 4); // titulo do jogo
-            // DrawText("sapos-sopa (grupo 7)", 175, 50, 170, WHITE); //titulo do jogo
+            DrawTextLines(fonte, "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 150, 20, WHITE, BLACK, 4); // titulo do jogo
 
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
-            DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+            // DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
+            DrawTextEx(fonte, "sapo-sopa sobe", (Vector2){25, 35}, 50, 0, BLACK);
             goBacktoMenu = BackToMenuPressedC(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
             }
 
-            DrawCreditButton(Dyego);
-            DrawCreditButton(Henrique);
-            DrawCreditButton(Joao);
-            DrawCreditButton(Luanna);
-            DrawCreditButton(Clara);
+            DrawCreditButton(Dyego, fonte);
+            DrawCreditButton(Henrique, fonte);
+            DrawCreditButton(Joao, fonte);
+            DrawCreditButton(Luanna, fonte);
+            DrawCreditButton(Clara, fonte);
             //desenha todos os nomes
 
             if (CheckCollisionPointRec(GetMousePosition(), Dyego.credit)){
                 Dyego.rectColor = polutedSky;
                 Dyego.nameColor = groundBrown;
-                DrawExpandedCreditButton(DyegoF);
+                DrawExpandedCreditButton(DyegoF, fonte);
             } else{
                 Dyego.rectColor = polutedSky;
                 Dyego.nameColor = grassGreen;
@@ -137,7 +139,7 @@ GameScreen creditsDraw(GameScreen *screen)
             if(CheckCollisionPointRec(GetMousePosition(), Henrique.credit)){
                 Henrique.rectColor = polutedSky;
                 Henrique.nameColor = groundBrown;
-                DrawExpandedCreditButton(HenriqueF);
+                DrawExpandedCreditButton(HenriqueF, fonte);
             } else {
                 Henrique.rectColor = polutedSky;
                 Henrique.nameColor = grassGreen;
@@ -145,7 +147,7 @@ GameScreen creditsDraw(GameScreen *screen)
             if(CheckCollisionPointRec(GetMousePosition(), Joao.credit)){
                 Joao.rectColor = polutedSky;
                 Joao.nameColor = groundBrown;
-                DrawExpandedCreditButton(JoaoF);
+                DrawExpandedCreditButton(JoaoF, fonte);
             } else{
                 Joao.rectColor = polutedSky;
                 Joao.nameColor = grassGreen;
@@ -153,7 +155,7 @@ GameScreen creditsDraw(GameScreen *screen)
             if(CheckCollisionPointRec(GetMousePosition(), Luanna.credit)){
                 Luanna.rectColor = polutedSky;
                 Luanna.nameColor = groundBrown;
-                DrawExpandedCreditButton(LuannaF);
+                DrawExpandedCreditButton(LuannaF, fonte);
             } else{
                 Luanna.rectColor = polutedSky;
                 Luanna.nameColor = grassGreen;
@@ -161,7 +163,7 @@ GameScreen creditsDraw(GameScreen *screen)
             if(CheckCollisionPointRec(GetMousePosition(), Clara.credit)){
                 Clara.rectColor = polutedSky;
                 Clara.nameColor = groundBrown;
-                DrawExpandedCreditButton(ClaraF);
+                DrawExpandedCreditButton(ClaraF, fonte);
             } else{
                 Clara.rectColor = polutedSky;
                 Clara.nameColor = grassGreen;

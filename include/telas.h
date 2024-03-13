@@ -20,9 +20,9 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player jogador, Agua aguaL
 void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 
-GameScreen menuDraw(GameScreen *screen);
-GameScreen backStoryDraw(GameScreen *screen);
-GameScreen creditsDraw(GameScreen *screen);
-GameScreen howToDraw(GameScreen *screen);
+GameScreen menuDraw(GameScreen *screen, Font fonte);
+GameScreen backStoryDraw(GameScreen *screen, Font fonte);
+GameScreen creditsDraw(GameScreen *screen, Font fonte);
+GameScreen howToDraw(GameScreen *screen, Font fonte);
 
 #endif

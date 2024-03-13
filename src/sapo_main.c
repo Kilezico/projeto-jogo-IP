@@ -87,19 +87,19 @@ int main(){
                     jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu);
                 break;
                 case MENUS:
-                    menuDraw(&gameState);
+                    menuDraw(&gameState, fonteMenu);
                 break;
                 case HOWTO:
-                    howToDraw(&gameState);
+                    howToDraw(&gameState, fonteMenu);
                 break;
                 case STORY:
-                    backStoryDraw(&gameState);
+                    backStoryDraw(&gameState, fonteMenu);
                 break;
                 case EXIT:
                     running = false;
                 break;
                 case CREDITS:
-                    creditsDraw(&gameState);
+                    creditsDraw(&gameState, fonteMenu);
                 break;
                 default: running = false; break;
             }
