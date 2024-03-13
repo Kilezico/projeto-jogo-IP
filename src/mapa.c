@@ -14,16 +14,16 @@ Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *t
     Plataforma plat;
     plat.textura = GetRandomValue(1, 2) == 1 ? texturaPlat : texturaPlatFlor;
     plat.rect = (Rectangle){0, position.y, plat.textura->width / 3, plat.textura->height / 3};
-    plat.hitbox = (EnvItem){(Rectangle){plat.rect.x + 10, plat.rect.y + 75, plat.rect.width - 30, 20}, 1};
+    plat.hitbox = (EnvItem){(Rectangle){plat.rect.x + 10, plat.rect.y + 75, plat.rect.width - 20, 20}, 1};
     plat.velocidade = 0;
     
     // Randomiza a posição da plataforma
     float pos = position.x;
-    if (pos < 2*distanciaMax) pos += GetRandomValue(distanciaMin, distanciaMax);
-    else if (pos > 1920 - 2*distanciaMax - plat.hitbox.react.width) pos += GetRandomValue(-distanciaMax, -distanciaMin);
+    if (pos < distanciaMax) pos += GetRandomValue(distanciaMin, distanciaMax);
+    else if (pos > 1920 - distanciaMax - plat.hitbox.react.width) pos += GetRandomValue(-distanciaMax, -distanciaMin);
     else pos += pow(-1, GetRandomValue(1, 2)) * GetRandomValue(distanciaMin, distanciaMax);
     plat.rect.x = pos;
-    plat.hitbox.react.x = pos + 10;
+    plat.hitbox.react.x = pos + 5;
     return plat;
 }
 
@@ -53,10 +53,12 @@ void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *te
         if (plataformas[i].rect.y > alturaAgua) plataformaSaiu = i;
     }
     // Sim, só cria uma plataforma nova por frame, mas isso não deve se tornar um problema
-    Vector2 position;
-    position.x = plataformas[maiorPlataforma].hitbox.react.x;
-    position.y = plataformas[maiorPlataforma].rect.y - 120;
-    plataformas[plataformaSaiu] = novaPlataforma(position, texturaPlat, texturaPlatFlor);
+    if (plataformaSaiu != -1) {
+        Vector2 position;
+        position.x = plataformas[maiorPlataforma].hitbox.react.x;
+        position.y = plataformas[maiorPlataforma].rect.y - 120;
+        plataformas[plataformaSaiu] = novaPlataforma(position, texturaPlat, texturaPlatFlor);
+    }
 }
 
 void drawPlataforma(Plataforma *plataformas, int plataformasTam)

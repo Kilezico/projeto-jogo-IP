@@ -5,7 +5,7 @@
 #include "utilidades.h"
 #include "telas.h"
 
-bool BackToMenuPressedC(bool menuButton, Rectangle button) {
+bool BackToMenuPressedHT(bool menuButton, Rectangle button) {
     if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         menuButton = true;
     } //checa se o cursor ta em cima do botão e se foi pressioanado
@@ -23,6 +23,8 @@ GameScreen howToDraw(GameScreen *screen)
     Texture2D LandR = LoadTexture("assets/LandR.png");
     Texture2D spaceKey = LoadTexture("assets/spaceKey.png");
 
+    Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
+
     while (goBacktoMenu!=true)
     {
 
@@ -33,7 +35,7 @@ GameScreen howToDraw(GameScreen *screen)
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
             DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
-            goBacktoMenu = BackToMenuPressedC(goBacktoMenu, backToMenu);
+            goBacktoMenu = BackToMenuPressedHT(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
             }
@@ -69,5 +71,5 @@ GameScreen howToDraw(GameScreen *screen)
     UnloadTexture(LandR);
     UnloadTexture(spaceKey);
 
-    return screen;
+    return *screen;
 }

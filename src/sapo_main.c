@@ -89,9 +89,9 @@ int main(){
                 case MENUS:
                     menuDraw(&gameState);
                 break;
-                //case HOWTO:
-                  
-                //break;
+                case HOWTO:
+                    howToDraw(&gameState);
+                break;
                 case STORY:
                     backStoryDraw(&gameState);
                 break;

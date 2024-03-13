@@ -23,5 +23,6 @@ void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, 
 GameScreen menuDraw(GameScreen *screen);
 GameScreen backStoryDraw(GameScreen *screen);
 GameScreen creditsDraw(GameScreen *screen);
+GameScreen howToDraw(GameScreen *screen);
 
 #endif
