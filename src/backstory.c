@@ -123,7 +123,7 @@ GameScreen backStoryDraw(GameScreen *screen)
                 Vector2 origin = { Seven.whereSquare.width / 2, Seven.whereSquare.height / 2 };
                 DrawTexturePro(Seven.image, Seven.proportionSquare, Seven.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleSeven);
-            }else if(squareCount==8){ //mostra o quadrinho 8
+            }else if(squareCount>=8){ //mostra o quadrinho 8
                 Vector2 origin = { Eight.whereSquare.width / 2, Eight.whereSquare.height / 2 };
                 DrawTexturePro(Eight.image, Eight.proportionSquare, Eight.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleEight);
@@ -135,6 +135,7 @@ GameScreen backStoryDraw(GameScreen *screen)
                     *screen = MENUS;
                 }
             }
+        
 
         EndDrawing();
     }
