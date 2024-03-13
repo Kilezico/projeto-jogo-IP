@@ -93,7 +93,6 @@ GameScreen menuDraw(GameScreen *screen)
             
             Rectangle proportionFrogMenu = { 0.0f, 0.0f, frogMenu.width, frogMenu.height };
             //retangulo que vai definir a proporção da imagem do sapo, nesse caso pega o sapo todo
-            // Define the destination rectangle for drawing
             Rectangle whereFrogMenu = { 625, 750, frogMenu.width * 0.5, frogMenu.height * 0.5 };
             //define onde deve ser desenhado e o seu tamanho (escala de 0.6)
             Vector2 origin = { whereFrogMenu.width / 2, whereFrogMenu.height / 2 };
