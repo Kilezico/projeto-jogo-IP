@@ -44,7 +44,7 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
 {
     bool goBacktoMenu = false;
     
-    const int screenWidth = 1920;
+   // const int screenWidth = 1920;
     const int screenHeight = 1080;
     Color grassGreen = (Color){74, 163, 26, 255}; //cor para os nomes das opções
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
