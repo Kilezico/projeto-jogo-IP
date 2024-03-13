@@ -4,13 +4,7 @@
 #include <stdbool.h>
 
 #include "jogador.h"
-
-// Estrutura de moeda
-typedef struct {
-    Vector2 position;
-    bool active;
-    Color color;
-} Coin;
+#include "coins.h"
 
 // Função para criar uma moeda
 Coin CreateCoin(Vector2 position, Color color) {
