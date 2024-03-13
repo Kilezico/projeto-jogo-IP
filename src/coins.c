@@ -1,0 +1,62 @@
+#include <raylib.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+#include "jogador.h"
+
+// Estrutura de moeda
+typedef struct {
+    Vector2 position;
+    bool active;
+    Color color;
+} Coin;
+
+// Função para criar uma moeda
+Coin CreateCoin(Vector2 position, Color color) {
+    Coin coin;
+    coin.position = position;
+    coin.active = true;
+    coin.color = color;
+    return coin;
+}
+
+// Função para desenhar uma moeda na tela
+void DrawCoin(Coin coin) {
+    if (coin.active) {
+        DrawCircleV(coin.position, 10, coin.color);
+    }
+}
+
+// Função para calcular a distância entre dois pontos
+float CalculateDistance(Vector2 playerPosition, Vector2 coinPosition) {
+    // Calcula as diferenças nas coordenadas x e y
+    float dx = coinPosition.x - playerPosition.x;
+    float dy = coinPosition.y - playerPosition.y;
+
+    // Calcula a distância euclidiana usando o teorema de Pitágoras
+    float distance = sqrtf(dx * dx + dy * dy);
+
+    return distance;
+}
+
+// Função para verificar a colisão entre o jogador e uma moeda
+bool CheckCoinCollision(Player player, Coin coin) {
+    // Define o raio do jogador
+    float playerRadius = 20.0f;
+
+    // Calcula a distância entre o jogador e a moeda
+    float distance = CalculateDistance(player.position, coin.position);
+
+    // Se a distância for menor que a soma dos raios do jogador e da moeda, houve colisão
+    return distance < playerRadius + 10; // 10 é o raio da moeda
+}
+
+// Função para coletar uma moeda
+void CollectCoin(Coin *coin) {
+    coin->active = false;
+    // Adicione aqui a lógica de pontuação ou efeitos ao coletar uma moeda
+}
+
+    
+
