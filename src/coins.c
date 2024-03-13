@@ -58,5 +58,45 @@ void CollectCoin(Coin *coin) {
     // Adicione aqui a lógica de pontuação ou efeitos ao coletar uma moeda
 }
 
+/* (Alterações na main)
+
+#include "coins.h"
+
+int main(){
+    //-------Inicializacao-------
+    
+    // Inicializa as moedas
+    const int numCoins = 5;
+    Coin coins[numCoins];
+    for (int i = 0; i < numCoins; i++) {
+        coins[i] = CreateCoin((Vector2){GetRandomValue(50, 750), GetRandomValue(50, 400)}, GOLD);
+    }
+
+    //------Loop principal------
+    while(!WindowShouldClose()){
+        
+        // Verifica a colisão e coleta de moedas
+        for (int i = 0; i < numCoins; i++) {
+            if (CheckCoinCollision(player, coins[i])) {
+                CollectCoin(&coins[i]);
+            }
+        }
+
+        // Desenha na tela        
+        BeginDrawing();
+
+            // Desenha as moedas
+            for (int i = 0; i < numCoins; i++) {
+            DrawCoin(coins[i]);
+            }
+            
+        EndDrawing();
+    }
+
+    return 0;
+}
+
+*/
+    
     
 
