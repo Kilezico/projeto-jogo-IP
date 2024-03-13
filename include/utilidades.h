@@ -8,4 +8,7 @@ void DrawTextCenter(Font font, const char *text, Vector2 position, Vector2 origi
 
 // Desenha Texto com borda
 void DrawTextLines(Font font, const char* txt, Vector2 position, float rotation, float fontSize, float spacing, Color tint, Color outline, float outlineSize);
+
+void DrawTextLinesCorner(Font font, const char* txt, Vector2 position, float rotation, float fontSize, float spacing, Color tint, Color outline, float outlineSize);
+
 #endif

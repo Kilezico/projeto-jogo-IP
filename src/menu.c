@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "utilidades.h"
+#include "telas.h"
 
 #define BUTTON_WIDTH 450 //define a largura do botões
 #define BUTTON_HEIGHT 110 //define a altura dos botões 
@@ -42,10 +43,8 @@ GameScreen menuDraw(GameScreen *screen)
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
     Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra
  
-    Texture2D background = LoadTexture("assets/backGround.jpg");
+    Texture2D background = LoadTexture("assets/backGround.png");
     Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.png"); //desenho do sapo que fica no menu
-
-    SetTargetFPS(60);
 
     options play; options howtoPlay; options backStory; options exit; options creditPage;
     //struct que pega as informações dos botões
@@ -110,7 +109,7 @@ GameScreen menuDraw(GameScreen *screen)
             //desenha os botões na tela usando a função
 
             buttonPlayClicked = checkOptionSelected(buttonPlayClicked, play);
-            buttonHowtoPlayClicked = checkOptionSelected(buttonHowtoPlayClicked, howToPlay);
+            buttonHowtoPlayClicked = checkOptionSelected(buttonHowtoPlayClicked, howtoPlay);
             buttonBackStoryClicked = checkOptionSelected(buttonBackStoryClicked, backStory);
             buttonExitClicked = checkOptionSelected(buttonExitClicked, exit);
             buttonCreditPageClicked = checkOptionSelected(buttonCreditPageClicked, creditPage);
@@ -118,23 +117,23 @@ GameScreen menuDraw(GameScreen *screen)
 
             if(buttonPlayClicked==true){
                 optionSelected = true;
-                gameState = GAMEPLAY;
+                *screen = GAMEPLAY;
             }
             if(buttonHowtoPlayClicked==true){
                 optionSelected = true;
-                gameState = HOWTO;
+                *screen = HOWTO;
             }
             if(buttonBackStoryClicked==true){
                 optionSelected = true;
-                gameState = STORY;
+                *screen = STORY;
             }
             if(buttonExitClicked==true){
                 optionSelected = true;
-                gameState = EXIT;
+                *screen = EXIT;
             }
             if(buttonCreditPageClicked==true){
                 optionSelected = true;
-                gameState = CREDITS;
+                *screen = CREDITS;
             }//troca a tela
             
         EndDrawing();
@@ -143,5 +142,5 @@ GameScreen menuDraw(GameScreen *screen)
     UnloadTexture(background);
     UnloadTexture(frogMenu);
 
-    return screen;
+    return *screen;
 }

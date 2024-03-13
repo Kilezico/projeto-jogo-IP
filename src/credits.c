@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
-#include "utlidades.h"
+#include "utilidades.h"
+#include "telas.h"
 
 #define BUTTON_WIDTH 840 //largura dos nomes
 #define BUTTON_HEIGHT 120 //altura dos nomes
@@ -23,14 +24,14 @@ typedef struct {
 
 void DrawCreditButton(nameCredit student) {
     DrawRectangleRec(student.credit, student.rectColor);
-    DrawTextLines(GetFontDefault(), student.name, (Vector2){(int)(student.credit.x)/2, (int)(student.credit.y)/2}, 0, 120, 20, student.nameColor, BLACK, 4);
+    DrawTextLinesCorner(GetFontDefault(), student.name, (Vector2){student.credit.x, student.credit.y}, 0, 120, 20, student.nameColor, BLACK, 4);
 } //desenha os nomes na tela
 
 void DrawExpandedCreditButton(nameCreditExpanded studentF) {
     DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
 } //colocar mais coisa, desenha o resto na tela quando o cursor esta no nome
 
-bool BacktToMenuPressed(bool menuButton, Rectangle button) {
+bool BackToMenuPressedC(bool menuButton, Rectangle button) {
     if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         menuButton = true;
     } //checa se o cursor ta em cima do botão e se foi pressioanado
@@ -48,8 +49,6 @@ GameScreen creditsDraw(GameScreen *screen)
     Color groundBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra    
  
     Texture2D background = LoadTexture("assets/backGround.png");
-
-    SetTargetFPS(60);
 
     nameCredit Dyego; nameCredit Henrique; nameCredit Joao; nameCredit Luanna; nameCredit Clara;
     //struct q pega as informações para desenhar os nomes
@@ -104,15 +103,15 @@ GameScreen creditsDraw(GameScreen *screen)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawTextLines(GetFontDefault(), "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 170, 20, WHITE, BLACK, 4); // titulo do jogo
-            DrawText("sapos-sopa (grupo 7)", 175, 50, 170, WHITE); //titulo do jogo
+            DrawTextLines(GetFontDefault(), "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 150, 20, WHITE, BLACK, 4); // titulo do jogo
+            // DrawText("sapos-sopa (grupo 7)", 175, 50, 170, WHITE); //titulo do jogo
 
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
             DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
-            BacktToMenuPressed(goBacktoMenu, backToMenu);
+            goBacktoMenu = BackToMenuPressedC(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
-                gameState = MENUS;
+                *screen = MENUS;
             }
 
             DrawCreditButton(Dyego);
@@ -168,5 +167,5 @@ GameScreen creditsDraw(GameScreen *screen)
 
     UnloadTexture(background);
 
-    return screen;
+    return *screen;
 }

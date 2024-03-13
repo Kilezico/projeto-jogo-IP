@@ -20,3 +20,13 @@ void DrawTextLines(Font font, const char* txt, Vector2 position, float rotation,
 
     DrawTextPro(font, txt, position, (Vector2){txtSize.x/2.0f, txtSize.y/2.0f},  rotation, fontSize, spacing, tint);
 }
+
+void DrawTextLinesCorner(Font font, const char* txt, Vector2 position, float rotation, float fontSize, float spacing, Color tint, Color outline, float outlineSize)
+{
+    for (float angle = 0.0f; angle < 2*PI; angle+=PI/16) {
+        Vector2 outlinePos = {position.x + (cos(angle) * outlineSize), position.y + (sin(angle) * outlineSize)};
+        DrawTextPro(font, txt, outlinePos, (Vector2){0, 0},  rotation, fontSize, spacing, outline);
+    }
+
+    DrawTextPro(font, txt, position, (Vector2){0, 0},  rotation, fontSize, spacing, tint);
+}

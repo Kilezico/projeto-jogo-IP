@@ -7,11 +7,6 @@
 #include "mapa.h"
 #include "telas.h"
 
-// Trocador de tela. Pode ser substituido se já tiver um no código do menu
-typedef enum {
-    GAMEPLAY, MENUS, HOWTO, STORY, CREDITS, EXIT
-} GameScreen;
-
 int main(){
     //-------Inicializacao-------
 
@@ -72,14 +67,14 @@ int main(){
     // Fonte
     Font fonteMenu = LoadFontEx("assets/fonteMenu.ttf", 100, 0, 256);
 
-   
+    bool running = true;
     //------Loop principal------
-    while(!WindowShouldClose()){
+    while(!WindowShouldClose() && running){
         // Atualizações  
         switch (gameState) {
             case GAMEPLAY:
                 // Atualiza o jogo
-                jogoUpdate(&gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
+                jogoUpdate(&gameState, &gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
             break;
             default: break;
         }
@@ -100,13 +95,13 @@ int main(){
                 case STORY:
                     backStoryDraw(&gameState);
                 break;
-                //case EXIT:
-                  
-                //break;
+                case EXIT:
+                    running = false;
+                break;
                 case CREDITS:
                     creditsDraw(&gameState);
                 break;
-                default: break;
+                default: running = false; break;
             }
         EndDrawing();
     }

@@ -3,6 +3,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include "telas.h"
+
 typedef struct{
 Texture2D image;
 Rectangle proportionSquare;
@@ -17,7 +19,7 @@ void DrawSTory(writtenStory verse){
     DrawText(verse.tale, 650, 150, 65, WHITE);
 }
 
-bool BacktToMenuPressed(bool menuButton, Rectangle button) {
+bool BackToMenuPressedBS(bool menuButton, Rectangle button) {
     if (CheckCollisionPointRec(GetMousePosition(), button) && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         menuButton = true;
     } //checa se o cursor ta em cima do botão e se foi pressioanado
@@ -33,8 +35,6 @@ GameScreen backStoryDraw(GameScreen *screen)
     Color forestGreen = (Color){34, 139, 34, 255}; //cor para o fundo, não gostei do verde do raylib ai peguei essas coordenadas rgb na internet
     Color waterBlue = (Color){63, 145, 182, 255};
      
-    SetTargetFPS(60);
-
     squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
 
     One.image = LoadTexture("assets/squareOne.png");
@@ -88,6 +88,7 @@ GameScreen backStoryDraw(GameScreen *screen)
     {
         if(IsKeyPressed(KEY_SPACE)){
             squareCount++;
+            if (squareCount > 8) squareCount = 1;
         } //passa o quadrinho quando o jogador aperta espaço
         
         BeginDrawing();
@@ -129,9 +130,9 @@ GameScreen backStoryDraw(GameScreen *screen)
                 Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
                 DrawRectangleRec(backToMenu, waterBlue);
                 DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
-                BacktToMenuPressed(goBacktoMenu, backToMenu);
+                goBacktoMenu = BackToMenuPressedBS(goBacktoMenu, backToMenu);
                 if(goBacktoMenu==true){//vai fazer o while parar
-                    gameState = MENUS;
+                    *screen = MENUS;
                 }
             }
 
@@ -147,5 +148,5 @@ GameScreen backStoryDraw(GameScreen *screen)
     UnloadTexture(Seven.image);
     UnloadTexture(Eight.image);
 
-    return screen;
+    return *screen;
 }

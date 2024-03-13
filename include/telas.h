@@ -6,19 +6,22 @@
 
 // Para sinalizar o estado do jogo.
 typedef enum {
-    INTRO, JOGO, PAUSA, ENCHENTE, MORTE
+    JOGO, PAUSA, ENCHENTE, MORTE
 } GameplayScreen;
+
+// Trocador de tela
+typedef enum {
+    GAMEPLAY, MENUS, HOWTO, STORY, CREDITS, EXIT
+} GameScreen;
 
 // Telas do jogo
 // Se precisar de mais alguma coisa pra printar na função, é só adicionar nos parâmetros
 void jogoDraw(GameplayScreen screen, Camera2D camera, Player jogador, Agua aguaLetal, Plataforma *plataformas, int platformasTam, Font fonte);
-void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
-void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
+void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
+void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 
-// Terá pelo menos duas funçãos (draw e update) para cada tela
-void menuDraw();
-void menuUpdate();
-
-// ...
+GameScreen menuDraw(GameScreen *screen);
+GameScreen backStoryDraw(GameScreen *screen);
+GameScreen creditsDraw(GameScreen *screen);
 
 #endif

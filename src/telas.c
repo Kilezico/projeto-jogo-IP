@@ -35,7 +35,7 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
     DrawTextEx(fonte, TextFormat("Velocidade da agua: %f", aguaLetal.velVertical), (Vector2){10, 80}, 40, 10, WHITE);
 }
 
-void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor)
+void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor)
 {
     float deltaTime = GetFrameTime();
 
@@ -52,7 +52,7 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
     } else if (*screen == MORTE) {
         // Fica nela por alguns segundos
         player->contMorte++;
-        if (player->contMorte > GetFPS()*3) jogoReset(screen, camera, player, aguaLetal, plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
+        if (player->contMorte > GetFPS()*3) jogoReset(bigScreen, screen, camera, player, aguaLetal, plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
     }
 
     // Checa morte do jogador
@@ -62,9 +62,10 @@ void jogoUpdate(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *
     UpdateCameraJump(camera, player, GetScreenWidth(), GetScreenHeight());
 }
 
-void jogoReset(GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) // Reseta as variáveis do jogo para começar de novo.
+void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) // Reseta as variáveis do jogo para começar de novo.
 {
     // Pronto para começar de novo!
+    *bigScreen = MENUS;
     *screen = JOGO; // aqui vai mudar eu acho, né
     camera->zoom = 1.0f;
     camera->target.y = -400.0f;
