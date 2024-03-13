@@ -49,7 +49,7 @@ int main(){
     aguaLetal.vel[0] = 2.0f;
     aguaLetal.vel[1] = 1.5f;
     aguaLetal.vel[2] = 1.0f;
-    aguaLetal.velVertical = 1.0f;
+    aguaLetal.velVertical = AGUA_START_SPD;
 
     // Inicia as variaveis de camera
     Camera2D camera = {0};
