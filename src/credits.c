@@ -114,7 +114,7 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
             // DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
-            DrawTextEx(fonte, "sapo-sopa sobe", (Vector2){25, 35}, 50, 0, BLACK);
+            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 50, 0, BLACK);
             goBacktoMenu = BackToMenuPressedC(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
