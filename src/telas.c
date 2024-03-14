@@ -28,12 +28,14 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
         DrawTexturePro(mosca, (Rectangle){0, 0, mosca.width, mosca.height}, (Rectangle){30, 30, 80, 80},
             (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(fonte, TextFormat("%d", player.coinCount), (Vector2){120, 34}, 70, 0, WHITE);
-        DrawTextEx(fonte, TextFormat("Altura: %.02f", fabs(player.position.y)), (Vector2){1500, 34}, 70, 0, WHITE);
+        DrawTexturePro(player.texturaPulo, (Rectangle){0, 0, -player.texturaPulo.width, player.texturaPulo.height},
+            (Rectangle){1600, 25, 100, player.texturaPulo.height * 100 / player.texturaPulo.width}, (Vector2){0, 0}, 0, WHITE);
+        DrawTextEx(fonte, TextFormat("%.02f", -player.maxHeight), (Vector2){1700, 34}, 70, 0, WHITE);
     }
     else if (screen == MORTE) {
         DrawTextCenter(fonte, "Game Over :(", (Vector2){960, 540}, (Vector2){0, 0}, 0, 150, 10, (Color){255, 0, 0, 255});
         DrawTextCenter(fonte, TextFormat("Você devourou %d mosca%s!!", player.coinCount, player.coinCount==1?"":"s"), (Vector2){960, 700}, (Vector2){0, 0}, 0, 70, 0, WHITE);
-        DrawTextCenter(fonte, TextFormat("Você chegou até %.02f de altura!!!", fabs(player.position.y)), (Vector2){960, 900}, (Vector2){0, 0}, 0, 70, 0, WHITE);
+        DrawTextCenter(fonte, TextFormat("Você chegou até %.02f de altura!!!", -player.maxHeight), (Vector2){960, 850}, (Vector2){0, 0}, 0, 70, 0, WHITE);
     }
 
     // // Mostra a posicao do jogador
@@ -82,6 +84,7 @@ void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, 
     camera->zoom = 1.0f;
     camera->target.y = -400.0f;
     player->position = (Vector2){ 500, -50 };
+    player->maxHeight = 0;
     player->vivo = true;
     player->coinCount = 0;
     aguaLetal->altura = 1400;

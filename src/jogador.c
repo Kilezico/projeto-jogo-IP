@@ -32,6 +32,10 @@ void UpdatePlayer(Player *player, Plataforma *plataformas, int plataformasLength
         PlaySound(player->somPulo);
     }
 
+    // Altura máxima
+    if (player->position.y < player->maxHeight)
+        player->maxHeight = player->position.y;
+
     // Limites do mapa
     if(player->position.x < 0){
         player->position.x = 0;
