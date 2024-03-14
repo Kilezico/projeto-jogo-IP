@@ -18,6 +18,6 @@ void UpdateCameraJump(Camera2D *camera, Player *player, int width, int height)
     if (camera->target.y > player->position.y) camera->target.y = player->position.y;
 
     camera->zoom += ((float) GetMouseWheelMove()*0.05f);
-    if(camera->zoom > 3.0f) camera->zoom = 3.0f;
-    else if(camera->zoom < 0.3f) camera->zoom = 0.3f;
+    if(camera->zoom > 1.0f) camera->zoom = 1.0f;
+    else if(camera->zoom < 0.5f) camera->zoom = 0.5f;
 }
