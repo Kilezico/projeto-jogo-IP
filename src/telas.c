@@ -31,7 +31,7 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
     }
     else if (screen == MORTE) {
         DrawTextCenter(fonte, "Game Over :(", (Vector2){960, 540}, (Vector2){0, 0}, 0, 150, 10, (Color){255, 0, 0, 255});
-        DrawTextCenter(fonte, TextFormat("Você devourou %d moscas!!", player.coinCount), (Vector2){960, 700}, (Vector2){0, 0}, 0, 70, 0, WHITE);
+        DrawTextCenter(fonte, TextFormat("Você devourou %d mosca%s!!", player.coinCount, player.coinCount==1?"":"s"), (Vector2){960, 700}, (Vector2){0, 0}, 0, 70, 0, WHITE);
     }
 
     // // Mostra a posicao do jogador
@@ -42,7 +42,7 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
 
 }
 
-void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor)
+void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor, Music mMenu, Music mJogo)
 {
     float deltaTime = GetFrameTime();
 
@@ -50,6 +50,11 @@ void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera,
         UpdatePlayer(player, plataformas, plataformasTam, *aguaLetal, deltaTime);
         updateAgua(aguaLetal, player->position.y, false);
         updatePlataforma(plataformas, plataformasTam, texturaPlat, texturaPlatFlor, aguaLetal->alturaLetal);
+        // Checa morte do jogador
+        if (!player->vivo) {
+            *screen = ENCHENTE;
+            StopMusicStream(mJogo);
+        }
     } else if (*screen == ENCHENTE) {
         // Quando morre, espera um pouco para a água subir bastante
         updateAgua(aguaLetal, player->position.y, true);
@@ -59,17 +64,15 @@ void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera,
     } else if (*screen == MORTE) {
         // Fica nela por alguns segundos
         player->contMorte++;
-        if (player->contMorte > GetFPS()*4) jogoReset(bigScreen, screen, camera, player, aguaLetal, plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
+        if (player->contMorte > GetFPS()*4) jogoReset(bigScreen, screen, camera, player, aguaLetal, plataformas, plataformasTam, texturaPlat, texturaPlatFlor, mMenu, mJogo);
     }
-
-    // Checa morte do jogador
-    if (!player->vivo && *screen == JOGO) *screen = ENCHENTE;
 
     // Atualiza as info para camera
     UpdateCameraJump(camera, player, GetScreenWidth(), GetScreenHeight());
 }
 
-void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) // Reseta as variáveis do jogo para começar de novo.
+// Reseta as variáveis do jogo para começar de novo.
+void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor, Music mMenu, Music mJogo)
 {
     // Pronto para começar de novo!
     *bigScreen = MENUS;
@@ -83,4 +86,6 @@ void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, 
     aguaLetal->alturaLetal = 1400;
     aguaLetal->velVertical = 1.0f;
     criaPlataformas(plataformas, plataformasTam, texturaPlat, texturaPlatFlor);
+    PlayMusicStream(mMenu);
+    StopMusicStream(mJogo);
 }

@@ -34,7 +34,7 @@ bool checkOptionSelected(bool buttonClicked, options choice) {
     return buttonClicked;
 } //checa se o botão fornecido no parametro foi clicado, caso sim torna buttonClicked verdade
 
-GameScreen menuDraw(GameScreen *screen, Font fonte)
+GameScreen menuDraw(GameScreen *screen, Font fonte, Music mMenu, Music mJogo)
 {
     bool optionSelected = false;
     
@@ -120,6 +120,8 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
             if(buttonPlayClicked==true){
                 optionSelected = true;
                 *screen = GAMEPLAY;
+                PlayMusicStream(mJogo);
+                StopMusicStream(mMenu);
             }
             if(buttonHowtoPlayClicked==true){
                 optionSelected = true;

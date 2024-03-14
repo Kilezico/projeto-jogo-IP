@@ -61,10 +61,14 @@ int main(){
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
 
+    // Músicas
+    Music musicaMenu = LoadMusicStream("assets/ambiente.mp3");
+    Music musicaJogo = LoadMusicStream("assets/jogo.mp3");
+
     // Estados para mudança de janela
     GameplayScreen gameplayState = JOGO;
     GameScreen gameState = MENUS;
-
+    PlayMusicStream(musicaMenu);
 
     // Alce (Moose)
     Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
@@ -82,10 +86,14 @@ int main(){
         switch (gameState) {
             case GAMEPLAY:
                 // Atualiza o jogo
-                jogoUpdate(&gameState, &gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
+                jogoUpdate(&gameState, &gameplayState, &camera, &player, &aguaLetal, plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor, musicaMenu, musicaJogo);
             break;
             default: break;
         }
+        // Atualiza as músicas
+        UpdateMusicStream(musicaMenu);
+        UpdateMusicStream(musicaJogo);
+
         // Desenha na tela        
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -95,7 +103,7 @@ int main(){
                     jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu, terra, terraTopo, mosquinha);
                 break;
                 case MENUS:
-                    menuDraw(&gameState, fonteMenu);
+                    menuDraw(&gameState, fonteMenu, musicaMenu, musicaJogo);
                 break;
                 case HOWTO:
                     howToDraw(&gameState, fonteMenu);
@@ -125,6 +133,9 @@ int main(){
     UnloadTexture(terra);
     UnloadTexture(terraTopo);
     UnloadTexture(mosquinha);
+
+    UnloadMusicStream(musicaMenu);
+    UnloadMusicStream(musicaJogo);
 
     UnloadPlayer(&player);
 
