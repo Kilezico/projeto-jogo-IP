@@ -28,10 +28,12 @@ void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLe
         DrawTexturePro(mosca, (Rectangle){0, 0, mosca.width, mosca.height}, (Rectangle){30, 30, 80, 80},
             (Vector2){0, 0}, 0, WHITE);
         DrawTextEx(fonte, TextFormat("%d", player.coinCount), (Vector2){120, 34}, 70, 0, WHITE);
+        DrawTextEx(fonte, TextFormat("Altura: %.02f", fabs(player.position.y)), (Vector2){1500, 34}, 70, 0, WHITE);
     }
     else if (screen == MORTE) {
         DrawTextCenter(fonte, "Game Over :(", (Vector2){960, 540}, (Vector2){0, 0}, 0, 150, 10, (Color){255, 0, 0, 255});
         DrawTextCenter(fonte, TextFormat("Você devourou %d mosca%s!!", player.coinCount, player.coinCount==1?"":"s"), (Vector2){960, 700}, (Vector2){0, 0}, 0, 70, 0, WHITE);
+        DrawTextCenter(fonte, TextFormat("Você chegou até %.02f de altura!!!", fabs(player.position.y)), (Vector2){960, 900}, (Vector2){0, 0}, 0, 70, 0, WHITE);
     }
 
     // // Mostra a posicao do jogador
