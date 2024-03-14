@@ -11,7 +11,8 @@
 // Telas do jogo
 void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
 {
-    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), SKYBLUE);
+    Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
+    DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), polutedSky);
 
     BeginMode2D(camera);
         drawAguaFundo(aguaLetal); // desenha fundo
