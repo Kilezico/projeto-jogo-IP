@@ -17,11 +17,7 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
     SetTargetFPS(60);
     bool goBacktoMenu = false;
 
-    Texture2D background = LoadTexture("assets/backGround.png");
-    Texture2D keyBoard = LoadTexture("assets/keyBoard.png");
-    Texture2D AandD = LoadTexture("assets/AandD.png");
-    Texture2D LandR = LoadTexture("assets/LandR.png");
-    Texture2D spaceKey = LoadTexture("assets/spaceKey.png");
+    Texture2D tutorial = LoadTexture("assets/tutorial.png");
 
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
 
@@ -30,47 +26,25 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
 
         BeginDrawing();
 
-            DrawTexture(background, 0, 0, WHITE);
+            DrawTexture(tutorial, 0, 0, WHITE);
     
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
-            // DrawText("sapo-sopa sobe", 25, 35, 50, BLACK);
-            DrawTextEx(fonte, "sapo-sopa sobe", (Vector2){25, 35}, 50, 0, BLACK);
+            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 50, 0, BLACK);
             goBacktoMenu = BackToMenuPressedHT(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
             }
-      
-            Rectangle keyBoardProportions = { 0, 0, keyBoard.width, keyBoard.height };
-            Rectangle keyBoardWhere = { 1440, 480, keyBoard.width*0.5, keyBoard.height*0.5 };
-            DrawTexturePro(keyBoard, keyBoardProportions, keyBoardWhere, (Vector2){ 0, 0 }, 0, WHITE); //coloca a imagem do teclado
     
-            Rectangle AandDProportions = { 0, 0, AandD.width, AandD.height };
-            Rectangle AandDWhere = { 120, 1200, AandD.width*0.25, AandD.height*0.25 };
-            DrawTexturePro(AandD, AandDProportions, AandDWhere, (Vector2){ 0, 0 }, 0, WHITE); //imagem das teclas a e d
-    
-            Rectangle LandRProportions = { 0, 0, LandR.width, LandR.height };
-            Rectangle LandRWhere = { 140, 1200, LandR.width*0.25, LandR.height*0.25 };
-            DrawTexturePro(LandR, LandRProportions, LandRWhere, (Vector2){ 0, 0 }, 0, WHITE); //imagem das teclas das setas
-    
-            Rectangle spaceKeyProportions = { 0, 0, spaceKey.width, spaceKey.height };
-            Rectangle spaceKeyWhere = { 300, 1200, spaceKey.width*0.25, spaceKey.height*0.25 };
-            DrawTexturePro(spaceKey, spaceKeyProportions, spaceKeyWhere, (Vector2){ 0, 0 }, 0, WHITE); //imagem da tecla espaço
-    
-            DrawTextEx(fonte, "Teclas necessárias:", (Vector2){100, 70}, 100, 0, BLACK);
-            DrawTextEx(fonte, "Como andar para os lados?", (Vector2){120, 200}, 50, 0, BLACK);
-            DrawTextEx(fonte, "Use as letras A e D, ou as setas do teclado", (Vector2){120, 250}, 25, 0, BLACK);
-            DrawTextEx(fonte, "Como pular?", (Vector2){960, 480}, 50, 0, BLACK);
-            DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){960, 600}, 25, 0, BLACK); //textos que ficam na tela
-
+            DrawTextEx(fonte, "Como pular?", (Vector2){120, 200}, 100, 0, BLACK);
+            DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){120, 320}, 50, 0, BLACK);
+            DrawTextEx(fonte, "Como andar para os lados?", (Vector2){960, 480}, 100, 0, BLACK);
+            DrawTextEx(fonte, "Use as letras A e D,\n\nou as setas do teclado", (Vector2){960, 600}, 50, 0, BLACK); //textos que ficam na tela
+            
         EndDrawing();
     }
 
-    UnloadTexture(background);
-    UnloadTexture(keyBoard);
-    UnloadTexture(AandD);
-    UnloadTexture(LandR);
-    UnloadTexture(spaceKey);
+    UnloadTexture(tutorial);
 
     return *screen;
 }
