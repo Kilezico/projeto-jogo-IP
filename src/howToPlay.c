@@ -17,7 +17,7 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
     SetTargetFPS(60);
     bool goBacktoMenu = false;
 
-    Texture2D tutorial = LoadTexture("assets/tutorial.png");
+    Texture2D tutorial = LoadTexture("assets/tutorialFinal.png");
 
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
 
