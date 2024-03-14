@@ -21,6 +21,6 @@ void DrawCoin(Coin coin);
 bool CheckCoinCollision(Player player, Coin coin);
 
 // Função para coletar uma moeda
-void CollectCoin(Coin *coin);
+void CollectCoin(Coin *coin, Player *player);
 
 #endif

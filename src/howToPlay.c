@@ -26,20 +26,23 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
 
         BeginDrawing();
 
-            DrawTexture(tutorial, 0, 0, WHITE);
+            // DrawTexture(tutorial, 0, 0, WHITE);
+            Rectangle source = {0, 0, tutorial.width, tutorial.height};
+            Rectangle dest = {0, -1, 1921, 1081};
+            DrawTexturePro(tutorial, source, dest, (Vector2){0, 0}, 0, WHITE);
     
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
-            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 65, 0, BLACK);
+            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 50, 0, BLACK);
             goBacktoMenu = BackToMenuPressedHT(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
             }
     
-            DrawTextEx(fonte, "Como pular?", (Vector2){100, 330}, 150, 0, BLACK);
-            DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){100, 500}, 75, 0, BLACK);
-            DrawTextEx(fonte, "Como andar para os lados?", (Vector2){940, 510}, 150, 0, BLACK);
-            DrawTextEx(fonte, "Use as letras A e D,\n\n\nou as setas do teclado", (Vector2){1080, 680}, 75, 0, BLACK); //textos que ficam na tela
+            DrawTextEx(fonte, "Como pular?", (Vector2){120, 200}, 100, 0, BLACK);
+            DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){120, 320}, 65, 0, BLACK);
+            DrawTextEx(fonte, "Como andar para os lados?", (Vector2){960, 400}, 100, 0, BLACK);
+            DrawTextEx(fonte, "Use as letras A e D,\n\n\nou as setas do teclado", (Vector2){960, 520}, 65, 0, BLACK); //textos que ficam na tela
             
         EndDrawing();
     }
