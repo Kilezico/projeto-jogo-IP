@@ -28,7 +28,7 @@ typedef struct {
 Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 void criaPlataformas(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor); // Cria as plataformas iniciais
 void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor, float alturaAgua); // Cria novas plataformas
-void drawPlataforma(Plataforma *plataformas, int plataformasTam);
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo);
 
 void criaTexturasAgua(Agua *agua);
 void drawAguaFundo(Agua agua);

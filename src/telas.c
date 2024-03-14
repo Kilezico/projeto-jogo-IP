@@ -9,14 +9,14 @@
 #include "visao.h"
 
 // Telas do jogo
-void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte)
+void jogoDraw(GameplayScreen screen, Camera2D camera, Player player, Agua aguaLetal, Plataforma *plataformas, int plataformasTam, Font fonte, Texture2D terra, Texture2D topo)
 {
     DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), SKYBLUE);
 
     BeginMode2D(camera);
         drawAguaFundo(aguaLetal); // desenha fundo
         
-        drawPlataforma(plataformas, plataformasTam); // desenha plataformas
+        drawPlataforma(plataformas, plataformasTam, terra, topo); // desenha plataformas
 
         DrawPlayer(player); // desenha jogador
         

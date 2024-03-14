@@ -16,7 +16,7 @@ typedef enum {
 
 // Telas do jogo
 // Se precisar de mais alguma coisa pra printar na função, é só adicionar nos parâmetros
-void jogoDraw(GameplayScreen screen, Camera2D camera, Player jogador, Agua aguaLetal, Plataforma *plataformas, int platformasTam, Font fonte);
+void jogoDraw(GameplayScreen screen, Camera2D camera, Player jogador, Agua aguaLetal, Plataforma *plataformas, int platformasTam, Font fonte, Texture2D terra, Texture2D terraTopo);
 void jogoUpdate(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 void jogoReset(GameScreen *bigScreen, GameplayScreen *screen, Camera2D *camera, Player *player, Agua *aguaLetal, Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 

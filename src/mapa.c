@@ -61,7 +61,7 @@ void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *te
     }
 }
 
-void drawPlataforma(Plataforma *plataformas, int plataformasTam)
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo)
 {
     for (int i=0; i<plataformasTam; i++) {
         if (plataformas[i].textura != NULL) { // é uma vitória régia
@@ -71,7 +71,13 @@ void drawPlataforma(Plataforma *plataformas, int plataformasTam)
             // desenha as hitboxes
             // DrawRectangleLinesEx(plataformas[i].hitbox.react, 2, RED);
         } else { // é o chão
-            DrawRectangleRec(plataformas[i].hitbox.react, BROWN);
+            int tam = 16 * 5;
+            for (int j=plataformas[i].hitbox.react.x; j<plataformas[i].hitbox.react.width; j+=tam) {
+                for (int k=plataformas[i].hitbox.react.y; k<plataformas[i].hitbox.react.height; k+=tam) {
+                    DrawTexturePro((k == 0) ? topo : terra, (Rectangle){0, 0, 16, 16}, (Rectangle){j, k-10, tam, tam}, (Vector2){0, 0}, 0, WHITE);
+                }
+            }
+            // DrawRectangleRec(plataformas[i].hitbox.react, BROWN);
         }
     }
 }

@@ -40,6 +40,8 @@ int main(){
     Texture2D texturaPlataforma = LoadTexture("assets/plataforma.png");
     Texture2D texturaPlataformaFlor = LoadTexture("assets/plataforma_flor.png");
     criaPlataformas(plataformas, plataformasTam, &texturaPlataforma, &texturaPlataformaFlor);
+    Texture2D terra = LoadTexture("assets/terra.png");
+    Texture2D terraTopo = LoadTexture("assets/terra_topo.png");
 
     // Água que mata
     Agua aguaLetal = {};
@@ -84,7 +86,7 @@ int main(){
             switch (gameState) {
                 case GAMEPLAY:
                     // Desenha o jogo
-                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu);
+                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu, terra, terraTopo);
                 break;
                 case MENUS:
                     menuDraw(&gameState, fonteMenu);
@@ -112,6 +114,8 @@ int main(){
 
     UnloadTexture(texturaPlataforma);
     UnloadTexture(texturaPlataformaFlor);
+    UnloadTexture(terra);
+    UnloadTexture(terraTopo);
     
     UnloadPlayer(&player);
 
