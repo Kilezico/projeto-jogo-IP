@@ -18,7 +18,6 @@ typedef struct {
 typedef struct {
     Color fullNameColor;
     const char *fullName;
-    const char *role;
 } nameCreditExpanded; //struct para oq aparece quado coloca o cursor em cima do nome
 
 void DrawCreditButton(nameCredit student, Font fonte) {
@@ -29,8 +28,6 @@ void DrawCreditButton(nameCredit student, Font fonte) {
 void DrawExpandedCreditButton(nameCreditExpanded studentF, Font fonte) {
     // DrawText(studentF.fullName, 720, 360, 70, studentF.fullNameColor);
     DrawTextEx(fonte, studentF.fullName, (Vector2){720, 360}, 70, 0, studentF.fullNameColor);
-    // DrawText(studentF.role, 770, 440, 50, studentF.fullNameColor);
-    DrawTextEx(fonte, studentF.role, (Vector2){770, 440}, 50, 0, studentF.fullNameColor);
 } //coloca mais informações, desenha o resto na tela quando o cursor esta no nome
 
 bool BackToMenuPressedC(bool menuButton, Rectangle button) {
@@ -86,23 +83,18 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
     
     DyegoF.fullNameColor = groundBrown;
     DyegoF.fullName = "Dyego Ferreira da Silva";
-    DyegoF.role = "função do dyego";
 
     HenriqueF.fullNameColor = groundBrown;
     HenriqueF.fullName = "Henrique Alves Passos";
-    HenriqueF.role = "função do henrique";
 
     JoaoF.fullNameColor = groundBrown;
     JoaoF.fullName = "João Victor Grangeiro Costa";
-    JoaoF.role = "função do joão";
 
     LuannaF.fullNameColor = groundBrown;
     LuannaF.fullName = "Luanna Gomes Lucena";
-    LuannaF.role = "função da luanna";
 
     ClaraF.fullNameColor = groundBrown;
     ClaraF.fullName = "Maria Clara Laranjeira Tenório";
-    ClaraF.role = "função da clara";
 
     // Mosquinha mouse
     Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
