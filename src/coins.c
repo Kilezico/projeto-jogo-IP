@@ -47,9 +47,9 @@ bool CheckCoinCollision(Player player, Coin coin) {
 }
 
 // Função para coletar uma moeda
-void CollectCoin(Coin *coin) {
+void CollectCoin(Coin *coin, Player *player) {
     coin->active = false;
-    // Adicione aqui a lógica de pontuação ou efeitos ao coletar uma moeda
+    player->coinCount++;
 }
 
 /* (Alterações na main)
