@@ -163,7 +163,18 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
                 Clara.rectColor = polutedSky;
                 Clara.nameColor = grassGreen;
             } //verifica se o cursor está em cima de algum dos nomes, se estiver expande para as informações daquele e muda a cor
+
+            // Mosquinhas do cenário
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){1000, 700, 70, 70}, (Vector2){20, 20}, 15, WHITE);
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){800, 580, 70, 70}, (Vector2){20, 20}, 30, WHITE);
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){1740, 820, 70, 70}, (Vector2){20, 20}, -15, WHITE);
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){1450, 510, 70, 70}, (Vector2){20, 20}, -30, WHITE);
             
+            // Mosquinha do mouse
             DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
             (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
         EndDrawing();
