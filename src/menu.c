@@ -55,31 +55,31 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
     play.rectColor = polutedSky; //cor do retengulo, igual a do fundo e igual para todos
     play.optionColor = groungBrown; //cor do texto, igual para todos
     play.word = "Jogar"; //texto q fica no botão, indica a opção
-    play.fontSize = 65; //tamanho das letras
+    play.fontSize = 170; //tamanho das letras
 
     howtoPlay.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     howtoPlay.rectColor = polutedSky;
     howtoPlay.optionColor = groungBrown;
     howtoPlay.word = "Como jogar?";
-    howtoPlay.fontSize = 65;
+    howtoPlay.fontSize = 170;
 
     backStory.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     backStory.rectColor = polutedSky;
     backStory.optionColor = groungBrown;
     backStory.word = "Backstory";
-    backStory.fontSize = 65;
+    backStory.fontSize = 170;
 
     exit.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 75 + screenHeight / 2 + BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     exit.rectColor = polutedSky;
     exit.optionColor = groungBrown;
     exit.word = "Sair :(";
-    exit.fontSize = 65;
+    exit.fontSize = 170;
 
     creditPage.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 100 + screenHeight / 2 + 3*BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     creditPage.rectColor = polutedSky;
     creditPage.optionColor = groungBrown;
     creditPage.word = "Créditos";
-    creditPage.fontSize = 65;
+    creditPage.fontSize = 170;
 
     bool buttonPlayClicked = false, buttonHowtoPlayClicked = false, buttonBackStoryClicked = false, buttonExitClicked = false, buttonCreditPageClicked = false;
     //variavel booleana pra verificar se alguma opção foi selecionada, so muda e fica verdadeira caso seja, quando se torna true a tela muda
@@ -90,7 +90,7 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawTextLines(fonte, "sapo-sopa sobe", (Vector2){960, 120}, 0, 170, 20, grassGreen, BLACK, 4); // titulo do jogo
+            DrawTextLines(fonte, "sapo-sopa sobe", (Vector2){960, 120}, 0, 400, 20, grassGreen, BLACK, 4); // titulo do jogo
             
             Rectangle proportionFrogMenu = { 0.0f, 0.0f, frogMenu.width, frogMenu.height };
             //retangulo que vai definir a proporção da imagem do sapo, nesse caso pega o sapo todo
