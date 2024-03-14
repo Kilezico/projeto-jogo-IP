@@ -19,6 +19,7 @@ typedef struct{
     Texture2D textura;
     Texture2D texturaPulo;
 
+    int contMorte;
     Sound somMorte;
     Sound somPulo;
 
