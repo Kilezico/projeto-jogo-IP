@@ -103,33 +103,41 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
                 Vector2 origin = { One.whereSquare.width / 2, One.whereSquare.height / 2 };
                 DrawTexturePro(One.image, One.proportionSquare, One.whereSquare, origin, 0.0f, WHITE);
                 DrawSTory(taleOne, fonte);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
             }else if(squareCount==2){ //mostra o quadrinho 2
                 Vector2 origin = { Two.whereSquare.width / 2, Two.whereSquare.height / 2 };
                 DrawTexturePro(Two.image, Two.proportionSquare, Two.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleTwo, fonte);
             }else if(squareCount==3){ //mostra o quadrinho 3
                 Vector2 origin = { Three.whereSquare.width / 2, Three.whereSquare.height / 2 };
                 DrawTexturePro(Three.image, Three.proportionSquare, Three.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleThree, fonte);
             }else if(squareCount==4){ //mostra o quadrinho 4
                 Vector2 origin = { Four.whereSquare.width / 2, Four.whereSquare.height / 2 };
                 DrawTexturePro(Four.image, Four.proportionSquare, Four.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleFour, fonte);
             }else if(squareCount==5){ //mostra o quadrinho 5
                 Vector2 origin = { Five.whereSquare.width / 2, Five.whereSquare.height / 2 };
                 DrawTexturePro(Five.image, Five.proportionSquare, Five.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleFive, fonte);
             }else if(squareCount==6){ //mostra o quadrinho 6
                 Vector2 origin = { Six.whereSquare.width / 2, Six.whereSquare.height / 2 };
                 DrawTexturePro(Six.image, Six.proportionSquare, Six.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleSix, fonte);
             }else if(squareCount==7){ //mostra o quadrinho 7
                 Vector2 origin = { Seven.whereSquare.width / 2, Seven.whereSquare.height / 2 };
                 DrawTexturePro(Seven.image, Seven.proportionSquare, Seven.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para continuar...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleSeven, fonte);
             }else if(squareCount>=8){ //mostra o quadrinho 8
                 Vector2 origin = { Eight.whereSquare.width / 2, Eight.whereSquare.height / 2 };
                 DrawTexturePro(Eight.image, Eight.proportionSquare, Eight.whereSquare, origin, 0.0f, WHITE);
+                DrawTextPro(fonte, "(Aperte ESPAÇO para rever a história...)", (Vector2) {38, GetScreenHeight()/1.1}, (Vector2) {0,0}, 0, 50 , 0 , ORANGE);
                 DrawSTory(taleEight, fonte);
                 Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
                 DrawRectangleRec(backToMenu, waterBlue);
