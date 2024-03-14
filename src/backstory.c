@@ -90,7 +90,7 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
 
     while (goBacktoMenu!=true)  
     {
-        if(IsKeyPressed(KEY_SPACE)){
+        if(IsKeyPressed(KEY_SPACE) || IsKeyPressed(KEY_ENTER)){
             squareCount++;
             if (squareCount > 8) squareCount = 1;
         } //passa o quadrinho quando o jogador aperta espaço
