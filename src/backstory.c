@@ -73,14 +73,14 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
     writtenStory taleOne, taleTwo, taleThree, taleFour, taleFive, taleSix, taleSeven, taleEight;
     //struct que pega o texto chamada para cada um dos quadrinhos
 
-    taleOne.tale = "historia no quadrinho 1";
-    taleTwo.tale = "historia no quadrinho 2";
-    taleThree.tale = "historia no quadrinho 3";
-    taleFour.tale = "historia no quadrinho 4";
-    taleFive.tale = "historia no quadrinho 5";
-    taleSix.tale = "historia no quadrinho 6";
-    taleSeven.tale = "historia no quadrinho 7";
-    taleEight.tale = "historia no quadrinho 8";
+    taleOne.tale = "Era uma vez uma lagoa, com muita biodiversividade.\n\n\n\nLá moravam muitos sapinhos, mas entre eles estava\n\n\n\npara nascer um muito especial: Sapo-Sopa.";
+    taleTwo.tale = "Sapo-Sopa nasceu e passou a viver muito feliz com\n\n\n\nseus irmãos girinos. Porém,\n\n\n\nalgo devastador estava prestes a ocorrer.";
+    taleThree.tale = "Com o aumento do aquecimento global,\n\n\n\nas geleiras foram derretendo.\n\n\n\nFazendo assim o nível da água subir mais e mais.";
+    taleFour.tale = "Na medida que cresceu,\n\n\n\nSapo-Sopa assistiu sua lagoa encher cada vez mais rápido.";
+    taleFive.tale = "Até que um dia, a lagoa de Sapo-Sopa\n\n\n\nfoi invadida pelo mar, obrigando Sapo-Sopa a pular por aí,\n\n\n\nfugindo da água salgada (sal mata sapo).";
+    taleSix.tale = "Agora, nosso querido sapo está fadado a pular\n\n\n\nde vitória-régia em vitória-régia pelo resto da sua vida,\n\n\n\npara fugir da seleção natural.";
+    taleSeven.tale = "E para ter energia para continuar pulando,\n\n\n\nele fica sempre a procura de moscas para devorar.";
+    taleEight.tale = "Ajude Sapo-Sopa a sobreviver os terríveis impactos dos\n\n\n\nseres humanos na Terra (e a comer muitas mosquinhas).";
     //texto
 
     int squareCount = 1; //começa no quadrinho 1
