@@ -45,7 +45,7 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
     Color groungBrown = (Color){130, 68, 4, 255}; //cor do titulo/terra
  
     Texture2D background = LoadTexture("assets/backGround.png");
-    Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.png"); //desenho do sapo que fica no menu
+    Texture2D frogMenu = LoadTexture("assets/sapoComeMenu.PNG"); //desenho do sapo que fica no menu
 
     options play; options howtoPlay; options backStory; options exit; options creditPage;
     //struct que pega as informações dos botões
@@ -80,6 +80,8 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
     creditPage.optionColor = groungBrown;
     creditPage.word = "Créditos";
     creditPage.fontSize = 120;
+
+    Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
 
     bool buttonPlayClicked = false, buttonHowtoPlayClicked = false, buttonBackStoryClicked = false, buttonExitClicked = false, buttonCreditPageClicked = false;
     //variavel booleana pra verificar se alguma opção foi selecionada, so muda e fica verdadeira caso seja, quando se torna true a tela muda
@@ -136,11 +138,15 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
                 *screen = CREDITS;
             }//troca a tela
             
+            // Mooose
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
         EndDrawing();
     }
 
     UnloadTexture(background);
     UnloadTexture(frogMenu);
+    UnloadTexture(mosquinha);
 
     return *screen;
 }

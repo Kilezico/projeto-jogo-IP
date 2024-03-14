@@ -38,35 +38,35 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
      
     squareImages One, Two, Three, Four, Five, Six, Seven, Eight;
 
-    One.image = LoadTexture("assets/squareOne.png");
+    One.image = LoadTexture("assets/squareOne.PNG");
     One.proportionSquare = (Rectangle) { 0.0f, 0.0f, One.image.width, One.image.height };
     One.whereSquare = (Rectangle) { 635, 660, One.image.width * 0.6, One.image.height * 0.6 };
 
-    Two.image = LoadTexture("assets/squareTwo.png");
+    Two.image = LoadTexture("assets/squareTwo.PNG");
     Two.proportionSquare = (Rectangle) { 0.0f, 0.0f, Two.image.width, Two.image.height };
     Two.whereSquare = (Rectangle) { 635, 635, Two.image.width * 0.6, Two.image.height * 0.6 };
 
-    Three.image = LoadTexture("assets/squareThree.png");
+    Three.image = LoadTexture("assets/squareThree.PNG");
     Three.proportionSquare = (Rectangle) { 0.0f, 0.0f, Three.image.width, Three.image.height };
     Three.whereSquare = (Rectangle) { 635, 660, Three.image.width * 0.7, Three.image.height * 0.7 };
 
-    Four.image = LoadTexture("assets/squareFour.png");
+    Four.image = LoadTexture("assets/squareFour.PNG");
     Four.proportionSquare = (Rectangle) { 0.0f, 0.0f, Four.image.width, Four.image.height };
     Four.whereSquare = (Rectangle) { 635, 660, Four.image.width * 0.85, Four.image.height * 0.85 };
 
-    Five.image = LoadTexture("assets/squareFive.png");
+    Five.image = LoadTexture("assets/squareFive.PNG");
     Five.proportionSquare = (Rectangle) { 0.0f, 0.0f, Five.image.width, Five.image.height };
     Five.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
-    Six.image = LoadTexture("assets/squareSix.png");
+    Six.image = LoadTexture("assets/squareSix.PNG");
     Six.proportionSquare = (Rectangle) { 0.0f, 0.0f, Six.image.width, Six.image.height };
     Six.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
-    Seven.image = LoadTexture("assets/squareSeven.png");
+    Seven.image = LoadTexture("assets/squareSeven.PNG");
     Seven.proportionSquare = (Rectangle) { 0.0f, 0.0f, Seven.image.width, Seven.image.height };
     Seven.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
 
-    Eight.image = LoadTexture("assets/squareEight.png");
+    Eight.image = LoadTexture("assets/squareEight.PNG");
     Eight.proportionSquare = (Rectangle) { 0.0f, 0.0f, Eight.image.width, Eight.image.height };
     Eight.whereSquare = (Rectangle) { 960, 540, 1920, 1080 };
     
@@ -84,6 +84,9 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
     //texto
 
     int squareCount = 1; //começa no quadrinho 1
+
+    // Mouse mosquinha
+    Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
 
     while (goBacktoMenu!=true)  
     {
@@ -137,7 +140,8 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
                     *screen = MENUS;
                 }
             }
-        
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
 
         EndDrawing();
     }
@@ -150,6 +154,7 @@ GameScreen backStoryDraw(GameScreen *screen, Font fonte)
     UnloadTexture(Six.image);
     UnloadTexture(Seven.image);
     UnloadTexture(Eight.image);
+    UnloadTexture(mosquinha);
 
     return *screen;
 }

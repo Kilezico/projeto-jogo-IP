@@ -46,7 +46,8 @@ PLATFORM           ?= PLATFORM_DESKTOP
 # If there is a libraylib in both EXAMPLE_RUNTIME_PATH and RAYLIB_INSTALL_PATH, at runtime,
 # the library at EXAMPLE_RUNTIME_PATH, if present, will take precedence over the one at RAYLIB_INSTALL_PATH.
 # RAYLIB_INSTALL_PATH should be the desired full path to libraylib. No relative paths.
-DESTDIR ?= /home/CIN/jvgc/Downloads/raylib # ubuntu PC do GRAD.
+# ubuntu PC do GRAD.
+DESTDIR ?= /home/CIN/jvgc/Downloads/raylib
 RAYLIB_INSTALL_PATH ?= $(DESTDIR)/lib
 # RAYLIB_H_INSTALL_PATH locates the installed raylib header and associated source files.
 RAYLIB_H_INSTALL_PATH ?= $(DESTDIR)/include

@@ -64,6 +64,11 @@ int main(){
     GameplayScreen gameplayState = JOGO;
     GameScreen gameState = MENUS;
 
+
+    // Alce (Moose)
+    Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
+    HideCursor();
+
     SetTargetFPS(60); // Limite de fps
 
     // Fonte
@@ -105,6 +110,8 @@ int main(){
                 break;
                 default: running = false; break;
             }
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
         EndDrawing();
     }
 
@@ -116,7 +123,8 @@ int main(){
     UnloadTexture(texturaPlataformaFlor);
     UnloadTexture(terra);
     UnloadTexture(terraTopo);
-    
+    UnloadTexture(mosquinha);
+
     UnloadPlayer(&player);
 
     UnloadFont(fonteMenu);

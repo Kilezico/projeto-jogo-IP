@@ -104,6 +104,9 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
     ClaraF.fullName = "Maria Clara Laranjeira Tenório";
     ClaraF.role = "função da clara";
 
+    // Mosquinha mouse
+    Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
+
     while (goBacktoMenu!=true)  
     {
         
@@ -169,10 +172,13 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
                 Clara.nameColor = grassGreen;
             } //verifica se o cursor está em cima de algum dos nomes, se estiver expande para as informações daquele e muda a cor
             
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
         EndDrawing();
     }
 
     UnloadTexture(background);
+    UnloadTexture(mosquinha);
 
     return *screen;
 }

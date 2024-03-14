@@ -21,6 +21,9 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
 
     Color polutedSky = (Color){121, 144, 160, 255}; //cor do ceu
 
+    // Mosquinha mouse
+    Texture2D mosquinha = LoadTexture("assets/mosquinha.PNG");
+
     while (goBacktoMenu!=true)
     {
 
@@ -44,10 +47,13 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
             DrawTextEx(fonte, "Como andar para os lados?", (Vector2){960, 400}, 100, 0, BLACK);
             DrawTextEx(fonte, "Use as letras A e D,\n\n\nou as setas do teclado", (Vector2){960, 520}, 65, 0, BLACK); //textos que ficam na tela
             
+            DrawTexturePro(mosquinha, (Rectangle){0, 0, mosquinha.width, mosquinha.height},
+            (Rectangle){GetMousePosition().x, GetMousePosition().y, 40, 40}, (Vector2){20, 20}, 0, WHITE);
         EndDrawing();
     }
 
     UnloadTexture(tutorial);
+    UnloadTexture(mosquinha);
 
     return *screen;
 }
