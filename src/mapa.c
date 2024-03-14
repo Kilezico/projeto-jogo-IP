@@ -8,7 +8,7 @@
 Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) 
 {
     // Função que cria e retorna uma nova plataforma na altura position.y e num x perto de position.x
-    int distanciaMin = 200;
+    int distanciaMin = 100;
     int distanciaMax = 400;
     // distanciaMin = distanciaMax = 0;
     Plataforma plat;

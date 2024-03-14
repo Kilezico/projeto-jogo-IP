@@ -12,7 +12,9 @@ typedef struct{
     bool vivo;
     bool esquerda; // se está apontado para esquerda ou direita
     bool andando;
-    
+    bool jumpBuffer;
+    int jumpBufferCount;
+
     Rectangle hitbox;
     Texture2D textura;
     Texture2D texturaPulo;

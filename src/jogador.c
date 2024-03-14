@@ -17,9 +17,18 @@ void UpdatePlayer(Player *player, Plataforma *plataformas, int plataformasLength
         player->andando = true;
     }
     // Funcao de pulo
-    if(IsKeyPressed(KEY_SPACE) && player->canJump){
+    if (IsKeyPressed(KEY_SPACE)) {
+        player->jumpBuffer = true;
+        player->jumpBufferCount = 5;
+    } else {
+        player->jumpBufferCount--;
+        if (player->jumpBufferCount < 0)
+            player->jumpBuffer = false;
+    }
+    if(player->jumpBuffer && player->canJump){
         player->speed = -PLAYER_JUMP_SPD;
         player->canJump = false;
+        player->jumpBuffer = false;
         PlaySound(player->somPulo);
     }
 

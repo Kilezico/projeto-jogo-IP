@@ -110,7 +110,6 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
         BeginDrawing();
 
             DrawTexture(background, 0, 0, WHITE);
-            DrawTextLines(fonte, "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 150, 20, WHITE, BLACK, 4); // titulo do jogo
 
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
@@ -120,6 +119,7 @@ GameScreen creditsDraw(GameScreen *screen, Font fonte)
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
             }
+            DrawTextLines(fonte, "sapos-sopa (grupo 7)", (Vector2){960, 120}, 0, 150, 20, WHITE, BLACK, 4); // titulo do jogo
 
             DrawCreditButton(Dyego, fonte);
             DrawCreditButton(Henrique, fonte);

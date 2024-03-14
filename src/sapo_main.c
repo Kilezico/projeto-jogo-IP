@@ -65,7 +65,7 @@ int main(){
     SetTargetFPS(60); // Limite de fps
 
     // Fonte
-    Font fonteMenu = LoadFontEx("assets/fonteMenu.ttf", 100, 0, 256);
+    Font fonteMenu = LoadFontEx("assets/fonteMenu.ttf", 200, 0, 256);
 
     bool running = true;
     //------Loop principal------
