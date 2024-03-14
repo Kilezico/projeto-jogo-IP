@@ -8,6 +8,7 @@ typedef struct{
     Vector2 position;
     float speed;
     float rotacao, rotacaoVel;
+    float maxHeight;
     bool canJump;
     bool vivo;
     bool esquerda; // se está apontado para esquerda ou direita
