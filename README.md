@@ -12,6 +12,3 @@ Projeto do Jogo da cadeira de Introdução à Programação, usando a biblioteca
   - Mecânica & Design
 - Maria Clara Laranjeira Tenorio
   - Interface & Design
-
-
-https://freesound.org/people/Soundholder/sounds/425372/
