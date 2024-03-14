@@ -16,9 +16,10 @@ Coin CreateCoin(Vector2 position, Color color) {
 }
 
 // Função para desenhar uma moeda na tela
-void DrawCoin(Coin coin) {
+void DrawCoin(Coin coin, Texture2D mosca) {
     if (coin.active) {
-        DrawCircleV(coin.position, 10, coin.color);
+        // DrawCircleV(coin.position, 10, coin.color);
+        DrawTexturePro(mosca, (Rectangle){0, 0, mosca.width, mosca.height}, (Rectangle){coin.position.x, coin.position.y, 50, 50}, (Vector2){25, 25}, 0, WHITE);
     }
 }
 
@@ -36,14 +37,17 @@ float CalculateDistance(Vector2 playerPosition, Vector2 coinPosition) {
 
 // Função para verificar a colisão entre o jogador e uma moeda
 bool CheckCoinCollision(Player player, Coin coin) {
-    // Define o raio do jogador
-    float playerRadius = 20.0f;
+    // // Define o raio do jogador
+    // float playerRadius = 20.0f;
 
-    // Calcula a distância entre o jogador e a moeda
-    float distance = CalculateDistance(player.position, coin.position);
+    // // Calcula a distância entre o jogador e a moeda
+    // float distance = CalculateDistance(player.position, coin.position);
 
-    // Se a distância for menor que a soma dos raios do jogador e da moeda, houve colisão
-    return distance < playerRadius + 10; // 10 é o raio da moeda
+    // // Se a distância for menor que a soma dos raios do jogador e da moeda, houve colisão
+    // return distance < playerRadius + 10; // 10 é o raio da moeda
+    if (coin.active)
+        return CheckCollisionCircleRec(coin.position, 10, player.hitbox);
+    else return false;
 }
 
 // Função para coletar uma moeda

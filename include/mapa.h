@@ -2,6 +2,8 @@
 #define MAPA_H
 #include <raylib.h>
 
+#include "coins.h"
+
 //variaveis da entidade do mapa
 typedef struct{
     Rectangle react;
@@ -13,6 +15,7 @@ typedef struct {
     Rectangle rect;
     Texture2D *textura; // Está como ponteiro para carregar a mesma textura apenas uma vez.
     float velocidade;
+    Coin coin;
 } Plataforma;
 
 // Água do mar que sobe
@@ -28,7 +31,7 @@ typedef struct {
 Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor);
 void criaPlataformas(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor); // Cria as plataformas iniciais
 void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *texturaPlat, Texture2D *texturaPlatFlor, float alturaAgua); // Cria novas plataformas
-void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo);
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo, Texture2D mosca);
 
 void criaTexturasAgua(Agua *agua);
 void drawAguaFundo(Agua agua);

@@ -36,4 +36,11 @@ void DrawPlayer(Player player);
 // Função para desinicializar as texturas e sons do player
 void UnloadPlayer(Player *player);
 
+// Função para verificar a colisão entre o jogador e uma moeda
+bool CheckCoinCollision(Player player, Coin coin);
+
+// Função para coletar uma moeda
+void CollectCoin(Coin *coin, Player *player);
+
+
 #endif

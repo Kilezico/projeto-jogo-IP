@@ -4,6 +4,8 @@
 
 #include "mapa.h"
 #include "jogador.h"
+#include "coins.h"
+#include "phisica.h"
 
 Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *texturaPlatFlor) 
 {
@@ -16,7 +18,7 @@ Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *t
     plat.rect = (Rectangle){0, position.y, plat.textura->width / 3, plat.textura->height / 3};
     plat.hitbox = (EnvItem){(Rectangle){plat.rect.x + 10, plat.rect.y + 75, plat.rect.width - 20, 20}, 1};
     plat.velocidade = 0;
-    
+
     // Randomiza a posição da plataforma
     float pos = position.x;
     if (pos < distanciaMax) pos += GetRandomValue(distanciaMin, distanciaMax);
@@ -24,6 +26,15 @@ Plataforma novaPlataforma(Vector2 position, Texture2D *texturaPlat, Texture2D *t
     else pos += pow(-1, GetRandomValue(1, 2)) * GetRandomValue(distanciaMin, distanciaMax);
     plat.rect.x = pos;
     plat.hitbox.react.x = pos + 5;
+
+    // Cria a coin da plataforma
+    Coin dindin;
+    dindin.active = GetRandomValue(1, 8) == 1;
+    dindin.position.x = plat.hitbox.react.x + plat.hitbox.react.width/2;
+    dindin.position.y = plat.hitbox.react.y - 40;
+    dindin.color = GOLD;
+    plat.coin = dindin;
+
     return plat;
 }
 
@@ -61,13 +72,14 @@ void updatePlataforma(Plataforma *plataformas, int plataformasTam, Texture2D *te
     }
 }
 
-void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo)
+void drawPlataforma(Plataforma *plataformas, int plataformasTam, Texture2D terra, Texture2D topo, Texture2D mosca)
 {
     for (int i=0; i<plataformasTam; i++) {
         if (plataformas[i].textura != NULL) { // é uma vitória régia
             //DrawTexture(*plataformas[i].textura, plataformas[i].rect.x, plataformas[i].rect.y, WHITE);
             Rectangle source = (Rectangle){0, 0, plataformas[i].textura->width, plataformas[i].textura->height};
             DrawTexturePro(*plataformas[i].textura, source, plataformas[i].rect, (Vector2){0, 0}, 0, WHITE);
+            DrawCoin(plataformas[i].coin, mosca);
             // desenha as hitboxes
             // DrawRectangleLinesEx(plataformas[i].hitbox.react, 2, RED);
         } else { // é o chão
@@ -172,8 +184,8 @@ void updateAgua(Agua* agua, float alturaJogador, bool cabou) {
             agua->altura -= distancia * 0.008;
         } else { // Quando chegar na tela, vai um pouco mais lento
             agua->altura -= agua->velVertical;
-            agua->velVertical += 0.0006f;
-            if (agua->velVertical > 3.0f) agua->velVertical = 3.0f;
+            agua->velVertical += AGUA_ACCEL;
+            if (agua->velVertical > AGUA_MAX_SPD) agua->velVertical = AGUA_MAX_SPD;
         }
     } else {
         agua->altura -= 5;        

@@ -54,6 +54,11 @@ void UpdatePlayer(Player *player, Plataforma *plataformas, int plataformasLength
             player->speed = 0.0f;
             p->y = ei.react.y;
         }
+
+        // Checa colisão com moeda
+        if (CheckCoinCollision(*player, plataformas[i].coin)) {
+            CollectCoin(&plataformas[i].coin, player);
+        }
     }
     
     if(!hitObstacle){

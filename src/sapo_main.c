@@ -33,6 +33,7 @@ int main(){
     player.textura = LoadTexture("assets/frogSitting.PNG");
     player.texturaPulo = LoadTexture("assets/frogJumping.PNG");
     player.esquerda = false;
+    player.coinCount = 0;
 
     // Plataformas
     int plataformasTam = 20;
@@ -91,7 +92,7 @@ int main(){
             switch (gameState) {
                 case GAMEPLAY:
                     // Desenha o jogo
-                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu, terra, terraTopo);
+                    jogoDraw(gameplayState, camera, player, aguaLetal, plataformas, plataformasTam, fonteMenu, terra, terraTopo, mosquinha);
                 break;
                 case MENUS:
                     menuDraw(&gameState, fonteMenu);
