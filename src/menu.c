@@ -55,13 +55,13 @@ GameScreen menuDraw(GameScreen *screen, Font fonte)
     play.rectColor = polutedSky; //cor do retengulo, igual a do fundo e igual para todos
     play.optionColor = groungBrown; //cor do texto, igual para todos
     play.word = "Jogar"; //texto q fica no botão, indica a opção
-    play.fontSize = 170; //tamanho das letras
+    play.fontSize = 120; //tamanho das letras
 
     howtoPlay.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 25 + screenHeight / 2 - (3*BUTTON_HEIGHT / 2), BUTTON_WIDTH, BUTTON_HEIGHT };
     howtoPlay.rectColor = polutedSky;
     howtoPlay.optionColor = groungBrown;
     howtoPlay.word = "Como jogar?";
-    howtoPlay.fontSize = 170;
+    howtoPlay.fontSize = 120;
 
     backStory.button = (Rectangle){ screenWidth - (325 + BUTTON_WIDTH), 50 + screenHeight / 2 - BUTTON_HEIGHT / 2, BUTTON_WIDTH, BUTTON_HEIGHT };
     backStory.rectColor = polutedSky;
