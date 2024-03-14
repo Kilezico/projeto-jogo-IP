@@ -19,9 +19,10 @@ typedef struct{
     Texture2D textura;
     Texture2D texturaPulo;
 
-    int contMorte; // Contador para morte
     Sound somMorte;
     Sound somPulo;
+
+    int coinCount;
 } Player;
 
 
