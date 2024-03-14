@@ -30,7 +30,7 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
     
             Rectangle backToMenu = (Rectangle){ 20, 30, 450, 200 };
             DrawRectangleRec(backToMenu, polutedSky);
-            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 50, 0, BLACK);
+            DrawTextEx(fonte, "menu", (Vector2){25, 35}, 100, 0, BLACK);
             goBacktoMenu = BackToMenuPressedHT(goBacktoMenu, backToMenu);
             if(goBacktoMenu==true){//vai fazer o while parar
                 *screen = MENUS;
@@ -39,7 +39,7 @@ GameScreen howToDraw(GameScreen *screen, Font fonte)
             DrawTextEx(fonte, "Como pular?", (Vector2){120, 450}, 200, 0, BLACK);
             DrawTextEx(fonte, "Aperte no botão de espaço", (Vector2){120, 620}, 100, 0, BLACK);
             DrawTextEx(fonte, "Como andar para os lados?", (Vector2){960, 710}, 200, 0, BLACK);
-            DrawTextEx(fonte, "Use as letras A e D,\n\n\nou as setas do teclado", (Vector2){1100, 880}, 100, 0, BLACK); //textos que ficam na tela
+            DrawTextEx(fonte, "Use as letras A e D,\n\n\n\nou as setas do teclado", (Vector2){1100, 880}, 100, 0, BLACK); //textos que ficam na tela
             
         EndDrawing();
     }
